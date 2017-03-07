@@ -2,11 +2,14 @@
   <id>kingwang666</id>
   <name>Okhttp params get</name>
   <version>1.0</version>
-  <vendor email="wangxiaojielove666@gmail.com" url="freedom">YourCompany</vendor>
+  <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">YourCompany</vendor>
 
   <description><![CDATA[
       help you to get Okhttp request params.<br>
-      support Map<String, String>, Map<String, RequestBody>, List<MultipartBody.Part>;
+      support
+      <br>Map&lt;String, String&gt;<br>
+      Map&lt;String, RequestBody&gt;<br>
+      List&lt;MultipartBody.Part&gt;
     ]]></description>
 
   <change-notes><![CDATA[
