@@ -14,8 +14,8 @@ public class GetParamsAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         // TODO: insert action logic here
         TypePickDialog dialog = new TypePickDialog();
-        dialog.pack();
         dialog.setListener(type -> build(type, e));
+        dialog.pack();
         dialog.setVisible(true);
     }
 

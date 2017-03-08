@@ -1,8 +1,12 @@
 package builder;
 
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiField;
-import com.intellij.psi.PsiModifierList;
+import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.project.Project;
+import com.intellij.psi.*;
+import com.intellij.psi.search.GlobalSearchScope;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wang on 2017/3/6.
@@ -15,13 +19,23 @@ public class ParamsStringBuilder extends BaseBuilder {
 
     @Override
     protected String getMethodType() {
-        return "java.util.Map<String, String>";
+        return "Map<String, String>";
     }
 
     @Override
     protected String getValueType() {
         return "String";
     }
+
+
+    @Override
+    protected List<String> getImports() {
+        List<String> imports = new ArrayList<>();
+        imports.add("java.util.Map<String, String>");
+        imports.add("java.util.HashMap<>");
+        return imports;
+    }
+
 
     @Override
     protected String buildMethod(PsiClass psiClass, boolean isOverride, boolean needAll) {
@@ -33,7 +47,7 @@ public class ParamsStringBuilder extends BaseBuilder {
             fields = psiClass.getFields();
         }
         else {
-            sb.append(getMethodType()).append(mFieldName).append("=new java.util.HashMap<>();");
+            sb.append(getMethodType()).append(mFieldName).append("=new HashMap<>();");
             fields = psiClass.getAllFields();
         }
 
@@ -46,4 +60,5 @@ public class ParamsStringBuilder extends BaseBuilder {
         sb.append("return ").append(mFieldName).append(";}");
         return sb.toString();
     }
+
 }

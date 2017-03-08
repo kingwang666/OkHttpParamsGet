@@ -1,8 +1,8 @@
 <idea-plugin version="2">
     <id>kingwang666</id>
-    <name>Okhttp params get</name>
-    <version>1.0</version>
-    <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">YourCompany
+    <name>OkHttpParamsGet</name>
+    <version>1.1.0</version>
+    <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666
     </vendor>
 
     <description><![CDATA[
@@ -14,6 +14,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+       1.1.0 <br>
+         优化了代码的显示<br>
       1.0 <br>
       @Ignore: dont add to params <br>
       @PostFile: post a file <br>
@@ -38,7 +40,7 @@
         <!-- Add your actions here -->
         <action id="GetParamsId" class="GetParamsAction" text="GetParams" description="Get http params">
             <add-to-group group-id="GenerateGroup" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="alt k"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt T"/>
         </action>
     </actions>
 
