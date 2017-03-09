@@ -1,9 +1,6 @@
-package builder;
+package com.wang.okhttpparamsget.builder;
 
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
-import com.intellij.psi.search.GlobalSearchScope;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,15 +42,13 @@ public class ParamsStringBuilder extends BaseBuilder {
         if (isOverride && !needAll) {
             sb.append(getMethodType()).append(mFieldName).append("=super.").append(mMethodName).append("();");
             fields = psiClass.getFields();
-        }
-        else {
+        } else {
             sb.append(getMethodType()).append(mFieldName).append("=new HashMap<>();");
             fields = psiClass.getAllFields();
         }
-
         for (PsiField field : fields) {
             PsiModifierList modifiers = field.getModifierList();
-            if (modifiers == null || modifiers.findAnnotation("Ignore") == null) {
+            if (!findIgnore(modifiers)) {
                 sb.append("params.put(").append("\"").append(field.getName()).append("\"").append(",String.valueOf(").append(field.getName()).append("));");
             }
         }

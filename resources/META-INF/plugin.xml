@@ -1,25 +1,47 @@
 <idea-plugin version="2">
-    <id>kingwang666</id>
+    <id>com.wang.okhttpparamsget</id>
     <name>OkHttpParamsGet</name>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666
     </vendor>
 
     <description><![CDATA[
-      help you to get Okhttp request params.<br>
-      support
-      <br>Map&lt;String, String&gt;<br>
-      Map&lt;String, RequestBody&gt;<br>
-      List&lt;MultipartBody.Part&gt;
+      <li>Help you to get Okhttp request params.<br>
+      Support
+      <p>Map&lt;String, String&gt;</p>
+      <p>Map&lt;String, RequestBody&gt;</p>
+      <p>List&lt;MultipartBody.Part&gt;</p>
+      </li>
+      <li>How to use
+      <p>1 Choose a class.</p>
+      <p>2 Press Alt + P or click the Generate menu choose GetParams.</p>
+      <p>3 Choose a type.</p>
+      <p>4 click ok.</p>
+      </li>
+      <li>ps: <p>@Ignore: dont add to params <br>
+      @PostFile: post a file <br>
+      @PostFiles: post files</p>
+      These annotations can be in any package
+      </li>
     ]]></description>
 
     <change-notes><![CDATA[
-       1.1.0 <br>
-         优化了代码的显示<br>
-      1.0 <br>
+      <li>1.2.0(2017-03-09):
+      <p>1. Update Id.</p>
+      <p>2. Fix keyboard shortcut cannot use.</p>
+      <p>3. Fix annotations useless bug.</p>
+      <p>4. Fix a AnActionEvents bug. This is because IntelliJ API doesn't allow sharing AnActionEvents between swing events.</p>
+      </li>
+      <li>1.1.0(2017-03-08):
+      <p>1. Optimized the code display</p>
+      </li>
+      <li>1.0(2017-03-08):
+      <p>1. init. add annotations</p>
       @Ignore: dont add to params <br>
       @PostFile: post a file <br>
-      @PostFiles: post files <br>
+      @PostFiles: post files</li>
+
+
     ]]>
     </change-notes>
 
@@ -30,7 +52,7 @@
          on how to target different products -->
     <!-- uncomment to enable plugin in all products  -->
     <depends>com.intellij.modules.lang</depends>
-
+    <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
@@ -38,9 +60,10 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="GetParamsId" class="GetParamsAction" text="GetParams" description="Get http params">
+        <action id="GetParamsId" class="com.wang.okhttpparamsget.GetParamsAction" text="GetParams"
+                description="Get http params">
             <add-to-group group-id="GenerateGroup" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="alt T"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt P"/>
         </action>
     </actions>
 

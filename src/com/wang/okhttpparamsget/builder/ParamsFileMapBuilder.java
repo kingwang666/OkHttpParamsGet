@@ -1,4 +1,4 @@
-package builder;
+package com.wang.okhttpparamsget.builder;
 
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiField;
@@ -49,20 +49,18 @@ public class ParamsFileMapBuilder extends BaseBuilder {
         }
         for (PsiField field : fields) {
             PsiModifierList modifiers = field.getModifierList();
-            if (modifiers == null || modifiers.findAnnotation("Ignore") == null) {
-                if (modifiers != null && modifiers.findAnnotation("PostFiles") != null) {
+            if (!findIgnore(modifiers)) {
+                if (findPostFiles(modifiers)) {
                     sb.append("if (").append(field.getName()).append("!=null&&").append(field.getName()).append(".size()>0){");
                     sb.append("for (FileInput file : ").append(field.getName()).append(") {");
                     sb.append("params.put(file.key + \"\\\"; filename=\\\"\" + file.filename,")
                             .append(getValueType()).append(".create(MediaType.parse(guessMimeType(file.filename)), file.file));}}");
-
-                }else if (modifiers != null && modifiers.findAnnotation("PostFile") != null){
+                } else if (findPostFile(modifiers)) {
                     sb.append("if (").append(field.getName()).append("!=null){");
                     sb.append("params.put(").append(field.getName()).append(".key + \"\\\"; filename=\\\"\" + ").append(field.getName())
                             .append(".filename, ").append(getValueType()).append(".create(MediaType.parse(guessMimeType(")
                             .append(field.getName()).append(".filename)),").append(field.getName()).append(".file));}");
-                }
-                else {
+                } else {
                     sb.append("params.put(").append("\"").append(field.getName()).append("\", ").append(getValueType())
                             .append(".create(MediaType.parse(\"text/plain\"), String.valueOf(").append(field.getName()).append(")));");
                 }

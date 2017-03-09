@@ -1,4 +1,4 @@
-package builder;
+package com.wang.okhttpparamsget.builder;
 
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiField;
@@ -26,7 +26,7 @@ public class ParamsFilePartBuilder extends BaseBuilder {
         return "MultipartBody.Part";
     }
 
-    private String getRequestBody(){
+    private String getRequestBody() {
         return "RequestBody";
     }
 
@@ -55,20 +55,18 @@ public class ParamsFilePartBuilder extends BaseBuilder {
         }
         for (PsiField field : fields) {
             PsiModifierList modifiers = field.getModifierList();
-            if (modifiers == null || modifiers.findAnnotation("Ignore") == null) {
-                if (modifiers != null && modifiers.findAnnotation("PostFiles") != null) {
+            if (!findIgnore(modifiers)) {
+                if (findPostFiles(modifiers)) {
                     sb.append("if (").append(field.getName()).append("!=null&&").append(field.getName()).append(".size()>0){");
                     sb.append("for (FileInput file : ").append(field.getName()).append(") {");
                     sb.append("params.add(").append(getValueType()).append(".createFormData(file.key, file.filename, ")
                             .append(getRequestBody()).append(".create(MediaType.parse(guessMimeType(file.filename)), file.file)));}}");
-
-                }else if (modifiers != null && modifiers.findAnnotation("PostFile") != null){
+                } else if (findPostFile(modifiers)) {
                     sb.append("if (").append(field.getName()).append("!=null){");
                     sb.append("params.add(").append(getValueType()).append(".createFormData(").append(field.getName()).append(".key,")
                             .append(field.getName()).append(".filename,").append(getRequestBody()).append(".create(MediaType.parse(guessMimeType(")
                             .append(field.getName()).append(".filename)),").append(field.getName()).append(".file)));}");
-                }
-                else {
+                } else {
                     sb.append("params.add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", String.valueOf(").append(field.getName()).append(")));");
                 }
             }
