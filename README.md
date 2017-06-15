@@ -2,6 +2,9 @@
 Help you to get Okhttp request params.
 <img src="img/get_params.gif"></img>
 
+## How to install ##
+File->Settings->Browse Repositories->OkHttpParamsGet
+
 ## Support ##
       
 1. Map&lt;String, String&gt;  
