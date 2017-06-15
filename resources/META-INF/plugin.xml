@@ -1,9 +1,8 @@
 <idea-plugin version="2">
     <id>com.wang.okhttpparamsget</id>
     <name>OkHttpParamsGet</name>
-    <version>1.2.0</version>
-    <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666
-    </vendor>
+    <version>1.3.0</version>
+    <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666</vendor>
 
     <description><![CDATA[
       <li>Help you to get Okhttp request params.<br>
@@ -11,6 +10,7 @@
       <p>Map&lt;String, String&gt;</p>
       <p>Map&lt;String, RequestBody&gt;</p>
       <p>List&lt;MultipartBody.Part&gt;</p>
+      <p>MultipartBody.Builder</p>
       </li>
       <li>How to use
       <p>1 Choose a class.</p>
@@ -26,6 +26,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+     <li>1.3.0(2017-06-15):
+      <p>1. Update the params name.</p>
+      <p>2. Add get body. This type is return MultipartBody.Builder. You can build a RequestBody and set upload progress listener.</p>
+      </li>
       <li>1.2.0(2017-03-09):
       <p>1. Update Id.</p>
       <p>2. Fix keyboard shortcut cannot use.</p>

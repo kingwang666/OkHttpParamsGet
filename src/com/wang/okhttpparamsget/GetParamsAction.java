@@ -6,6 +6,7 @@ import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
+import com.wang.okhttpparamsget.builder.ParamsFileBodyBuilder;
 import com.wang.okhttpparamsget.builder.ParamsFileMapBuilder;
 import com.wang.okhttpparamsget.builder.ParamsFilePartBuilder;
 import com.wang.okhttpparamsget.builder.ParamsStringBuilder;
@@ -40,6 +41,9 @@ public class GetParamsAction extends AnAction {
                 break;
             case 3:
                 new ParamsFilePartBuilder().build(psiFile, project, editor);
+                break;
+            case 4:
+                new ParamsFileBodyBuilder().build(psiFile, project, editor);
                 break;
         }
     }

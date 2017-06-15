@@ -10,6 +10,7 @@ public class TypePickDialog extends JDialog {
     private JRadioButton string_rb;
     private JRadioButton request_body_rb;
     private JRadioButton part_rb;
+    private JRadioButton body_rb;
     private int mType;
 
     private OnDialogClickListener listener;
@@ -59,6 +60,7 @@ public class TypePickDialog extends JDialog {
                     mType = 1;
                     request_body_rb.setSelected(false);
                     part_rb.setSelected(false);
+                    body_rb.setSelected(false);
                 }
                 else if (mType == 1){
                     string_rb.setSelected(true);
@@ -73,6 +75,7 @@ public class TypePickDialog extends JDialog {
                     mType = 2;
                     string_rb.setSelected(false);
                     part_rb.setSelected(false);
+                    body_rb.setSelected(false);
                 }
                 else if (mType == 2){
                     request_body_rb.setSelected(true);
@@ -87,9 +90,25 @@ public class TypePickDialog extends JDialog {
                     mType = 3;
                     request_body_rb.setSelected(false);
                     string_rb.setSelected(false);
+                    body_rb.setSelected(false);
                 }
                 else if (mType == 3){
                     part_rb.setSelected(true);
+                }
+            }
+        });
+
+        body_rb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (body_rb.isSelected()){
+                    mType = 4;
+                    request_body_rb.setSelected(false);
+                    string_rb.setSelected(false);
+                    part_rb.setSelected(false);
+                }
+                else if (mType == 4){
+                    body_rb.setSelected(true);
                 }
             }
         });

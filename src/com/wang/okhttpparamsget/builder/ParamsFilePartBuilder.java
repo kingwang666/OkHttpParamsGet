@@ -13,12 +13,12 @@ import java.util.List;
 public class ParamsFilePartBuilder extends BaseBuilder {
 
     public ParamsFilePartBuilder() {
-        super("getParts");
+        super("getParts", "parts");
     }
 
     @Override
     protected String getMethodType() {
-        return "List<MultipartBody.Part>";
+        return "List<MultipartBody.Part> ";
     }
 
     @Override
@@ -59,15 +59,15 @@ public class ParamsFilePartBuilder extends BaseBuilder {
                 if (findPostFiles(modifiers)) {
                     sb.append("if (").append(field.getName()).append("!=null&&").append(field.getName()).append(".size()>0){");
                     sb.append("for (FileInput file : ").append(field.getName()).append(") {");
-                    sb.append("params.add(").append(getValueType()).append(".createFormData(file.key, file.filename, ")
+                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(file.key, file.filename, ")
                             .append(getRequestBody()).append(".create(MediaType.parse(guessMimeType(file.filename)), file.file)));}}");
                 } else if (findPostFile(modifiers)) {
                     sb.append("if (").append(field.getName()).append("!=null){");
-                    sb.append("params.add(").append(getValueType()).append(".createFormData(").append(field.getName()).append(".key,")
+                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(").append(field.getName()).append(".key,")
                             .append(field.getName()).append(".filename,").append(getRequestBody()).append(".create(MediaType.parse(guessMimeType(")
                             .append(field.getName()).append(".filename)),").append(field.getName()).append(".file)));}");
                 } else {
-                    sb.append("params.add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", String.valueOf(").append(field.getName()).append(")));");
+                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", String.valueOf(").append(field.getName()).append(")));");
                 }
             }
         }

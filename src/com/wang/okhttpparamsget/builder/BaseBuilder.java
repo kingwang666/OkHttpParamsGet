@@ -19,12 +19,13 @@ import java.util.List;
  */
 public abstract class BaseBuilder {
 
-    protected String mMethodName;
+    protected final String mMethodName;
 
-    protected final String mFieldName = "params";
+    protected final String mFieldName;
 
-    public BaseBuilder(String methodName) {
+    public BaseBuilder(String methodName, String fieldName) {
         mMethodName = methodName;
+        mFieldName = fieldName;
     }
 
     public void build(PsiFile psiFile, Project project1, Editor editor) {

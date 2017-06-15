@@ -11,12 +11,12 @@ import java.util.List;
 public class ParamsStringBuilder extends BaseBuilder {
 
     public ParamsStringBuilder() {
-        super("getParams");
+        super("getParams", "params");
     }
 
     @Override
     protected String getMethodType() {
-        return "Map<String, String>";
+        return "Map<String, String> ";
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ParamsStringBuilder extends BaseBuilder {
         for (PsiField field : fields) {
             PsiModifierList modifiers = field.getModifierList();
             if (!findIgnore(modifiers)) {
-                sb.append("params.put(").append("\"").append(field.getName()).append("\"").append(",String.valueOf(").append(field.getName()).append("));");
+                sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(",String.valueOf(").append(field.getName()).append("));");
             }
         }
         sb.append("return ").append(mFieldName).append(";}");
