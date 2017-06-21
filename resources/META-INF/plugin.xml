@@ -26,6 +26,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
+
      <li>1.3.0(2017-06-15):
       <p>1. Update the params name.</p>
       <p>2. Add get body. This type is return MultipartBody.Builder. You can build a RequestBody and set upload progress listener.</p>
