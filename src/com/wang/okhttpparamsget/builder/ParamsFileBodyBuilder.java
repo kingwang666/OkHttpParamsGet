@@ -18,25 +18,16 @@ public class ParamsFileBodyBuilder extends BaseBuilder {
 
     @Override
     protected String getMethodType() {
-        return "MultipartBody.Builder ";
+        return "okhttp3.MultipartBody.Builder ";
     }
 
     @Override
     protected String getValueType() {
-        return "MultipartBody";
+        return "okhttp3.RequestBody";
     }
 
-    private String getRequestBody() {
-        return "RequestBody";
-    }
-
-    @Override
-    protected List<String> getImports() {
-        List<String> imports = new ArrayList<>();
-        imports.add("okhttp3.MultipartBody");
-        imports.add("okhttp3.RequestBody");
-        imports.add("okhttp3.MediaType");
-        return imports;
+    private String getMediaType(){
+        return "okhttp3.MediaType";
     }
 
     @Override
@@ -48,7 +39,7 @@ public class ParamsFileBodyBuilder extends BaseBuilder {
             sb.append(getMethodType()).append(mFieldName).append("=super.").append(mMethodName).append("();");
             fields = psiClass.getFields();
         } else {
-            sb.append(getMethodType()).append(mFieldName).append("=new MultipartBody.Builder().setType(MultipartBody.FORM);");
+            sb.append(getMethodType()).append(mFieldName).append("=new ").append(getMethodType()).append("().setType(MultipartBody.FORM);");
             fields = psiClass.getAllFields();
         }
         for (PsiField field : fields) {
@@ -58,11 +49,11 @@ public class ParamsFileBodyBuilder extends BaseBuilder {
                     sb.append("if (").append(field.getName()).append("!=null&&").append(field.getName()).append(".size()>0){");
                     sb.append("for (FileInput file : ").append(field.getName()).append(") {");
                     sb.append(mFieldName).append(".addFormDataPart(file.key, file.filename, ")
-                            .append(getRequestBody()).append(".create(MediaType.parse(guessMimeType(file.filename)), file.file));}}");
+                            .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(guessMimeType(file.filename)), file.file));}}");
                 } else if (findPostFile(modifiers)) {
                     sb.append("if (").append(field.getName()).append("!=null){");
                     sb.append(mFieldName).append(".addFormDataPart(").append(field.getName()).append(".key,")
-                            .append(field.getName()).append(".filename,").append(getRequestBody()).append(".create(MediaType.parse(guessMimeType(")
+                            .append(field.getName()).append(".filename,").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(guessMimeType(")
                             .append(field.getName()).append(".filename)),").append(field.getName()).append(".file));}");
                 } else {
                     sb.append(mFieldName).append(".addFormDataPart(\"").append(field.getName()).append("\", String.valueOf(").append(field.getName()).append("));");

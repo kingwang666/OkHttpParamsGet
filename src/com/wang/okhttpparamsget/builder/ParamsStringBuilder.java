@@ -16,7 +16,7 @@ public class ParamsStringBuilder extends BaseBuilder {
 
     @Override
     protected String getMethodType() {
-        return "Map<String, String> ";
+        return "java.util.Map<String, String> ";
     }
 
     @Override
@@ -24,13 +24,8 @@ public class ParamsStringBuilder extends BaseBuilder {
         return "String";
     }
 
-
-    @Override
-    protected List<String> getImports() {
-        List<String> imports = new ArrayList<>();
-        imports.add("java.util.Map<String, String>");
-        imports.add("java.util.HashMap<>");
-        return imports;
+    private String getParamsType(){
+        return "java.util.HashMap<>";
     }
 
 
@@ -43,7 +38,7 @@ public class ParamsStringBuilder extends BaseBuilder {
             sb.append(getMethodType()).append(mFieldName).append("=super.").append(mMethodName).append("();");
             fields = psiClass.getFields();
         } else {
-            sb.append(getMethodType()).append(mFieldName).append("=new HashMap<>();");
+            sb.append(getMethodType()).append(mFieldName).append("=new ").append(getParamsType()).append("();");
             fields = psiClass.getAllFields();
         }
         for (PsiField field : fields) {

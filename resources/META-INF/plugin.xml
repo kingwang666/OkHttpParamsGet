@@ -1,51 +1,91 @@
-<idea-plugin version="2">
+<idea-plugin>
     <id>com.wang.okhttpparamsget</id>
     <name>OkHttpParamsGet</name>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
     <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666</vendor>
 
     <description><![CDATA[
-      <li>Help you to get Okhttp request params.<br>
-      Support
-      <p>Map&lt;String, String&gt;</p>
-      <p>Map&lt;String, RequestBody&gt;</p>
-      <p>List&lt;MultipartBody.Part&gt;</p>
-      <p>MultipartBody.Builder</p>
-      </li>
-      <li>How to use
-      <p>1 Choose a class.</p>
-      <p>2 Press Alt + P or click the Generate menu choose GetParams.</p>
-      <p>3 Choose a type.</p>
-      <p>4 click ok.</p>
-      </li>
-      <li>ps: <p>@Ignore: dont add to params <br>
-      @PostFile: post a file <br>
-      @PostFiles: post files</p>
-      These annotations can be in any package
-      </li>
+
+    <ul>
+        <li>
+        <p>Help you to get Okhttp request params.</p>
+        <p>Support: </p>
+        <ol>
+            <li>Map&lt;String, String&gt;</li>
+            <li>Map&lt;String, RequestBody&gt;</li>
+            <li>List&lt;MultipartBody.Part&gt;</li>
+            <li>MultipartBody.Builder</li>
+        </ol>
+        </li>
+        <li>
+            <p>How to use:</p>
+            <ol>
+                <li>Choose a class.</li>
+                <li>Press Alt + P or click the Generate menu choose GetParams.</li>
+                <li>Choose a type.</li>
+                <li>click ok.</li>
+            </ol>
+        </li>
+        <li>
+            <p>ps: <span style="font-size: 10px">These annotations can be in any package</span></p>
+            <ol>
+                <li>@Ignore: dont add to params.</li>
+                <li>@PostFile: post a file.</li>
+                <li>@PostFiles: post files.</li>
+            </ol>
+        </li>
+    </ul>
+
     ]]></description>
 
     <change-notes><![CDATA[
-
-     <li>1.3.0(2017-06-15):
-      <p>1. Update the params name.</p>
-      <p>2. Add get body. This type is return MultipartBody.Builder. You can build a RequestBody and set upload progress listener.</p>
-      </li>
-      <li>1.2.0(2017-03-09):
-      <p>1. Update Id.</p>
-      <p>2. Fix keyboard shortcut cannot use.</p>
-      <p>3. Fix annotations useless bug.</p>
-      <p>4. Fix a AnActionEvents bug. This is because IntelliJ API doesn't allow sharing AnActionEvents between swing events.</p>
-      </li>
-      <li>1.1.0(2017-03-08):
-      <p>1. Optimized the code display</p>
-      </li>
-      <li>1.0(2017-03-08):
-      <p>1. init. add annotations</p>
-      @Ignore: dont add to params <br>
-      @PostFile: post a file <br>
-      @PostFiles: post files</li>
-
+    
+    <ul>
+        <li>
+            1.4.0(2017-08-17):
+            <ol>
+                <li>Auto import class.</li>
+            </ol>
+        </li>
+        <li>
+            1.3.0(2017-06-15):
+            <ol>
+                <li>Update the params name.</li>
+                <li>Add get body. This type is return MultipartBody.Builder. You can build a RequestBody and set upload progress listener.</li>
+            </ol>
+        </li>
+        <li>
+            1.2.0(2017-03-09):
+            <ol>
+                <li>Update Id.</li>
+                <li>Fix keyboard shortcut cannot use.</li>
+                <li>Fix annotations useless bug.</li>
+                <li>Fix a AnActionEvents bug. This is because IntelliJ API doesn't allow sharing AnActionEvents between swing events.</li>
+            </ol>
+        </li>
+        <li>
+            1.1.0(2017-03-08):
+            <ol>
+                <li>Optimized the code display</li>
+            </ol>
+        </li>
+        <li>
+            1.0(2017-03-08):
+            <ol>
+                <li>
+                    add annotations:
+                    <ol>
+                        <li>@Ignore: dont add to params</li>
+                        <li>@PostFile: post a file</li>
+                        <li>@PostFiles: post files</li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="https://github.com/kingwang666/OkHttpParamsGet/blob/master/src/com/wang/okhttpparamsget/FileInput.java">FileInput</a>: upload File class
+                </li>
+            </ol>
+        </li>
+    </ul>
 
     ]]>
     </change-notes>

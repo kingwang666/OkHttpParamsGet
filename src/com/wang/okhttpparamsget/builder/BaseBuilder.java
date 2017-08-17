@@ -1,12 +1,10 @@
 package com.wang.okhttpparamsget.builder;
 
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.LangDataKeys;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
+import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.apache.http.util.TextUtils;
@@ -45,6 +43,10 @@ public abstract class BaseBuilder {
             PsiElementFactory elementFactory = JavaPsiFacade.getElementFactory(project);
 
             build(editor, elementFactory, project, psiClass, className);
+
+            JavaCodeStyleManager styleManager = JavaCodeStyleManager.getInstance(project);
+            styleManager.optimizeImports(psiFile);
+            styleManager.shortenClassReferences(psiClass);
         });
     }
 
@@ -69,23 +71,7 @@ public abstract class BaseBuilder {
             methods[0].delete();
         }
         psiClass.add(getParams);
-
-//        setImports(psiClass, elementFactory, project);
     }
-
-    private void setImports(PsiClass psiClass, PsiElementFactory elementFactory, Project project) {
-        List<String> imports = getImports();
-        if (imports != null) {
-            for (String type : imports) {
-                PsiType psiType = PsiType.getTypeByName(type, project, GlobalSearchScope.EMPTY_SCOPE);
-                PsiField psiField = elementFactory.createField("tempImport212", psiType);
-                psiClass.add(psiField);
-                psiClass.findFieldByName("tempImport212", false).delete();
-            }
-        }
-
-    }
-
 
     protected boolean containFiled(PsiClass psiClass, PsiField psiField) {
         return psiClass.findFieldByName(psiField.getName(), true) != null;
@@ -133,6 +119,4 @@ public abstract class BaseBuilder {
     protected abstract String getValueType();
 
     protected abstract String buildMethod(PsiClass psiClass, boolean isOverride, boolean needAll);
-
-    protected abstract List<String> getImports();
 }

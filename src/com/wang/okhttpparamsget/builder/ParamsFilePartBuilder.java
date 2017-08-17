@@ -18,28 +18,26 @@ public class ParamsFilePartBuilder extends BaseBuilder {
 
     @Override
     protected String getMethodType() {
-        return "List<MultipartBody.Part> ";
+        return "java.util.List<MultipartBody.Part> ";
+    }
+
+    private String getParamsType(){
+        return "java.util.ArrayList<>";
     }
 
     @Override
     protected String getValueType() {
-        return "MultipartBody.Part";
+        return "okhttp3.MultipartBody.Part";
     }
 
     private String getRequestBody() {
-        return "RequestBody";
+        return "okhttp3.RequestBody";
     }
 
-    @Override
-    protected List<String> getImports() {
-        List<String> imports = new ArrayList<>();
-        imports.add("java.util.List<okhttp3.MultipartBody.Part>");
-        imports.add("java.util.ArrayList<>");
-//        imports.add("okhttp3.MultipartBody.Part");
-        imports.add("okhttp3.RequestBody");
-        imports.add("okhttp3.MediaType");
-        return imports;
+    private String getMediaType(){
+        return "okhttp3.MediaType";
     }
+
 
     @Override
     protected String buildMethod(PsiClass psiClass, boolean isOverride, boolean needAll) {
@@ -50,7 +48,7 @@ public class ParamsFilePartBuilder extends BaseBuilder {
             sb.append(getMethodType()).append(mFieldName).append("=super.").append(mMethodName).append("();");
             fields = psiClass.getFields();
         } else {
-            sb.append(getMethodType()).append(mFieldName).append("=new ArrayList<>();");
+            sb.append(getMethodType()).append(mFieldName).append("=new ").append(getParamsType()).append("();");
             fields = psiClass.getAllFields();
         }
         for (PsiField field : fields) {
@@ -60,11 +58,11 @@ public class ParamsFilePartBuilder extends BaseBuilder {
                     sb.append("if (").append(field.getName()).append("!=null&&").append(field.getName()).append(".size()>0){");
                     sb.append("for (FileInput file : ").append(field.getName()).append(") {");
                     sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(file.key, file.filename, ")
-                            .append(getRequestBody()).append(".create(MediaType.parse(guessMimeType(file.filename)), file.file)));}}");
+                            .append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(guessMimeType(file.filename)), file.file)));}}");
                 } else if (findPostFile(modifiers)) {
                     sb.append("if (").append(field.getName()).append("!=null){");
                     sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(").append(field.getName()).append(".key,")
-                            .append(field.getName()).append(".filename,").append(getRequestBody()).append(".create(MediaType.parse(guessMimeType(")
+                            .append(field.getName()).append(".filename,").append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(guessMimeType(")
                             .append(field.getName()).append(".filename)),").append(field.getName()).append(".file)));}");
                 } else {
                     sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", String.valueOf(").append(field.getName()).append(")));");
