@@ -7,12 +7,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/resources" type="java-resource" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="IntelliJ IDEA Community Edition IC-183.5912.21" jdkType="IDEA JDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" scope="PROVIDED">
       <library>
         <CLASSES>
-          <root url="jar://D:/Android/Kotlin/lib/kotlin-plugin.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/kotlin-plugin.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

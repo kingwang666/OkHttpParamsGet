@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.wang.okhttpparamsget</id>
     <name>OkHttpParamsGet</name>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
     <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666</vendor>
 
     <description><![CDATA[
@@ -12,6 +12,7 @@
         <p>Support: </p>
         <ol>
             <li>Map&lt;String, String&gt;</li>
+            <li>Map&lt;String, Object&gt;</li>
             <li>Map&lt;String, RequestBody&gt;</li>
             <li>List&lt;MultipartBody.Part&gt;</li>
             <li>MultipartBody.Builder</li>
@@ -32,6 +33,10 @@
                 <li>@Ignore: dont add to params.</li>
                 <li>@PostFile: post a file.</li>
                 <li>@PostFiles: post files.</li>
+                <li>@Key: post file key.</li>
+                <li>@Filename: post file filename.</li>
+                <li>@MimeType: post file mime-type.</li>
+                <li>@Data: post file data.</li>
             </ol>
         </li>
     </ul>
@@ -41,6 +46,24 @@
     <change-notes><![CDATA[
     
     <ul>
+          <li>
+            1.5.0(2019-03-02):
+            <ol>
+                <li>Support Kotlin.</li>
+                <li>Support null check. When the value is null, you can either add or add as an empty string.</li>
+                <li>Support Map&lt;String, Object&gt;</li>
+                <li>You can customize the class that uploads the file. You can use annotations on the property or method to identify the key filename of the uploaded file mime-type and data.</li>
+                <li>
+                    add annotations:
+                    <ol>
+                        <li>@Key: post file key.</li>
+                        <li>@Filename: post file filename.</li>
+                        <li>@MimeType: post file mime-type.</li>
+                        <li>@Data: post file data.</li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
         <li>
             1.4.0(2017-08-17):
             <ol>
@@ -81,7 +104,7 @@
                     </ol>
                 </li>
                 <li>
-                    <a href="https://github.com/kingwang666/OkHttpParamsGet/blob/master/src/com/wang/okhttpparamsget/FileInput.java">FileInput</a>: upload File class
+                    <a href="https://github.com/kingwang666/OkHttpParamsGet/blob/master/extra/FileInput.java">FileInput</a>: upload File class
                 </li>
             </ol>
         </li>

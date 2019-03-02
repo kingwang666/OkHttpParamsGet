@@ -1,2 +1,3 @@
 /out
 *.jar
+!/lib/kotlin-plugin.jar

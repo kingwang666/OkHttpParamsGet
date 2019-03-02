@@ -1,6 +1,6 @@
 # OkHttpParamsGet #
 Help you to get Okhttp request params.
-<img src="img/get_params.gif"></img>
+<img src="img/getbody.gif"></img> <img src="img/file.jpg"></img>
 
 ## How to install ##
 File->Settings->Browse Repositories->OkHttpParamsGet
@@ -8,9 +8,10 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 ## Support ##
       
 1. Map&lt;String, String&gt;  
-2. Map&lt;String, RequestBody&gt;
-3. List&lt;MultipartBody.Part&gt;
-4. MultipartBody.Builder
+2. Map&lt;String, Object&gt;
+3. Map&lt;String, RequestBody&gt;
+4. List&lt;MultipartBody.Part&gt;
+5. MultipartBody.Builder
 ## How to use ##
 1. Choose a class.
 2. Press Alt + P or click the Generate menu choose GetParams.
@@ -19,11 +20,33 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 ## ps ##
 - @Ignore: dont add to params
 - @PostFile: post a file 
-- @PostFiles: post files  
+- @PostFiles: post files
+- @Key: post file key
+- @Filename: post file filename
+- @MimeType: post file mime-type
+- @Data: post file data.</li>  
 These annotations can be in any package
 
 ## update ##
 <ul>
+        <li>
+            1.5.0(2019-03-02):
+            <ol>
+                <li>Support Kotlin.</li>
+                <li>Support null check. When the value is null, you can either add or add as an empty string.</li>
+                <li>Support Map&lt;String, Object&gt;</li>
+                <li>You can customize the class that uploads the file. You can use annotations on the property or method to identify the key filename of the uploaded file mime-type and data.</li>
+                <li>
+                    add annotations:
+                    <ol>
+                        <li>@Key: post file key.</li>
+                        <li>@Filename: post file filename.</li>
+                        <li>@MimeType: post file mime-type.</li>
+                        <li>@Data: post file data.</li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
         <li>
             1.4.0(2017-08-17):
             <ol>
@@ -64,7 +87,7 @@ These annotations can be in any package
                     </ol>
                 </li>
                 <li>
-                    <a href="https://github.com/kingwang666/OkHttpParamsGet/blob/master/src/com/wang/okhttpparamsget/FileInput.java">FileInput</a>: upload File class
+                    <a href="https://github.com/kingwang666/OkHttpParamsGet/blob/master/extra/FileInput.java">FileInput</a>: upload File class
                 </li>
             </ol>
         </li>
