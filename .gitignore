@@ -1,5 +1,2 @@
-*.iml
-.gradle
-/.idea
 /out
 *.jar

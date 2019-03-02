@@ -8,6 +8,7 @@ public class TypePickDialog extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JRadioButton string_rb;
+    private JRadioButton object_rb;
     private JRadioButton request_body_rb;
     private JRadioButton part_rb;
     private JRadioButton body_rb;
@@ -19,7 +20,7 @@ public class TypePickDialog extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        mType = 1;
+        mType = Constant.TYPE_MAP_STRING;
         string_rb.setSelected(true);
         initRadioClickListener();
         buttonOK.addActionListener(new ActionListener() {
@@ -57,13 +58,30 @@ public class TypePickDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (string_rb.isSelected()){
-                    mType = 1;
+                    mType = Constant.TYPE_MAP_STRING;
+                    object_rb.setSelected(false);
                     request_body_rb.setSelected(false);
                     part_rb.setSelected(false);
                     body_rb.setSelected(false);
                 }
-                else if (mType == 1){
+                else if (mType == Constant.TYPE_MAP_STRING){
                     string_rb.setSelected(true);
+                }
+            }
+        });
+
+        object_rb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (object_rb.isSelected()){
+                    mType = Constant.TYPE_MAP_OBJECT;
+                    string_rb.setSelected(false);
+                    request_body_rb.setSelected(false);
+                    part_rb.setSelected(false);
+                    body_rb.setSelected(false);
+                }
+                else if (mType == Constant.TYPE_MAP_OBJECT){
+                    object_rb.setSelected(true);
                 }
             }
         });
@@ -72,12 +90,13 @@ public class TypePickDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (request_body_rb.isSelected()){
-                    mType = 2;
+                    mType = Constant.TYPE_MAP_BODY;
                     string_rb.setSelected(false);
+                    object_rb.setSelected(false);
                     part_rb.setSelected(false);
                     body_rb.setSelected(false);
                 }
-                else if (mType == 2){
+                else if (mType == Constant.TYPE_MAP_BODY){
                     request_body_rb.setSelected(true);
                 }
             }
@@ -87,12 +106,13 @@ public class TypePickDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (part_rb.isSelected()){
-                    mType = 3;
+                    mType = Constant.TYPE_LIST_PART;
                     request_body_rb.setSelected(false);
                     string_rb.setSelected(false);
                     body_rb.setSelected(false);
+                    object_rb.setSelected(false);
                 }
-                else if (mType == 3){
+                else if (mType == Constant.TYPE_LIST_PART){
                     part_rb.setSelected(true);
                 }
             }
@@ -102,12 +122,13 @@ public class TypePickDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (body_rb.isSelected()){
-                    mType = 4;
+                    mType = Constant.TYPE_BODY_BUILDER;
                     request_body_rb.setSelected(false);
                     string_rb.setSelected(false);
+                    object_rb.setSelected(false);
                     part_rb.setSelected(false);
                 }
-                else if (mType == 4){
+                else if (mType == Constant.TYPE_BODY_BUILDER){
                     body_rb.setSelected(true);
                 }
             }
@@ -126,13 +147,20 @@ public class TypePickDialog extends JDialog {
         // add your code here
         if (listener != null){
             listener.onClickOk(mType);
+            listener = null;
         }
         dispose();
     }
 
     private void onCancel() {
         // add your code here if necessary
+        listener = null;
         dispose();
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
     }
 
     public static void main(String[] args) {

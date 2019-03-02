@@ -1,21 +1,15 @@
 package com.wang.okhttpparamsget.builder;
 
-import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
-import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.intellij.psi.search.GlobalSearchScope;
-import com.intellij.psi.util.PsiTreeUtil;
-import org.apache.http.util.TextUtils;
+import com.wang.okhttpparamsget.Utils;
+import com.wang.okhttpparamsget.nonull.NonNullFactory;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.kotlin.asJava.elements.KtLightField;
+import org.jetbrains.kotlin.asJava.elements.KtLightMethod;
+import org.jetbrains.kotlin.psi.*;
 
-import java.util.List;
-
-/**
- * Created by wang on 2017/3/6.
- */
-public abstract class BaseBuilder {
+public abstract class BaseBuilder implements IBuilder {
 
     protected final String mMethodName;
 
@@ -26,97 +20,132 @@ public abstract class BaseBuilder {
         mFieldName = fieldName;
     }
 
-    public void build(PsiFile psiFile, Project project1, Editor editor) {
-        if (psiFile == null) return;
-        WriteCommandAction.runWriteCommandAction(project1, () -> {
-            if (editor == null) return;
-            Project project = editor.getProject();
-            if (project == null) return;
-
-            PsiElement element = psiFile.findElementAt(editor.getCaretModel().getOffset());
-            PsiClass psiClass = PsiTreeUtil.getParentOfType(element, PsiClass.class);
-            if (psiClass == null) return;
-
-            if (psiClass.getNameIdentifier() == null) return;
-            String className = psiClass.getNameIdentifier().getText();
-
-            PsiElementFactory elementFactory = JavaPsiFacade.getElementFactory(project);
-
-            build(editor, elementFactory, project, psiClass, className);
-
-            JavaCodeStyleManager styleManager = JavaCodeStyleManager.getInstance(project);
-            styleManager.optimizeImports(psiFile);
-            styleManager.shortenClassReferences(psiClass);
-        });
-    }
-
-    public void build(Editor editor, PsiElementFactory elementFactory, Project project, PsiClass psiClass, String className) {
-
-        PsiClass superClass = psiClass.getSuperClass();
-        PsiMethod getParams;
-        if (superClass != null) {
-            PsiMethod[] methods = superClass.findMethodsByName(mMethodName, true);
-            if (methods.length > 0) {
-                boolean needAll = methods[0].getModifierList().hasModifierProperty("abstract");
-                getParams = elementFactory.createMethodFromText(buildMethod(psiClass, true, needAll), psiClass);
-                getParams.getModifierList().addAnnotation("Override");
-            } else {
-                getParams = elementFactory.createMethodFromText(buildMethod(psiClass, false, false), psiClass);
-            }
-        } else {
-            getParams = elementFactory.createMethodFromText(buildMethod(psiClass, false, false), psiClass);
-        }
-        PsiMethod[] methods = psiClass.findMethodsByName(mMethodName, false);
-        if (methods.length > 0) {
-            methods[0].delete();
-        }
-        psiClass.add(getParams);
-    }
-
-    protected boolean containFiled(PsiClass psiClass, PsiField psiField) {
-        return psiClass.findFieldByName(psiField.getName(), true) != null;
-    }
-
-    protected boolean containMethod(PsiClass psiClass, PsiMethod psiMethod) {
-        return psiClass.findMethodsByName(psiMethod.getName(), true).length > 0;
-    }
-
-    protected boolean containMethod(PsiClass psiClass, String name) {
-        return psiClass.findMethodsByName(name, true).length > 0;
-    }
-
-    protected boolean containClass(PsiClass psiClass, PsiClass innerClass) {
-        return psiClass.findInnerClassByName(innerClass.getName(), true) != null;
-    }
-
-    protected boolean findIgnore(PsiModifierList modifiers) {
-        return findAnnotation(modifiers, "Ignore");
-    }
-
-    protected boolean findPostFile(PsiModifierList modifiers) {
-        return findAnnotation(modifiers, "PostFile");
-    }
-
-    protected boolean findPostFiles(PsiModifierList modifiers) {
-        return findAnnotation(modifiers, "PostFiles");
-    }
-
-    protected boolean findAnnotation(PsiModifierList modifiers, @NotNull String name) {
-        if (modifiers != null) {
-            PsiAnnotation[] annotations = modifiers.getAnnotations();
-            for (PsiAnnotation psiAnnotation : annotations) {
-                String allName = psiAnnotation.getQualifiedName();
-                if (!TextUtils.isEmpty(allName) && allName.endsWith(name)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     protected abstract String getMethodType();
 
     protected abstract String getValueType();
 
-    protected abstract String buildMethod(PsiClass psiClass, boolean isOverride, boolean needAll);
+    protected abstract String getParamsType();
+
+    protected boolean isNullable(@NotNull PsiElement element) {
+        if (element instanceof PsiField) {
+            PsiField field = (PsiField) element;
+            if (field.getType() instanceof PsiPrimitiveType) {
+                return false;
+            } else return !NonNullFactory.hasNonNull(field.getAnnotations());
+        } else if (element instanceof KtProperty) {
+            KtProperty property = (KtProperty) element;
+            KtTypeReference reference = property.getTypeReference();
+            return reference != null && reference.getTypeElement() instanceof KtNullableType;
+        }
+        return false;
+    }
+
+    protected boolean findIgnore(@NotNull PsiElement element) {
+        if (element instanceof PsiField) {
+            return Utils.findAnnotation(((PsiField) element).getAnnotations(), "Ignore");
+        } else if (element instanceof KtProperty) {
+            return Utils.findAnnotation(((KtProperty) element).getAnnotationEntries(), "Ignore");
+        }
+        return false;
+    }
+
+    protected boolean findPostFile(@NotNull PsiElement element) {
+        if (element instanceof PsiField) {
+            return Utils.findAnnotation(((PsiField) element).getAnnotations(), "PostFile");
+        } else if (element instanceof KtProperty) {
+            return Utils.findAnnotation(((KtProperty) element).getAnnotationEntries(), "PostFile");
+        }
+        return false;
+    }
+
+    protected boolean findPostFiles(@NotNull PsiElement element) {
+        if (element instanceof PsiField) {
+            return Utils.findAnnotation(((PsiField) element).getAnnotations(), "PostFiles");
+        } else if (element instanceof KtProperty) {
+            return Utils.findAnnotation(((KtProperty) element).getAnnotationEntries(), "PostFiles");
+        }
+        return false;
+    }
+
+    @SuppressWarnings("unchecked")
+    private boolean findAnnotation(@NotNull PsiElement element, String name) {
+        if (element instanceof PsiModifierListOwner) {
+            return Utils.findAnnotation(((PsiModifierListOwner) element).getAnnotations(), name);
+        } else if (element instanceof KtModifierListOwnerStub) {
+            return Utils.findAnnotation(((KtModifierListOwnerStub) element).getAnnotationEntries(), name);
+        }
+        return false;
+    }
+
+    protected String[] getFileInfo(PsiField psiField, String prefix, boolean list, boolean forJava) {
+        PsiClass psiClass;
+        if (list && psiField.getType() instanceof PsiClassType) {
+            psiClass = JavaPsiFacade.getInstance(psiField.getProject()).findClass(((PsiClassType) psiField.getType()).getParameters()[0].getCanonicalText(), GlobalSearchScope.projectScope(psiField.getProject()));
+        } else {
+            psiClass = JavaPsiFacade.getInstance(psiField.getProject()).findClass(psiField.getType().getCanonicalText(), GlobalSearchScope.projectScope(psiField.getProject()));
+        }
+        if (psiClass == null) {
+            return null;
+        }
+        if (psiClass.getNameIdentifier() == null) {
+            return null;
+        }
+        String className = psiClass.getNameIdentifier().getText();
+        String key = "key";
+        String filename = "filename";
+        String mimeType = null;
+        String data = "file";
+        for (PsiField field : psiClass.getAllFields()) {
+            PsiElement older = null;
+            if (field instanceof KtLightField) {
+                older = ((KtLightField) field).getKotlinOrigin();
+            }
+            if (findAnnotation(older == null ? field : older, "Key")) {
+                key = prefix + "." + field.getName();
+            }
+            if (findAnnotation(older == null ? field : older, "Filename")) {
+                filename = prefix + "." + field.getName();
+            }
+            if (findAnnotation(older == null ? field : older, "MimeType")) {
+                mimeType = prefix + "." + field.getName();
+            }
+            if (findAnnotation(older == null ? field : older, "Data")) {
+                data = prefix + "." + field.getName();
+            }
+        }
+
+        for (PsiMethod method : psiClass.getAllMethods()) {
+            KtDeclaration function = null;
+            if (PsiType.VOID.equals(method.getReturnType())) {
+                continue;
+            }
+            if (method instanceof KtLightMethod) {
+                function = ((KtLightMethod) method).getKotlinOrigin();
+            }
+            String name;
+            if (!forJava && method.getNameIdentifier() != null && !method.getNameIdentifier().getText().equals(method.getName())) {
+                name = prefix + "." + method.getNameIdentifier().getText();
+            } else {
+                name = prefix + "." + method.getName() + "()";
+            }
+            if (findAnnotation(function == null ? method : function, "Key")) {
+                key = name;
+            }
+            if (findAnnotation(function == null ? method : function, "Filename")) {
+                filename = name;
+            }
+            if (findAnnotation(function == null ? method : function, "MimeType")) {
+                mimeType = name;
+            }
+            if (findAnnotation(function == null ? method : function, "Data")) {
+                data = name;
+            }
+        }
+        if (mimeType == null) {
+            mimeType = "guessMimeType(" + filename + ")";
+        }
+        return new String[]{className, key, filename, mimeType, data};
+    }
+
+
 }

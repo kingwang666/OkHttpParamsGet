@@ -1,27 +1,23 @@
 package com.wang.okhttpparamsget;
 
+import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
-import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
-import com.wang.okhttpparamsget.builder.ParamsFileBodyBuilder;
-import com.wang.okhttpparamsget.builder.ParamsFileMapBuilder;
-import com.wang.okhttpparamsget.builder.ParamsFilePartBuilder;
-import com.wang.okhttpparamsget.builder.ParamsStringBuilder;
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.wang.okhttpparamsget.builder.BuilderFactory;
+import com.wang.okhttpparamsget.builder.IBuilder;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by wang on 2017/3/7.
  */
 public class GetParamsAction extends AnAction {
 
-
     @Override
-    public void actionPerformed(AnActionEvent e) {
-        // TODO: insert action logic here
+    public void actionPerformed(@NotNull AnActionEvent e) {
         PsiFile psiFile = e.getData(LangDataKeys.PSI_FILE);
         Project project = e.getProject();
         Editor editor = e.getData(PlatformDataKeys.EDITOR);
@@ -32,19 +28,9 @@ public class GetParamsAction extends AnAction {
     }
 
     private void build(int type, PsiFile psiFile, Project project, Editor editor) {
-        switch (type){
-            case 1:
-                new ParamsStringBuilder().build(psiFile, project, editor);
-                break;
-            case 2:
-                new ParamsFileMapBuilder().build(psiFile, project, editor);
-                break;
-            case 3:
-                new ParamsFilePartBuilder().build(psiFile, project, editor);
-                break;
-            case 4:
-                new ParamsFileBodyBuilder().build(psiFile, project, editor);
-                break;
+        IBuilder builder = BuilderFactory.getParamsBuilder(type, psiFile);
+        if (builder != null){
+            builder.build(psiFile, project, editor);
         }
     }
 
