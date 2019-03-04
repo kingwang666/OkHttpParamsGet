@@ -1,5 +1,6 @@
 # OkHttpParamsGet #
-Help you to get Okhttp request params.
+[中文](https://github.com/kingwang666/OkHttpParamsGet/blob/master/README_CN.md)  
+Help you to get Okhttp request params. Support Kotlin
 <img src="img/getbody.gif"></img> <img src="img/file.jpg"></img>
 
 ## How to install ##
@@ -24,7 +25,7 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 - @Key: post file key
 - @Filename: post file filename
 - @MimeType: post file mime-type
-- @Data: post file data.</li>  
+- @Data: post file data.  
 These annotations can be in any package
 
 ## update ##

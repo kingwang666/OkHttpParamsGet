@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31d50de8-1868-4f4d-8d09-1573788f4449" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OkHttpParamsGet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OkHttpParamsGet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Data.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/FileInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Filename.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Ignore.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Key.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/MimeType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/PostFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/PostFiles.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/ParamsFileBodyBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/ParamsFileMapBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/ParamsFilePartBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/ParamsStringBuilder.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,21 +17,21 @@
         <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/OnDialogClickListener.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="96" column="16" lean-forward="true" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="10" selection-start-line="10" selection-end-line="18" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form">
           <provider selected="true" editor-type-id="ui-designer" />
         </entry>
@@ -143,7 +125,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -194,13 +176,6 @@
               <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="okhttpparamsget" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="okhttpparamsget" type="462c0819:PsiDirectoryNode" />
-              <item name="Settings" type="e9f4de52:FormNode" />
             </path>
           </expand>
           <select />
@@ -328,7 +303,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551529730042" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551530987926" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/kotlin-plugin.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -409,18 +384,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Capture Tool" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17270789" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17270789" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32925472" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.20715836" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.20715836" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.39933258" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -846,19 +820,19 @@
     <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/OnDialogClickListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="96" column="16" lean-forward="true" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form">
       <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="10" selection-start-line="10" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
