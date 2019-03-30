@@ -30,6 +30,12 @@ These annotations can be in any package
 
 ## update ##
 <ul>
+         <li>
+            1.5.1(2019-03-30):
+            <ol>
+                <li>fix array to string bug.Now user Arrays.toString()</li>
+            </ol>
+        </li>
         <li>
             1.5.0(2019-03-02):
             <ol>

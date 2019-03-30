@@ -30,6 +30,12 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 ## update ##
 <ul>
         <li>
+            1.5.1(2019-03-30):
+            <ol>
+                <li>修复数组转化为string的bug。 现在数组使用Arrays.toString()</li>
+            </ol>
+        </li>
+        <li>
             1.5.0(2019-03-02):
             <ol>
                 <li>支持kotlin</li>

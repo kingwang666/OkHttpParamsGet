@@ -1,8 +1,9 @@
 <idea-plugin>
     <id>com.wang.okhttpparamsget</id>
     <name>OkHttpParamsGet</name>
-    <version>1.5.0</version>
-    <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666</vendor>
+    <version>1.5.1</version>
+    <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666
+    </vendor>
 
     <description><![CDATA[
 
@@ -47,6 +48,12 @@
     
     <ul>
           <li>
+            1.5.1(2019-03-30):
+            <ol>
+                <li>fix array to string bug.Now user Arrays.toString()</li>
+            </ol>
+          </li>
+          <li>
             1.5.0(2019-03-02):
             <ol>
                 <li>Support Kotlin.</li>
@@ -63,7 +70,7 @@
                     </ol>
                 </li>
             </ol>
-        </li>
+          </li>
         <li>
             1.4.0(2017-08-17):
             <ol>
@@ -125,7 +132,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <applicationConfigurable instance="com.wang.okhttpparamsget.Settings" />
+        <applicationConfigurable instance="com.wang.okhttpparamsget.Settings"/>
     </extensions>
 
     <actions>

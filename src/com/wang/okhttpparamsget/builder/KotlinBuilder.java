@@ -131,9 +131,17 @@ abstract class KotlinBuilder extends BaseBuilder {
         if (field.getType().getCanonicalText().equals(String.class.getCanonicalName())) {
             return prefix;
         } else if (nullable){
-            return prefix + "?.toString()";
+            if (field.getType() instanceof PsiArrayType){
+                return prefix + "?.contentToString()";
+            }else {
+                return prefix + "?.toString()";
+            }
         }else {
-            return prefix + ".toString()";
+            if (field.getType() instanceof PsiArrayType){
+                return prefix + ".contentToString()";
+            }else {
+                return prefix + ".toString()";
+            }
         }
     }
 }

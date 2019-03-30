@@ -96,6 +96,8 @@ abstract class JavaBuilder extends BaseBuilder {
     protected String toSting(PsiField field) {
         if (field.getType() instanceof PsiPrimitiveType) {
             return "String.valueOf(" + field.getName() + ")";
+        } else if (field.getType() instanceof PsiArrayType) {
+            return "java.util.Arrays.toString(" + field.getName() + ")";
         } else if (field.getType().getCanonicalText().equals(String.class.getCanonicalName())) {
             return field.getName();
         } else {
