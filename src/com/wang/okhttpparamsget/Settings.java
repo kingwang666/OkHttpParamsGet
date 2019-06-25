@@ -15,6 +15,8 @@ public class Settings implements Configurable, ActionListener {
     private JPanel panel;
     private JRadioButton empty_string_rb;
     private JRadioButton not_put_rb;
+    private JRadioButton support_rb;
+    private JRadioButton androidx_rb;
 
 
     @Nls(capitalization = Nls.Capitalization.Title)
@@ -35,6 +37,8 @@ public class Settings implements Configurable, ActionListener {
         reset();
         not_put_rb.addActionListener(this);
         empty_string_rb.addActionListener(this);
+        support_rb.addActionListener(this);
+        androidx_rb.addActionListener(this);
         return panel;
     }
 
@@ -46,11 +50,23 @@ public class Settings implements Configurable, ActionListener {
             } else {
                 not_put_rb.setSelected(true);
             }
-        } else {
+        } else if (e.getSource().equals(empty_string_rb)) {
             if (empty_string_rb.isSelected()) {
                 not_put_rb.setSelected(false);
             } else {
                 empty_string_rb.setSelected(true);
+            }
+        } else if (e.getSource().equals(support_rb)) {
+            if (support_rb.isSelected()) {
+                androidx_rb.setSelected(false);
+            } else {
+                support_rb.setSelected(true);
+            }
+        } else if (e.getSource().equals(androidx_rb)) {
+            if (androidx_rb.isSelected()) {
+                support_rb.setSelected(false);
+            } else {
+                androidx_rb.setSelected(true);
             }
         }
     }
@@ -63,15 +79,22 @@ public class Settings implements Configurable, ActionListener {
     @Override
     public void apply() throws ConfigurationException {
         PropertiesComponent.getInstance().setValue(Constant.VALUE_NULL, empty_string_rb.isSelected());
+        PropertiesComponent.getInstance().setValue(Constant.ANDROIDX, androidx_rb.isSelected(), true);
     }
 
     @Override
     public void reset() {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
-        if (add){
+        boolean androidx = PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true);
+        if (add) {
             empty_string_rb.setSelected(true);
-        }else {
+        } else {
             not_put_rb.setSelected(true);
+        }
+        if (androidx) {
+            androidx_rb.setSelected(true);
+        } else {
+            support_rb.setSelected(true);
         }
     }
 
@@ -79,6 +102,8 @@ public class Settings implements Configurable, ActionListener {
     public void disposeUIResources() {
         not_put_rb.removeActionListener(this);
         empty_string_rb.removeActionListener(this);
+        support_rb.removeActionListener(this);
+        androidx_rb.removeActionListener(this);
     }
 
 }

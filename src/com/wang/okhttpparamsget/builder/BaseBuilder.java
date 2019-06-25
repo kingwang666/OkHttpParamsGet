@@ -91,10 +91,10 @@ public abstract class BaseBuilder implements IBuilder {
             return null;
         }
         String className = psiClass.getNameIdentifier().getText();
-        String key = "key";
-        String filename = "filename";
+        String key = prefix + ".key";
+        String filename = prefix + ".filename";
         String mimeType = null;
-        String data = "file";
+        String data = prefix + ".file";
         for (PsiField field : psiClass.getAllFields()) {
             PsiElement older = null;
             if (field instanceof KtLightField) {

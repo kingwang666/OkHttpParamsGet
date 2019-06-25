@@ -27,7 +27,7 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
 
     @Override
     protected String getParamsType() {
-        return "HashMap<String, RequestBody>";
+        return "ArrayMap<String, RequestBody>";
     }
 
     @Override
@@ -43,7 +43,9 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
     @Nullable
     @Override
     protected String[] getImports() {
-        return new String[]{"okhttp3.MediaType", "okhttp3.RequestBody"};
+        return new String[]{"okhttp3.MediaType",
+                "okhttp3.RequestBody",
+                PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true) ? "androidx.collection.ArrayMap" : "android.support.v4.util.ArrayMap"};
     }
 
     @Override
@@ -57,7 +59,7 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
                 if (findPostFiles(older == null ? field : older)) {
                     String prefix = "it";
                     String[] fileInfo = getFileInfo(field, prefix, true, false);
-                    if (fileInfo == null){
+                    if (fileInfo == null) {
                         continue;
                     }
                     sb.append(field.getName()).append(isNullable(field) ? "?.forEach{\n" : ".forEach{\n");
@@ -68,7 +70,7 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
                     boolean nullable = isNullable(field);
                     String prefix = nullable ? "it" : field.getName();
                     String[] fileInfo = getFileInfo(field, prefix, false, false);
-                    if (fileInfo == null){
+                    if (fileInfo == null) {
                         continue;
                     }
                     if (nullable) {
@@ -76,12 +78,12 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
                     }
                     sb.append(mFieldName).append("[").append(fileInfo[1]).append(" + \"\\\"; filename=\\\"\" + ").append(fileInfo[2]).append("] = ")
                             .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo[3]).append("),").append(fileInfo[4]).append(")\n");
-                    if (nullable){
+                    if (nullable) {
                         sb.append("}\n");
                     }
-                } else if (isNullable(field)){
+                } else if (isNullable(field)) {
                     addNullableValue(field, sb);
-                }else {
+                } else {
                     sb.append(mFieldName).append("[").append("\"").append(field.getName()).append("\"] = ").append(getValueType())
                             .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toSting(field, false, null)).append(")\n");
                 }
@@ -96,7 +98,7 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
             sb.append(field.getName()).append("?.also{\n");
             sb.append(mFieldName).append("[").append("\"").append(field.getName()).append("\"] = ").append(getValueType())
                     .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toSting(field, false, "it")).append(")\n}\n");
-        }else {
+        } else {
             sb.append(mFieldName).append("[").append("\"").append(field.getName()).append("\"] = ").append(getValueType())
                     .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toSting(field, true, null)).append(" ?: \"\" )\n");
         }

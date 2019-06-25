@@ -15,4 +15,6 @@ public class Constant {
 
     public static final String VALUE_NULL = "okhttpparamsget_value_null";
 
+    public static final String ANDROIDX = "okhttpparamsget_android_x";
+
 }

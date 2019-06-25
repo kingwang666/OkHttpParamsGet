@@ -23,7 +23,12 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
 
     @Override
     protected String getParamsType() {
-        return "java.util.HashMap<>";
+        if (PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true)){
+            return "androidx.collection.ArrayMap<>";
+        }else {
+            return "android.support.v4.util.ArrayMap<>";
+        }
+//        return "java.util.HashMap<>";
     }
 
     @Override

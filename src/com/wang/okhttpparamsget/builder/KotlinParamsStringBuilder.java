@@ -31,12 +31,12 @@ class KotlinParamsStringBuilder extends KotlinBuilder {
 
     @Override
     protected String getParamsType(){
-        return "HashMap<String, String>";
+        return "ArrayMap<String, String>";
     }
 
     @Override
     protected String[] getImports() {
-        return null;
+        return new String[]{PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true) ? "androidx.collection.ArrayMap" : "android.support.v4.util.ArrayMap"};
     }
 
     @Override
