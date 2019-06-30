@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="31d50de8-1868-4f4d-8d09-1573788f4449" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README_CN.md" beforeDir="false" afterPath="$PROJECT_DIR$/README_CN.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +27,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="49" selection-start-line="49" selection-end-line="54" selection-end-column="15" />
+            <state relative-caret-position="342">
+              <caret line="54" column="15" lean-forward="true" selection-start-line="49" selection-start-column="9" selection-end-line="54" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2265">
+              <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -39,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="55" column="18" lean-forward="true" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
+            <state relative-caret-position="722">
+              <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
+            <state relative-caret-position="361">
+              <caret line="26" column="46" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="87" column="9" lean-forward="true" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+            <state relative-caret-position="1311">
+              <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -90,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-726">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="703">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
@@ -162,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/FileInput.java" />
         <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Data.java" />
         <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/PostFiles.kt" />
-        <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" />
         <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Filename.kt" />
         <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Filename.groovy" />
         <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/PostFiles.java" />
@@ -173,6 +178,7 @@
         <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/PostFile.java" />
         <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" />
         <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" />
+        <option value="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" />
         <option value="$PROJECT_DIR$/resources/META-INF/plugin.xml" />
       </list>
     </option>
@@ -190,9 +196,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="98" />
-    <option name="y" value="7" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="45" />
+    <option name="y" value="69" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -202,57 +208,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="okhttpparamsget" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="okhttpparamsget" type="462c0819:PsiDirectoryNode" />
-              <item name="builder" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -368,6 +323,70 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="kotlin-plugin.jar" type="ab9368bb:PsiFileNode" />
+            </path>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="kotlin-plugin.jar" type="ab9368bb:PsiFileNode" />
+              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="okhttpparamsget" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OkHttpParamsGet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OkHttpParamsGet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="okhttpparamsget" type="462c0819:PsiDirectoryNode" />
+              <item name="builder" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -375,6 +394,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553913374978" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/kotlin-plugin.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -456,9 +476,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17590618" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18070363" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -467,15 +488,15 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32925472" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.20715836" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4978678" visible="true" weight="0.21269488" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.39933258" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010661" side_tool="true" visible="true" weight="0.20715836" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3286334" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5021322" side_tool="true" visible="true" weight="0.21269488" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49840087" weight="0.3286334" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -698,23 +719,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/kotlin-stdlib.jar!/kotlin/jvm/JvmOverloads.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="121" selection-start-line="5" selection-start-column="121" selection-end-line="5" selection-end-column="121" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="125" column="31" selection-start-line="125" selection-start-column="31" selection-end-line="125" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/kotlin-stdlib.jar!/kotlin/jvm/JvmOverloads.class" />
     <entry file="jar://E:/Android/Java/jdk/src.zip!/java/lang/Override.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -735,10 +740,27 @@
     <entry file="file://$PROJECT_DIR$/out/production/OkHttpParamsGet/com/wang/okhttpparamsget/Data.class" />
     <entry file="file://$PROJECT_DIR$/out/production/OkHttpParamsGet/com/wang/okhttpparamsget/Ignore.class" />
     <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/FileInput.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/OnDialogClickListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -756,37 +778,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-726">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="55" column="18" lean-forward="true" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
+        <state relative-caret-position="361">
+          <caret line="26" column="46" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -795,15 +790,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="87" column="9" lean-forward="true" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+        <state relative-caret-position="1311">
+          <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2265">
+          <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="49" selection-start-line="49" selection-end-line="54" selection-end-column="15" />
+        <state relative-caret-position="342">
+          <caret line="54" column="15" lean-forward="true" selection-start-line="49" selection-start-column="9" selection-end-line="54" selection-end-column="15" />
         </state>
       </provider>
     </entry>

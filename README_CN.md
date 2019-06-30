@@ -29,6 +29,12 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 
 ## update ##
 <ul>
+          <li>
+            1.5.2(2019-06-24):
+            <ol>
+                <li>内存优化：ArrayMap替换HashMap</li>
+            </ol>
+         </li>
         <li>
             1.5.1(2019-03-30):
             <ol>

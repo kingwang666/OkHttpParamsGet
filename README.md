@@ -31,9 +31,15 @@ These annotations can be in any package
 ## update ##
 <ul>
          <li>
+            1.5.2(2019-06-24):
+            <ol>
+                <li>Replace HashMap with ArrayMap</li>
+            </ol>
+         </li>
+         <li>
             1.5.1(2019-03-30):
             <ol>
-                <li>fix array to string bug.Now user Arrays.toString()</li>
+                <li>Fix array to string bug. Now user Arrays.toString()</li>
             </ol>
         </li>
         <li>
