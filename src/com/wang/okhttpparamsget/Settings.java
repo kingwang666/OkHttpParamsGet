@@ -17,6 +17,8 @@ public class Settings implements Configurable, ActionListener {
     private JRadioButton not_put_rb;
     private JRadioButton support_rb;
     private JRadioButton androidx_rb;
+    private JRadioButton nullable_rb;
+    private JRadioButton nonnull_rb;
 
 
     @Nls(capitalization = Nls.Capitalization.Title)
@@ -39,6 +41,8 @@ public class Settings implements Configurable, ActionListener {
         empty_string_rb.addActionListener(this);
         support_rb.addActionListener(this);
         androidx_rb.addActionListener(this);
+        nullable_rb.addActionListener(this);
+        nonnull_rb.addActionListener(this);
         return panel;
     }
 
@@ -68,6 +72,18 @@ public class Settings implements Configurable, ActionListener {
             } else {
                 androidx_rb.setSelected(true);
             }
+        } else if (e.getSource().equals(nullable_rb)) {
+            if (nullable_rb.isSelected()) {
+                nonnull_rb.setSelected(false);
+            } else {
+                nullable_rb.setSelected(true);
+            }
+        } else if (e.getSource().equals(nonnull_rb)) {
+            if (nonnull_rb.isSelected()) {
+                nullable_rb.setSelected(false);
+            } else {
+                nonnull_rb.setSelected(true);
+            }
         }
     }
 
@@ -80,12 +96,14 @@ public class Settings implements Configurable, ActionListener {
     public void apply() throws ConfigurationException {
         PropertiesComponent.getInstance().setValue(Constant.VALUE_NULL, empty_string_rb.isSelected());
         PropertiesComponent.getInstance().setValue(Constant.ANDROIDX, androidx_rb.isSelected(), true);
+        PropertiesComponent.getInstance().setValue(Constant.NULLABLE, nullable_rb.isSelected(), true);
     }
 
     @Override
     public void reset() {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         boolean androidx = PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true);
+        boolean nullable = PropertiesComponent.getInstance().getBoolean(Constant.NULLABLE, true);
         if (add) {
             empty_string_rb.setSelected(true);
         } else {
@@ -96,6 +114,11 @@ public class Settings implements Configurable, ActionListener {
         } else {
             support_rb.setSelected(true);
         }
+        if (nullable) {
+            nullable_rb.setSelected(true);
+        } else {
+            nonnull_rb.setSelected(true);
+        }
     }
 
     @Override
@@ -104,6 +127,8 @@ public class Settings implements Configurable, ActionListener {
         empty_string_rb.removeActionListener(this);
         support_rb.removeActionListener(this);
         androidx_rb.removeActionListener(this);
+        nullable_rb.removeActionListener(this);
+        nonnull_rb.removeActionListener(this);
     }
 
 }

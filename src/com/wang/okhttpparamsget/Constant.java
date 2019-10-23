@@ -17,4 +17,6 @@ public class Constant {
 
     public static final String ANDROIDX = "okhttpparamsget_android_x";
 
+    public static final String NULLABLE = "okhttpparamsget_null_able";
+
 }

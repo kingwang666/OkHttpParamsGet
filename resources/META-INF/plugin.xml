@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.wang.okhttpparamsget</id>
     <name>OkHttpParamsGet</name>
-    <version>1.5.2</version>
+    <version>1.5.3</version>
     <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666
     </vendor>
 
@@ -47,6 +47,12 @@
     <change-notes><![CDATA[
     
     <ul>
+          <li>
+            1.5.3(2019-10-23):
+            <ol>
+                <li>set default annotation when the value is no nullable and nonnull</li>
+            </ol>
+          </li>
           <li>
             1.5.2(2019-06-24):
             <ol>
@@ -132,8 +138,10 @@
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <!-- uncomment to enable plugin in all products  -->
+    <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
+<!--    <depends>com.intellij.java</depends>-->
     <depends>org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">

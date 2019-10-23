@@ -1,6 +1,7 @@
 package com.wang.okhttpparamsget;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class TypePickDialog extends JDialog {
@@ -19,6 +20,7 @@ public class TypePickDialog extends JDialog {
     public TypePickDialog() {
         setContentPane(contentPane);
         setModal(true);
+        setTitle("Params");
         getRootPane().setDefaultButton(buttonOK);
         mType = Constant.TYPE_MAP_STRING;
         string_rb.setSelected(true);
@@ -28,6 +30,7 @@ public class TypePickDialog extends JDialog {
                 onOK();
             }
         });
+
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

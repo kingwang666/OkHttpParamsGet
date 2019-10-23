@@ -31,6 +31,12 @@ These annotations can be in any package
 ## update ##
 <ul>
          <li>
+            1.5.3(2019-10-23):
+            <ol>
+                <li>set default annotation when the value is no nullable and nonnull</li>
+            </ol>
+         </li>
+         <li>
             1.5.2(2019-06-24):
             <ol>
                 <li>Replace HashMap with ArrayMap</li>

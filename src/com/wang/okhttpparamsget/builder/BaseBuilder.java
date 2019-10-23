@@ -1,7 +1,9 @@
 package com.wang.okhttpparamsget.builder;
 
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.psi.*;
 import com.intellij.psi.search.GlobalSearchScope;
+import com.wang.okhttpparamsget.Constant;
 import com.wang.okhttpparamsget.Utils;
 import com.wang.okhttpparamsget.nonull.NonNullFactory;
 import org.jetbrains.annotations.NotNull;
@@ -31,7 +33,12 @@ public abstract class BaseBuilder implements IBuilder {
             PsiField field = (PsiField) element;
             if (field.getType() instanceof PsiPrimitiveType) {
                 return false;
-            } else return !NonNullFactory.hasNonNull(field.getAnnotations());
+            }
+            boolean defaultNullable = PropertiesComponent.getInstance().getBoolean(Constant.NULLABLE, true);
+            if (defaultNullable) {
+                return !NonNullFactory.hasNonNull(field.getAnnotations());
+            }
+            return NonNullFactory.hasNullable(field.getAnnotations());
         } else if (element instanceof KtProperty) {
             KtProperty property = (KtProperty) element;
             KtTypeReference reference = property.getTypeReference();

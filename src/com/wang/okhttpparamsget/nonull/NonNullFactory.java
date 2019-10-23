@@ -16,6 +16,13 @@ public class NonNullFactory {
             "org.jetbrains.annotations.NotNull"
     };
 
+    private static String[] sSupportedNullable = new String[]{
+            "androidx.annotation.Nullable",
+            "android.support.annotation.Nullable",
+            "android.annotation.Nullable",
+            "org.jetbrains.annotations.Nullable"
+    };
+
     private NonNullFactory() {
 
     }
@@ -31,6 +38,17 @@ public class NonNullFactory {
         return false;
     }
 
+    public static boolean hasNullable(@NotNull PsiAnnotation[] annotations){
+        for (PsiAnnotation annotation : annotations){
+            for (String name: sSupportedNullable){
+                if (name.equals(annotation.getQualifiedName())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     @Nullable
     public static String findNonNullForPsiElement(@NotNull Project project, @NotNull PsiElement psiElement) {
         for (String nonull : sSupportedNonNull) {
@@ -38,11 +56,11 @@ public class NonNullFactory {
                 return nonull;
             }
         }
-        return findButterKnifeForProject(project);
+        return findNonNullForPsiForProject(project);
     }
 
     @Nullable
-    private static String findButterKnifeForProject(@NotNull Project project) {
+    private static String findNonNullForPsiForProject(@NotNull Project project) {
         for (String nonull : sSupportedNonNull) {
             if (Utils.isClassAvailableForProject(project, nonull)) {
                 return nonull;
