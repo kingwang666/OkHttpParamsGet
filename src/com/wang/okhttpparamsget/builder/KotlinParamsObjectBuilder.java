@@ -31,6 +31,9 @@ class KotlinParamsObjectBuilder extends KotlinBuilder {
 
     @Override
     protected String getParamsType() {
+        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
+            return "HashMap<String, Any>";
+        }
         return "ArrayMap<String, Any>";
     }
 
@@ -50,23 +53,42 @@ class KotlinParamsObjectBuilder extends KotlinBuilder {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
             if (!findIgnore(older == null ? field : older)) {
+                String defaultName = getParamName(older == null ? field : older);
                 if (isNullable(field)) {
-                    addNullableValue(field, sb);
+                    addNullableValue(field, sb, defaultName);
                 } else {
-                    sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toString(field, false, null)).append("\n");
+                    sb.append(mFieldName).append("[");
+                    if (defaultName == null) {
+                        sb.append('"').append(field.getName()).append('"');
+                    } else {
+                        sb.append(defaultName);
+                    }
+                    sb.append("] = ").append(toString(field, false, null)).append("\n");
                 }
             }
         }
     }
 
     @Override
-    protected void addNullableValue(PsiField field, StringBuilder sb) {
+    protected void addNullableValue(PsiField field, StringBuilder sb, String defaultName) {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append(field.getName()).append("?.also{\n");
-            sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toString(field, false, "it")).append("\n}\n");
+            sb.append(mFieldName).append("[");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append("] = ").append(toString(field, false, "it")).append("\n}\n");
         } else {
-            sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toString(field, true, null)).append("?: \"\"\n");
+            sb.append(mFieldName).append("[");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append("] = ").append(toString(field, true, null)).append("?: \"\"\n");
         }
     }
 

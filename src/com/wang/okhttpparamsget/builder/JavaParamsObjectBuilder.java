@@ -28,13 +28,13 @@ class JavaParamsObjectBuilder extends JavaBuilder {
     }
 
     @Override
-    protected String getParamsType(){
+    protected String getParamsType() {
         if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
             return "java.util.HashMap<>";
         }
-        if (PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true)){
+        if (PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true)) {
             return "androidx.collection.ArrayMap<>";
-        }else {
+        } else {
             return "android.support.v4.util.ArrayMap<>";
         }
     }
@@ -46,11 +46,18 @@ class JavaParamsObjectBuilder extends JavaBuilder {
             if (field instanceof KtLightField) {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
-            if (!findIgnore(older == null ? field : older)){
-                if (isNullable(field)){
-                    addNullableValue(field, sb);
-                }else {
-                    sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(", ").append(toString(field)).append(");");
+            if (!findIgnore(older == null ? field : older)) {
+                String defaultName  = getParamName(older == null ? field : older);
+                if (isNullable(field)) {
+                    addNullableValue(field, sb, defaultName);
+                } else {
+                    sb.append(mFieldName).append(".put(");
+                    if (defaultName == null ) {
+                        sb.append('"').append(field.getName()).append('"');
+                    } else {
+                        sb.append(defaultName);
+                    }
+                    sb.append(", ").append(toString(field)).append(");");
                 }
 
             }
@@ -58,13 +65,25 @@ class JavaParamsObjectBuilder extends JavaBuilder {
     }
 
     @Override
-    protected void addNullableValue(PsiField field, StringBuilder sb) {
+    protected void addNullableValue(PsiField field, StringBuilder sb, String defaultName) {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append("if (").append(field.getName()).append(" != null){");
-            sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(", ").append(toString(field)).append(");}");
-        }else {
-            sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(", ").append(field.getName()).append(" == null ? \"\" : ").append(toString(field)).append(");");
+            sb.append(mFieldName).append(".put(");
+            if (defaultName == null ) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append(", ").append(toString(field)).append(");}");
+        } else {
+            sb.append(mFieldName).append(".put(");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append(", ").append(field.getName()).append(" == null ? \"\" : ").append(toString(field)).append(");");
         }
     }
 

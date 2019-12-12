@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2c84230-b57c-4b6d-a866-f19d9c7c316d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/data/FileInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/extra/ParamName.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/PostFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/extra/PostFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra/PostFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/extra/PostFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/kotlin-plugin.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/kotlin-plugin.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" afterDir="false" />
@@ -63,7 +59,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553913374978" />
     <property name="last.edited.regexp" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/extra" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -169,54 +165,54 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="531" y="340" key="#com.intellij.internal.psiView.PsiViewerDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575941434415" />
-    <state width="1877" height="166" key="GridCell.Tab.0.bottom" timestamp="1576130315094">
+    <state width="1877" height="166" key="GridCell.Tab.0.bottom" timestamp="1576148152850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315094" />
-    <state width="1877" height="166" key="GridCell.Tab.0.center" timestamp="1576130315094">
+    <state width="1877" height="166" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576148152850" />
+    <state width="1877" height="166" key="GridCell.Tab.0.center" timestamp="1576148152850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315094" />
-    <state width="1877" height="166" key="GridCell.Tab.0.left" timestamp="1576130315094">
+    <state width="1877" height="166" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576148152850" />
+    <state width="1877" height="166" key="GridCell.Tab.0.left" timestamp="1576148152850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315094" />
-    <state width="1877" height="166" key="GridCell.Tab.0.right" timestamp="1576130315094">
+    <state width="1877" height="166" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576148152850" />
+    <state width="1877" height="166" key="GridCell.Tab.0.right" timestamp="1576148152850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315094" />
-    <state width="1877" height="166" key="GridCell.Tab.1.bottom" timestamp="1576130315095">
+    <state width="1877" height="166" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576148152850" />
+    <state width="1877" height="166" key="GridCell.Tab.1.bottom" timestamp="1576148152850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315095" />
-    <state width="1877" height="166" key="GridCell.Tab.1.center" timestamp="1576130315095">
+    <state width="1877" height="166" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576148152850" />
+    <state width="1877" height="166" key="GridCell.Tab.1.center" timestamp="1576148152850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315095" />
-    <state width="1877" height="166" key="GridCell.Tab.1.left" timestamp="1576130315095">
+    <state width="1877" height="166" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576148152850" />
+    <state width="1877" height="166" key="GridCell.Tab.1.left" timestamp="1576148152850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315095" />
-    <state width="1877" height="166" key="GridCell.Tab.1.right" timestamp="1576130315095">
+    <state width="1877" height="166" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576148152850" />
+    <state width="1877" height="166" key="GridCell.Tab.1.right" timestamp="1576148152850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="166" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315095" />
-    <state width="1877" height="337" key="GridCell.Tab.2.bottom" timestamp="1576073523306">
+    <state width="1877" height="166" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576148152850" />
+    <state width="1877" height="337" key="GridCell.Tab.2.bottom" timestamp="1576146537421">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="337" key="GridCell.Tab.2.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576073523306" />
-    <state width="1877" height="337" key="GridCell.Tab.2.center" timestamp="1576073523306">
+    <state width="1877" height="337" key="GridCell.Tab.2.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576146537421" />
+    <state width="1877" height="337" key="GridCell.Tab.2.center" timestamp="1576146537420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="337" key="GridCell.Tab.2.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576073523306" />
-    <state width="1877" height="337" key="GridCell.Tab.2.left" timestamp="1576073523306">
+    <state width="1877" height="337" key="GridCell.Tab.2.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576146537420" />
+    <state width="1877" height="337" key="GridCell.Tab.2.left" timestamp="1576146537420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="337" key="GridCell.Tab.2.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576073523306" />
-    <state width="1877" height="337" key="GridCell.Tab.2.right" timestamp="1576073523306">
+    <state width="1877" height="337" key="GridCell.Tab.2.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576146537420" />
+    <state width="1877" height="337" key="GridCell.Tab.2.right" timestamp="1576146537420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="337" key="GridCell.Tab.2.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576073523306" />
+    <state width="1877" height="337" key="GridCell.Tab.2.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576146537420" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1576032118481">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -233,19 +229,29 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1470" y="11" width="1486" height="805" maximized="true" key="dock-window-2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576116197630" />
+    <state x="-1470" y="0" width="1486" height="805" maximized="true" key="dock-window-3" timestamp="1576142392852">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1470" y="0" width="1486" height="805" maximized="true" key="dock-window-3/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576142392852" />
+    <state x="661" y="147" key="refactoring.ChangeSignatureDialog" timestamp="1576145728240">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="661" y="147" key="refactoring.ChangeSignatureDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576145728240" />
     <state x="740" y="325" width="440" height="638" key="save.file.as.template.dialog" timestamp="1575959845868">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="325" width="440" height="638" key="save.file.as.template.dialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575959845868" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1576052332710">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1576136151872">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576052332710" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576136151872" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
-        <watch expression="psiField.getType().getPresentableText()" language="JAVA" />
+        <watch expression="annotation.getValueArguments().get(0).getArgumentExpression().getText()" language="JAVA" />
+        <watch expression="argumentName.getAsName().asString()" language="JAVA" />
+        <watch expression="annotation.getValueArguments().get(0).getArgumentExpression().getText()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

@@ -6,7 +6,10 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.intellij.psi.util.PsiTreeUtil;
+import com.wang.okhttpparamsget.Utils;
 import com.wang.okhttpparamsget.nonull.NonNullFactory;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by wang on 2017/3/6.
@@ -91,7 +94,7 @@ abstract class JavaBuilder extends BaseBuilder {
     protected abstract void buildMethodBody(PsiClass psiClass, PsiField[] fields, boolean needAll, StringBuilder sb);
 
 
-    protected abstract void addNullableValue(PsiField field, StringBuilder sb);
+    protected abstract void addNullableValue(PsiField field, StringBuilder sb, @Nullable String defaultName);
 
     protected String toString(PsiField field) {
         return toString(field.getType(), field.getName());
@@ -108,5 +111,24 @@ abstract class JavaBuilder extends BaseBuilder {
         } else {
             return name + ".toString()";
         }
+    }
+
+
+    @Override
+    protected String getAnnotationText(@NotNull PsiElement element, @NotNull String name, @NotNull String valueName) {
+
+        PsiAnnotation annotation = Utils.getAnnotation(((PsiModifierListOwner)element).getAnnotations(), name);
+        if (annotation == null){
+            return null;
+        }
+        PsiAnnotationMemberValue value;
+        if ((value = annotation.findAttributeValue(valueName)) != null) {
+            String text = value.getText();
+            if (text == null || text.length() == 0|| text.equals("\"\"")){
+                return "";
+            }
+            return text;
+        }
+        return "";
     }
 }

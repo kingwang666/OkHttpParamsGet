@@ -30,7 +30,10 @@ class KotlinParamsStringBuilder extends KotlinBuilder {
     }
 
     @Override
-    protected String getParamsType(){
+    protected String getParamsType() {
+        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
+            return "HashMap<String, String>";
+        }
         return "ArrayMap<String, String>";
     }
 
@@ -44,29 +47,48 @@ class KotlinParamsStringBuilder extends KotlinBuilder {
 
     @Override
     protected void buildMethodBody(KtClass ktClass, KtClassBody body, KtLightClass lightClass, PsiField[] fields, boolean needAll, StringBuilder sb) {
-        for (PsiField field: fields){
+        for (PsiField field : fields) {
             PsiElement older = null;
             if (field instanceof KtLightField) {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
-            if (!findIgnore(older == null ? field : older)){
-                if (isNullable(field)){
-                    addNullableValue(field, sb);
-                }else {
-                    sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toString(field, false, null)).append("\n");
+            if (!findIgnore(older == null ? field : older)) {
+                String defaultName = getParamName(older == null ? field : older);
+                if (isNullable(field)) {
+                    addNullableValue(field, sb, defaultName);
+                } else {
+                    sb.append(mFieldName).append("[");
+                    if (defaultName == null) {
+                        sb.append('"').append(field.getName()).append('"');
+                    } else {
+                        sb.append(defaultName);
+                    }
+                    sb.append("] = ").append(toString(field, false, null)).append("\n");
                 }
             }
         }
     }
 
     @Override
-    protected void addNullableValue(PsiField field, StringBuilder sb) {
+    protected void addNullableValue(PsiField field, StringBuilder sb, String defaultName) {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append(field.getName()).append("?.also{\n");
-            sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toString(field, false, "it")).append("\n}\n");
-        }else {
-            sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toString(field, true, null)).append("?: \"\"\n");
+            sb.append(mFieldName).append("[");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append("] = ").append(toString(field, false, "it")).append("\n}\n");
+        } else {
+            sb.append(mFieldName).append("[");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append("] = ").append(toString(field, true, null)).append("?: \"\"\n");
         }
     }
 }

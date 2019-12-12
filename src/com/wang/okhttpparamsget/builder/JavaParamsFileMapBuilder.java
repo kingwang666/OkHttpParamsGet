@@ -8,8 +8,6 @@ import com.wang.okhttpparamsget.Constant;
 import com.wang.okhttpparamsget.data.FileInfo;
 import org.jetbrains.kotlin.asJava.elements.KtLightField;
 
-import java.util.HashMap;
-
 /**
  * Created by wang on 2017/3/7.
  */
@@ -55,7 +53,8 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
             if (!findIgnore(older == null ? field : older)) {
-                if (findPostFile(older == null ? field : older)) {
+                String defaultKey;
+                if ((defaultKey = getPostFileKey(older == null ? field : older)) != null) {
                     FileInfo fileInfo = getFileInfo(field, field.getName(), true);
                     if (fileInfo == null) {
                         continue;
@@ -69,9 +68,19 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
                     } else if (fileInfo.isMap()) {
                         sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.MAP_CHILD).append(" : ").append(field.getName()).append(".entrySet()) {");
                     }
-                    sb.append(mFieldName).append(".put(").append(fileInfo.key).append(" + \"\\\"; filename=\\\"\" + ")
-                            .append(fileInfo.filename).append(", ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType)
-                            .append("),").append(fileInfo.data).append("));");
+
+                    defaultKey = defaultKey.isEmpty() || fileInfo.isMap() ? fileInfo.key : defaultKey;
+                    boolean string = defaultKey.matches("\".+?\"");
+
+                    sb.append(mFieldName).append(".put(");
+                    if (string) {
+                        sb.append(defaultKey, 0, defaultKey.length() - 1);
+                    } else {
+                        sb.append(defaultKey).append(" + \"");
+                    }
+                    sb.append("\\\"; filename=\\\"\" + ").append(fileInfo.filename).append(", ")
+                            .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType).append("),")
+                            .append(fileInfo.data).append("));");
 
                     if (!fileInfo.isNorm()) {
                         sb.append("}");
@@ -80,25 +89,42 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
                         sb.append("}");
                     }
                 } else if (isNullable(field)) {
-                    addNullableValue(field, sb);
+                    defaultKey = getParamName(older == null ? field : older);
+                    addNullableValue(field, sb, defaultKey);
                 } else {
-                    sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\", ").append(getValueType())
-                            .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field)).append("));");
+                    defaultKey = getParamName(older == null ? field : older);
+                    sb.append(mFieldName).append(".put(");
+                    if (defaultKey == null) {
+                        sb.append('"').append(field.getName()).append('"');
+                    } else {
+                        sb.append(defaultKey);
+                    }
+                    sb.append(", ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field)).append("));");
                 }
             }
         }
     }
 
     @Override
-    protected void addNullableValue(PsiField field, StringBuilder sb) {
+    protected void addNullableValue(PsiField field, StringBuilder sb, String defaultName) {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append("if (").append(field.getName()).append(" != null){");
-            sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\", ").append(getValueType())
-                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field)).append("));}");
+            sb.append(mFieldName).append(".put(");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append(", ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field)).append("));}");
         } else {
-            sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\", ").append(getValueType())
-                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(field.getName()).append(" == null ? \"\" : ").append(toString(field)).append("));");
+            sb.append(mFieldName).append(".put(");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append(", ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(field.getName()).append(" == null ? \"\" : ").append(toString(field)).append("));");
         }
     }
 }

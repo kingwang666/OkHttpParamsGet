@@ -64,15 +64,17 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
             if (!findIgnore(older == null ? field : older)) {
-                if (findPostFile(older == null ? field : older)) {
+                String defaultKey;
+                if ((defaultKey = getPostFileKey(older == null ? field : older)) != null) {
                     boolean nullable = isNullable(field);
                     FileInfo fileInfo = getFileInfo(field, nullable ? FileInfo.KOTLIN_CHILD : field.getName(), false);
 
                     if (fileInfo == null) {
                         continue;
                     }
-
-                    fileInfo.key = fileInfo.key.replace(".toString()", "");
+                    if (defaultKey.isEmpty() || fileInfo.isMap()) {
+                        defaultKey = fileInfo.key.replace(".toString()", "");
+                    }
 
                     if (fileInfo.isNorm() && nullable) {
                         sb.append(field.getName()).append("?.also{\n");
@@ -81,16 +83,16 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
                     } else if (fileInfo.isMap()) {
                         sb.append(field.getName()).append(nullable ? "?." : ".").append("forEach{ (key, value) ->\n");
                     }
-                    boolean string = fileInfo.key.matches("\".+?\"");
-                    int index = fileInfo.key.indexOf('.');
+                    boolean string = defaultKey.matches("\".+?\"");
+                    int index = defaultKey.indexOf('.');
 
                     sb.append(mFieldName).append("[");
                     if (string) {
-                        sb.append(fileInfo.key, 0, fileInfo.key.length() - 1).append("\\\"");
+                        sb.append(defaultKey, 0, defaultKey.length() - 1).append("\\\"");
                     } else if (index > 0) {
-                        sb.append("\"${").append(fileInfo.key).append("}\\\"");
+                        sb.append("\"${").append(defaultKey).append("}\\\"");
                     } else {
-                        sb.append("\"$").append(fileInfo.key).append("\\\"");
+                        sb.append("\"$").append(defaultKey).append("\\\"");
                     }
                     sb.append("; filename=\\\"${").append(fileInfo.filename).append("}\"] = ")
                             .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType).append("),").append(fileInfo.data).append(")\n");
@@ -99,25 +101,42 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
                         sb.append("}\n");
                     }
                 } else if (isNullable(field)) {
-                    addNullableValue(field, sb);
+                    defaultKey = getParamName(older == null ? field : older);
+                    addNullableValue(field, sb, defaultKey);
                 } else {
-                    sb.append(mFieldName).append("[").append("\"").append(field.getName()).append("\"] = ").append(getValueType())
-                            .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, false, null)).append(")\n");
+                    defaultKey = getParamName(older == null ? field : older);
+                    sb.append(mFieldName).append("[");
+                    if (defaultKey == null) {
+                        sb.append('"').append(field.getName()).append('"');
+                    } else {
+                        sb.append(defaultKey);
+                    }
+                    sb.append("] = ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, false, null)).append(")\n");
                 }
             }
         }
     }
 
     @Override
-    protected void addNullableValue(PsiField field, StringBuilder sb) {
+    protected void addNullableValue(PsiField field, StringBuilder sb, String defaultName) {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append(field.getName()).append("?.also{\n");
-            sb.append(mFieldName).append("[").append("\"").append(field.getName()).append("\"] = ").append(getValueType())
-                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, false, "it")).append(")\n}\n");
+            sb.append(mFieldName).append("[");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append("] = ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, false, "it")).append(")\n}\n");
         } else {
-            sb.append(mFieldName).append("[").append("\"").append(field.getName()).append("\"] = ").append(getValueType())
-                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, true, null)).append(" ?: \"\" )\n");
+            sb.append(mFieldName).append("[");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append("] = ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, true, null)).append(" ?: \"\" )\n");
         }
     }
 }

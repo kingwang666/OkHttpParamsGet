@@ -7,11 +7,11 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.SOURCE)
-public @interface PostFile {
+public @interface ParamName {
 
     /**
      *the post file key. the field type is map is invalid
      */
-    String key() default "";
+    String value();
 
 }

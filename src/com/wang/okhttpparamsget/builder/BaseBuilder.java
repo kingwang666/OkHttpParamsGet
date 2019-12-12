@@ -72,6 +72,7 @@ public abstract class BaseBuilder implements IBuilder {
         return false;
     }
 
+
     @SuppressWarnings({"unchecked", "rawtypes"})
     private boolean findAnnotation(@NotNull PsiElement element, String name) {
         if (element instanceof PsiModifierListOwner) {
@@ -81,6 +82,24 @@ public abstract class BaseBuilder implements IBuilder {
         }
         return false;
     }
+
+    @Nullable
+    protected String getPostFileKey(@NotNull PsiElement element){
+        return getAnnotationText(element, "PostFile", "key");
+    }
+
+    @Nullable
+    protected String getParamName(@NotNull PsiElement element) {
+        String name = getAnnotationText(element, "ParamName", "value");
+        return name == null || name.isEmpty() ? null : name;
+    }
+
+    /**
+     * 获取注解的值
+     *
+     * @return null -> not found annotation; "" -> this value is null or "";
+     */
+    protected abstract String getAnnotationText(@NotNull PsiElement element, @NotNull String name, @NotNull String valueName);
 
 
     protected FileInfo getFileInfo(PsiField psiField, String prefix, boolean forJava) {
@@ -129,9 +148,9 @@ public abstract class BaseBuilder implements IBuilder {
                 prefix = "value";
             }
         } else if (type == FileInfo.ARRAY || type == FileInfo.LIST) {
-            if (forJava){
+            if (forJava) {
                 prefix = FileInfo.LIST_CHILD;
-            }else {
+            } else {
                 prefix = FileInfo.KOTLIN_CHILD;
             }
 
@@ -166,7 +185,7 @@ public abstract class BaseBuilder implements IBuilder {
             return null;
         }
 
-        if (className == null){
+        if (className == null) {
             className = psiClass.getNameIdentifier().getText();
         }
 

@@ -7,6 +7,7 @@ import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.util.containers.ContainerUtil;
 import com.wang.okhttpparamsget.Utils;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.kotlin.asJava.LightClassUtilsKt;
 import org.jetbrains.kotlin.asJava.classes.KtLightClass;
 import org.jetbrains.kotlin.descriptors.DeclarationDescriptor;
@@ -18,7 +19,7 @@ import org.jetbrains.kotlin.psi.*;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.List;
 
 /**
  * Created by wang on 2017/3/6.
@@ -59,7 +60,7 @@ abstract class KotlinBuilder extends BaseBuilder {
                 for (String fqName : imports) {
                     final Collection<DeclarationDescriptor> descriptors = ResolutionUtils.resolveImportReference(ktClass.getContainingKtFile(), new FqName(fqName));
                     Iterator<DeclarationDescriptor> iterator = descriptors.iterator();
-                    if (iterator.hasNext()){
+                    if (iterator.hasNext()) {
                         DeclarationDescriptor descriptor = iterator.next();
                         ImportInsertHelper.getInstance(project).importDescriptor(ktClass.getContainingKtFile(), descriptor, false);
                     }
@@ -127,7 +128,7 @@ abstract class KotlinBuilder extends BaseBuilder {
 
     ;
 
-    protected abstract void addNullableValue(PsiField field, StringBuilder sb);
+    protected abstract void addNullableValue(PsiField field, StringBuilder sb, String defaultName);
 
     protected String toString(PsiField field, boolean nullable, String prefix) {
         if (prefix == null) {
@@ -157,5 +158,28 @@ abstract class KotlinBuilder extends BaseBuilder {
     @Override
     protected String toString(PsiType type, String name) {
         return toString(type, false, name);
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    @Override
+    protected String getAnnotationText(@NotNull PsiElement element, @NotNull String name, @NotNull String valueName) {
+        KtAnnotationEntry annotation = Utils.getAnnotation(((KtModifierListOwnerStub) element).getAnnotationEntries(), name);
+        if (annotation == null) {
+            return null;
+        }
+        List<ValueArgument> values = (List<ValueArgument>) annotation.getValueArguments();
+        for (ValueArgument value : values) {
+            ValueArgumentName argumentName = value.getArgumentName();
+            if ((argumentName == null && valueName.equals("value")) || (argumentName != null && valueName.equals(argumentName.getAsName().asString()))) {
+                String text;
+                KtExpression expression = value.getArgumentExpression();
+                text = expression == null ? null : expression.getText();
+                if (text == null || text.length() == 0 || text.equals("\"\"")) {
+                    return "";
+                }
+                return text;
+            }
+        }
+        return "";
     }
 }

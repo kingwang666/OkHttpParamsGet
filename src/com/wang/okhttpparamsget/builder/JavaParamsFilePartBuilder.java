@@ -47,7 +47,8 @@ class JavaParamsFilePartBuilder extends JavaBuilder {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
             if (!findIgnore(older == null ? field : older)) {
-                if (findPostFile(older == null ? field : older)) {
+                String defaultKey;
+                if ((defaultKey = getPostFileKey(older == null ? field : older)) != null) {
                     FileInfo fileInfo = getFileInfo(field, field.getName(), true);
                     if (fileInfo == null) {
                         continue;
@@ -61,9 +62,10 @@ class JavaParamsFilePartBuilder extends JavaBuilder {
                     } else if (fileInfo.isMap()) {
                         sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.MAP_CHILD).append(" : ").append(field.getName()).append(".entrySet()) {");
                     }
-                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(").append(fileInfo.key).append(",")
-                            .append(fileInfo.filename).append(",").append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(")
-                            .append(fileInfo.mimeType).append("),").append(fileInfo.data).append(")));");
+                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(")
+                            .append(defaultKey.isEmpty() || fileInfo.isMap() ? fileInfo.key : defaultKey).append(",")
+                            .append(fileInfo.filename).append(",")
+                            .append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType).append("),").append(fileInfo.data).append(")));");
 
                     if (!fileInfo.isNorm()) {
                         sb.append("}");
@@ -73,23 +75,42 @@ class JavaParamsFilePartBuilder extends JavaBuilder {
                         sb.append("}");
                     }
                 } else if (isNullable(field)) {
-                    addNullableValue(field, sb);
+                    defaultKey = getParamName(older == null ? field : older);
+                    addNullableValue(field, sb, defaultKey);
                 } else {
-                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toString(field)).append("));");
+                    defaultKey = getParamName(older == null ? field : older);
+                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(");
+                    if (defaultKey == null) {
+                        sb.append('"').append(field.getName()).append('"');
+                    } else {
+                        sb.append(defaultKey);
+                    }
+                    sb.append(", ").append(toString(field)).append("));");
                 }
             }
         }
     }
 
     @Override
-    protected void addNullableValue(PsiField field, StringBuilder sb) {
+    protected void addNullableValue(PsiField field, StringBuilder sb, String defaultName) {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append("if (").append(field.getName()).append(" != null){");
-            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toString(field)).append("));}");
+            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append(", ").append(toString(field)).append("));}");
         } else {
-            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ")
-                    .append(field.getName()).append(" == null ? \"\" : ").append(toString(field)).append("));");
+            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append(", ").append(field.getName()).append(" == null ? \"\" : ").append(toString(field)).append("));");
         }
     }
 }

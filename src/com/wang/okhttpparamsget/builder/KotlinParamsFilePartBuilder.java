@@ -57,17 +57,8 @@ class KotlinParamsFilePartBuilder extends KotlinBuilder {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
             if (!findIgnore(older == null ? field : older)) {
-/*                if (findPostFiles(older == null ? field : older)) {
-                    String prefix = "it";
-                    String[] fileInfo = getFileInfo(field, prefix, true, false);
-                    if (fileInfo == null) {
-                        continue;
-                    }
-                    sb.append(field.getName()).append(isNullable(field) ? "?.forEach{\n" : ".forEach{\n");
-                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(").append(fileInfo[1]).append(", ").append(fileInfo[2]).append(", ")
-                            .append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo[3]).append("), ").append(fileInfo[4]).append(")))\n}\n");
-                } else*/
-                if (findPostFile(older == null ? field : older)) {
+                String defaultKey;
+                if ((defaultKey = getPostFileKey(older == null ? field : older)) != null) {
                     boolean nullable = isNullable(field);
                     FileInfo fileInfo = getFileInfo(field, nullable ? FileInfo.KOTLIN_CHILD : field.getName(), false);
                     if (fileInfo == null) {
@@ -78,34 +69,54 @@ class KotlinParamsFilePartBuilder extends KotlinBuilder {
                         sb.append(field.getName()).append("?.also{\n");
                     } else if (fileInfo.isListOrArray()) {
                         sb.append(field.getName()).append(nullable ? "?." : ".").append("forEach{\n");
-                    }else if (fileInfo.isMap()){
+                    } else if (fileInfo.isMap()) {
                         sb.append(field.getName()).append(nullable ? "?." : ".").append("forEach{ (key, value) ->\n");
                     }
 
-                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(").append(fileInfo.key).append(",")
-                            .append(fileInfo.filename).append(",").append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(")
-                            .append(fileInfo.mimeType).append("),").append(fileInfo.data).append(")))\n");
+                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(").append(defaultKey.isEmpty() || fileInfo.isMap() ? fileInfo.key : defaultKey).append(",")
+                            .append(fileInfo.filename).append(",")
+                            .append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType).append("),").append(fileInfo.data).append(")))\n");
 
                     if (nullable || !fileInfo.isNorm()) {
                         sb.append("}\n");
                     }
                 } else if (isNullable(field)) {
-                    addNullableValue(field, sb);
+                    defaultKey = getParamName(older == null ? field : older);
+                    addNullableValue(field, sb, defaultKey);
                 } else {
-                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toString(field, false, null)).append("))\n");
+                    defaultKey = getParamName(older == null ? field : older);
+                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(");
+                    if (defaultKey == null) {
+                        sb.append('"').append(field.getName()).append('"');
+                    } else {
+                        sb.append(defaultKey);
+                    }
+                    sb.append(", ").append(toString(field, false, null)).append("))\n");
                 }
             }
         }
     }
 
     @Override
-    protected void addNullableValue(PsiField field, StringBuilder sb) {
+    protected void addNullableValue(PsiField field, StringBuilder sb, String defaultName) {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append(field.getName()).append("?.also{\n");
-            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toString(field, false, "it")).append("))\n}\n");
+            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append(", ").append(toString(field, false, "it")).append("))\n}\n");
         } else {
-            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toString(field, true, null)).append(" ?: \"\"))\n");
+            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(");
+            if (defaultName == null) {
+                sb.append('"').append(field.getName()).append('"');
+            } else {
+                sb.append(defaultName);
+            }
+            sb.append(", ").append(toString(field, true, null)).append(" ?: \"\"))\n");
         }
     }
 }
