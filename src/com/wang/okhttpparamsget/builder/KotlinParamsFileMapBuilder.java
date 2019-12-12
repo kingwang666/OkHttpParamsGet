@@ -4,6 +4,7 @@ import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiField;
 import com.wang.okhttpparamsget.Constant;
+import com.wang.okhttpparamsget.data.FileInfo;
 import org.jetbrains.kotlin.asJava.classes.KtLightClass;
 import org.jetbrains.kotlin.asJava.elements.KtLightField;
 import org.jetbrains.kotlin.psi.KtClass;
@@ -27,6 +28,9 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
 
     @Override
     protected String getParamsType() {
+        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
+            return "HashMap<String, RequestBody>";
+        }
         return "ArrayMap<String, RequestBody>";
     }
 
@@ -43,6 +47,10 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
     @Nullable
     @Override
     protected String[] getImports() {
+        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
+            return new String[]{"okhttp3.MediaType",
+                    "okhttp3.RequestBody"};
+        }
         return new String[]{"okhttp3.MediaType",
                 "okhttp3.RequestBody",
                 PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true) ? "androidx.collection.ArrayMap" : "android.support.v4.util.ArrayMap"};
@@ -56,36 +64,45 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
             if (!findIgnore(older == null ? field : older)) {
-                if (findPostFiles(older == null ? field : older)) {
-                    String prefix = "it";
-                    String[] fileInfo = getFileInfo(field, prefix, true, false);
-                    if (fileInfo == null) {
-                        continue;
-                    }
-                    sb.append(field.getName()).append(isNullable(field) ? "?.forEach{\n" : ".forEach{\n");
-                    sb.append(mFieldName).append("[").append(fileInfo[1]).append(" + \"\\\"; filename=\\\"\" + ").append(fileInfo[2]).append("] = ")
-                            .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo[3]).append("), ").append(fileInfo[4]).append(")\n");
-                    sb.append("}\n");
-                } else if (findPostFile(older == null ? field : older)) {
+                if (findPostFile(older == null ? field : older)) {
                     boolean nullable = isNullable(field);
-                    String prefix = nullable ? "it" : field.getName();
-                    String[] fileInfo = getFileInfo(field, prefix, false, false);
+                    FileInfo fileInfo = getFileInfo(field, nullable ? FileInfo.KOTLIN_CHILD : field.getName(), false);
+
                     if (fileInfo == null) {
                         continue;
                     }
-                    if (nullable) {
+
+                    fileInfo.key = fileInfo.key.replace(".toString()", "");
+
+                    if (fileInfo.isNorm() && nullable) {
                         sb.append(field.getName()).append("?.also{\n");
+                    } else if (fileInfo.isListOrArray()) {
+                        sb.append(field.getName()).append(nullable ? "?." : ".").append("forEach{\n");
+                    } else if (fileInfo.isMap()) {
+                        sb.append(field.getName()).append(nullable ? "?." : ".").append("forEach{ (key, value) ->\n");
                     }
-                    sb.append(mFieldName).append("[").append(fileInfo[1]).append(" + \"\\\"; filename=\\\"\" + ").append(fileInfo[2]).append("] = ")
-                            .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo[3]).append("),").append(fileInfo[4]).append(")\n");
-                    if (nullable) {
+                    boolean string = fileInfo.key.matches("\".+?\"");
+                    int index = fileInfo.key.indexOf('.');
+
+                    sb.append(mFieldName).append("[");
+                    if (string) {
+                        sb.append(fileInfo.key, 0, fileInfo.key.length() - 1).append("\\\"");
+                    } else if (index > 0) {
+                        sb.append("\"${").append(fileInfo.key).append("}\\\"");
+                    } else {
+                        sb.append("\"$").append(fileInfo.key).append("\\\"");
+                    }
+                    sb.append("; filename=\\\"${").append(fileInfo.filename).append("}\"] = ")
+                            .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType).append("),").append(fileInfo.data).append(")\n");
+
+                    if (nullable || !fileInfo.isNorm()) {
                         sb.append("}\n");
                     }
                 } else if (isNullable(field)) {
                     addNullableValue(field, sb);
                 } else {
                     sb.append(mFieldName).append("[").append("\"").append(field.getName()).append("\"] = ").append(getValueType())
-                            .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toSting(field, false, null)).append(")\n");
+                            .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, false, null)).append(")\n");
                 }
             }
         }
@@ -97,10 +114,10 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
         if (!add) {
             sb.append(field.getName()).append("?.also{\n");
             sb.append(mFieldName).append("[").append("\"").append(field.getName()).append("\"] = ").append(getValueType())
-                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toSting(field, false, "it")).append(")\n}\n");
+                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, false, "it")).append(")\n}\n");
         } else {
             sb.append(mFieldName).append("[").append("\"").append(field.getName()).append("\"] = ").append(getValueType())
-                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toSting(field, true, null)).append(" ?: \"\" )\n");
+                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, true, null)).append(" ?: \"\" )\n");
         }
     }
 }

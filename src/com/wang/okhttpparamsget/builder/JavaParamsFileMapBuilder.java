@@ -5,11 +5,15 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiField;
 import com.wang.okhttpparamsget.Constant;
+import com.wang.okhttpparamsget.data.FileInfo;
 import org.jetbrains.kotlin.asJava.elements.KtLightField;
+
+import java.util.HashMap;
 
 /**
  * Created by wang on 2017/3/7.
  */
+// TODO: 2019/12/11 模仿JavaParamsFileBodyBuilder
 class JavaParamsFileMapBuilder extends JavaBuilder {
 
     public JavaParamsFileMapBuilder() {
@@ -23,12 +27,14 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
 
     @Override
     protected String getParamsType() {
-        if (PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true)){
+        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
+            return "java.util.HashMap<>";
+        }
+        if (PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true)) {
             return "androidx.collection.ArrayMap<>";
-        }else {
+        } else {
             return "android.support.v4.util.ArrayMap<>";
         }
-//        return "java.util.HashMap<>";
     }
 
     @Override
@@ -49,44 +55,35 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
             if (!findIgnore(older == null ? field : older)) {
-                if (findPostFiles(older == null ? field : older)) {
-                    String prefix = "file";
-                    String[] fileInfo = getFileInfo(field, prefix, true, true);
-                    if (fileInfo == null){
-                        continue;
-                    }
-                    boolean nullable;
-                    if (nullable = isNullable(field)){
-                        sb.append("if (").append(field.getName()).append("!=null){");
-                    }
-                    sb.append("for (").append(fileInfo[0]).append(" ").append(prefix).append(" : ").append(field.getName()).append(") {");
-                    sb.append(mFieldName).append(".put(").append(fileInfo[1]).append(" + \"\\\"; filename=\\\"\" + ").append(fileInfo[2]).append(",")
-                            .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo[3]).append("), ").append(fileInfo[4]).append("));}");
-                    if (nullable){
-                        sb.append("}");
-                    }
-
-                } else if (findPostFile(older == null ? field : older)) {
-                    String prefix = field.getName();
-                    String[] fileInfo = getFileInfo(field, prefix, false, true);
-                    if (fileInfo == null){
+                if (findPostFile(older == null ? field : older)) {
+                    FileInfo fileInfo = getFileInfo(field, field.getName(), true);
+                    if (fileInfo == null) {
                         continue;
                     }
                     boolean nullable;
                     if (nullable = isNullable(field)) {
                         sb.append("if (").append(field.getName()).append("!=null){");
                     }
-                    sb.append(mFieldName).append(".put(").append(fileInfo[1]).append(" + \"\\\"; filename=\\\"\" + ")
-                            .append(fileInfo[2]).append(", ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo[3])
-                            .append("),").append(fileInfo[4]).append("));");
-                    if (nullable){
+                    if (fileInfo.isListOrArray()) {
+                        sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.LIST_CHILD).append(" : ").append(field.getName()).append(") {");
+                    } else if (fileInfo.isMap()) {
+                        sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.MAP_CHILD).append(" : ").append(field.getName()).append(".entrySet()) {");
+                    }
+                    sb.append(mFieldName).append(".put(").append(fileInfo.key).append(" + \"\\\"; filename=\\\"\" + ")
+                            .append(fileInfo.filename).append(", ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType)
+                            .append("),").append(fileInfo.data).append("));");
+
+                    if (!fileInfo.isNorm()) {
                         sb.append("}");
                     }
-                } else if (isNullable(field)){
+                    if (nullable) {
+                        sb.append("}");
+                    }
+                } else if (isNullable(field)) {
                     addNullableValue(field, sb);
-                }else {
+                } else {
                     sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\", ").append(getValueType())
-                            .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toSting(field)).append("));");
+                            .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field)).append("));");
                 }
             }
         }
@@ -98,10 +95,10 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
         if (!add) {
             sb.append("if (").append(field.getName()).append(" != null){");
             sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\", ").append(getValueType())
-                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toSting(field)).append("));}");
-        }else {
+                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field)).append("));}");
+        } else {
             sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\", ").append(getValueType())
-                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(field.getName()).append(" == null ? \"\" : ").append(toSting(field)).append("));");
+                    .append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(field.getName()).append(" == null ? \"\" : ").append(toString(field)).append("));");
         }
     }
 }

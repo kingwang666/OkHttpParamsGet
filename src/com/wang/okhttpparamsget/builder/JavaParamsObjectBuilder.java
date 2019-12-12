@@ -29,12 +29,14 @@ class JavaParamsObjectBuilder extends JavaBuilder {
 
     @Override
     protected String getParamsType(){
+        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
+            return "java.util.HashMap<>";
+        }
         if (PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true)){
             return "androidx.collection.ArrayMap<>";
         }else {
             return "android.support.v4.util.ArrayMap<>";
         }
-//        return "java.util.HashMap<>";
     }
 
     @Override
@@ -48,7 +50,7 @@ class JavaParamsObjectBuilder extends JavaBuilder {
                 if (isNullable(field)){
                     addNullableValue(field, sb);
                 }else {
-                    sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(", ").append(toSting(field)).append(");");
+                    sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(", ").append(toString(field)).append(");");
                 }
 
             }
@@ -60,14 +62,14 @@ class JavaParamsObjectBuilder extends JavaBuilder {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append("if (").append(field.getName()).append(" != null){");
-            sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(", ").append(toSting(field)).append(");}");
+            sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(", ").append(toString(field)).append(");}");
         }else {
-            sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(", ").append(field.getName()).append(" == null ? \"\" : ").append(toSting(field)).append(");");
+            sb.append(mFieldName).append(".put(").append("\"").append(field.getName()).append("\"").append(", ").append(field.getName()).append(" == null ? \"\" : ").append(toString(field)).append(");");
         }
     }
 
     @Override
-    protected String toSting(PsiField field) {
+    protected String toString(PsiField field) {
         return field.getName();
     }
 }

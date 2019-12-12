@@ -1,10 +1,10 @@
 package com.wang.okhttpparamsget.builder;
 
 import com.intellij.ide.util.PropertiesComponent;
-import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiField;
 import com.wang.okhttpparamsget.Constant;
+import com.wang.okhttpparamsget.data.FileInfo;
 import org.jetbrains.kotlin.asJava.classes.KtLightClass;
 import org.jetbrains.kotlin.asJava.elements.KtLightField;
 import org.jetbrains.kotlin.psi.KtClass;
@@ -57,7 +57,7 @@ class KotlinParamsFilePartBuilder extends KotlinBuilder {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
             if (!findIgnore(older == null ? field : older)) {
-                if (findPostFiles(older == null ? field : older)) {
+/*                if (findPostFiles(older == null ? field : older)) {
                     String prefix = "it";
                     String[] fileInfo = getFileInfo(field, prefix, true, false);
                     if (fileInfo == null) {
@@ -66,26 +66,33 @@ class KotlinParamsFilePartBuilder extends KotlinBuilder {
                     sb.append(field.getName()).append(isNullable(field) ? "?.forEach{\n" : ".forEach{\n");
                     sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(").append(fileInfo[1]).append(", ").append(fileInfo[2]).append(", ")
                             .append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo[3]).append("), ").append(fileInfo[4]).append(")))\n}\n");
-                } else if (findPostFile(older == null ? field : older)) {
+                } else*/
+                if (findPostFile(older == null ? field : older)) {
                     boolean nullable = isNullable(field);
-                    String prefix = nullable ? "it" : field.getName();
-                    String[] fileInfo = getFileInfo(field, prefix, false, false);
+                    FileInfo fileInfo = getFileInfo(field, nullable ? FileInfo.KOTLIN_CHILD : field.getName(), false);
                     if (fileInfo == null) {
                         continue;
                     }
-                    if (nullable) {
+
+                    if (fileInfo.isNorm() && nullable) {
                         sb.append(field.getName()).append("?.also{\n");
+                    } else if (fileInfo.isListOrArray()) {
+                        sb.append(field.getName()).append(nullable ? "?." : ".").append("forEach{\n");
+                    }else if (fileInfo.isMap()){
+                        sb.append(field.getName()).append(nullable ? "?." : ".").append("forEach{ (key, value) ->\n");
                     }
-                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(").append(fileInfo[1]).append(",")
-                            .append(fileInfo[2]).append(",").append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(")
-                            .append(fileInfo[3]).append("),").append(fileInfo[4]).append(")))\n");
-                    if (nullable) {
+
+                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(").append(fileInfo.key).append(",")
+                            .append(fileInfo.filename).append(",").append(getRequestBody()).append(".create(").append(getMediaType()).append(".parse(")
+                            .append(fileInfo.mimeType).append("),").append(fileInfo.data).append(")))\n");
+
+                    if (nullable || !fileInfo.isNorm()) {
                         sb.append("}\n");
                     }
                 } else if (isNullable(field)) {
                     addNullableValue(field, sb);
                 } else {
-                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toSting(field, false, null)).append("))\n");
+                    sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toString(field, false, null)).append("))\n");
                 }
             }
         }
@@ -96,9 +103,9 @@ class KotlinParamsFilePartBuilder extends KotlinBuilder {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append(field.getName()).append("?.also{\n");
-            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toSting(field, false, "it")).append("))\n}\n");
+            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toString(field, false, "it")).append("))\n}\n");
         } else {
-            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toSting(field, true, null)).append(" ?: \"\"))\n");
+            sb.append(mFieldName).append(".add(").append(getValueType()).append(".createFormData(\"").append(field.getName()).append("\", ").append(toString(field, true, null)).append(" ?: \"\"))\n");
         }
     }
 }

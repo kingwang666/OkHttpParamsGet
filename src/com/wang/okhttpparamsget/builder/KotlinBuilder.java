@@ -17,6 +17,8 @@ import org.jetbrains.kotlin.psi.*;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by wang on 2017/3/6.
@@ -54,10 +56,13 @@ abstract class KotlinBuilder extends BaseBuilder {
 
             String[] imports = getImports();
             if (imports != null) {
-                for (String fqName: imports) {
+                for (String fqName : imports) {
                     final Collection<DeclarationDescriptor> descriptors = ResolutionUtils.resolveImportReference(ktClass.getContainingKtFile(), new FqName(fqName));
-                    DeclarationDescriptor descriptor = descriptors.iterator().next();
-                    ImportInsertHelper.getInstance(project).importDescriptor(ktClass.getContainingKtFile(), descriptor, false);
+                    Iterator<DeclarationDescriptor> iterator = descriptors.iterator();
+                    if (iterator.hasNext()){
+                        DeclarationDescriptor descriptor = iterator.next();
+                        ImportInsertHelper.getInstance(project).importDescriptor(ktClass.getContainingKtFile(), descriptor, false);
+                    }
                 }
             }
             CodeStyleManager styleManager = CodeStyleManager.getInstance(ktClass.getProject());
@@ -98,18 +103,18 @@ abstract class KotlinBuilder extends BaseBuilder {
     protected abstract String[] getImports();
 
 
-    protected String buildMethod(KtClass ktClass, KtClassBody body, KtLightClass lightClass, boolean isOverride, boolean needAll){
+    protected String buildMethod(KtClass ktClass, KtClassBody body, KtLightClass lightClass, boolean isOverride, boolean needAll) {
         StringBuilder sb = new StringBuilder();
         PsiField[] psiFields;
-        if (isOverride){
+        if (isOverride) {
             sb.append("override fun ").append(mMethodName).append("(): ").append(getMethodType()).append("{");
-        }else {
+        } else {
             sb.append("open fun ").append(mMethodName).append("(): ").append(getMethodType()).append("{");
         }
-        if (needAll){
+        if (needAll) {
             sb.append("val ").append(mFieldName).append(" = ").append(getParamsType()).append("()\n");
             psiFields = lightClass.getAllFields();
-        }else {
+        } else {
             sb.append("val ").append(mFieldName).append("=super.").append(mMethodName).append("()\n");
             psiFields = lightClass.getFields();
         }
@@ -124,24 +129,33 @@ abstract class KotlinBuilder extends BaseBuilder {
 
     protected abstract void addNullableValue(PsiField field, StringBuilder sb);
 
-    protected String toSting(PsiField field, boolean nullable, String prefix) {
+    protected String toString(PsiField field, boolean nullable, String prefix) {
         if (prefix == null) {
             prefix = field.getName();
         }
-        if (field.getType().getCanonicalText().equals(String.class.getCanonicalName())) {
+        return toString(field.getType(), nullable, prefix);
+    }
+
+    private String toString(PsiType type, boolean nullable, String prefix) {
+        if (type.getCanonicalText().equals(String.class.getCanonicalName())) {
             return prefix;
-        } else if (nullable){
-            if (field.getType() instanceof PsiArrayType){
+        } else if (nullable) {
+            if (type instanceof PsiArrayType) {
                 return prefix + "?.contentToString()";
-            }else {
+            } else {
                 return prefix + "?.toString()";
             }
-        }else {
-            if (field.getType() instanceof PsiArrayType){
+        } else {
+            if (type instanceof PsiArrayType) {
                 return prefix + ".contentToString()";
-            }else {
+            } else {
                 return prefix + ".toString()";
             }
         }
+    }
+
+    @Override
+    protected String toString(PsiType type, String name) {
+        return toString(type, false, name);
     }
 }

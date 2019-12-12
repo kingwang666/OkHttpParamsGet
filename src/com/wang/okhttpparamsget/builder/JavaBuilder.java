@@ -93,15 +93,20 @@ abstract class JavaBuilder extends BaseBuilder {
 
     protected abstract void addNullableValue(PsiField field, StringBuilder sb);
 
-    protected String toSting(PsiField field) {
-        if (field.getType() instanceof PsiPrimitiveType) {
-            return "String.valueOf(" + field.getName() + ")";
-        } else if (field.getType() instanceof PsiArrayType) {
-            return "java.util.Arrays.toString(" + field.getName() + ")";
-        } else if (field.getType().getCanonicalText().equals(String.class.getCanonicalName())) {
-            return field.getName();
+    protected String toString(PsiField field) {
+        return toString(field.getType(), field.getName());
+    }
+
+    @Override
+    protected String toString(PsiType type, String name) {
+        if (type instanceof PsiPrimitiveType) {
+            return "String.valueOf(" + name + ")";
+        } else if (type instanceof PsiArrayType) {
+            return "java.util.Arrays.toString(" + name + ")";
+        } else if (type.getCanonicalText().equals(String.class.getCanonicalName())) {
+            return name;
         } else {
-            return field.getName() + ".toString()";
+            return name + ".toString()";
         }
     }
 }

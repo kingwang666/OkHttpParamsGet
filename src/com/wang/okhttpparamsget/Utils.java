@@ -6,8 +6,8 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.search.EverythingGlobalScope;
 import com.intellij.psi.search.GlobalSearchScope;
-import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.kotlin.asJava.elements.KtLightElement;
 import org.jetbrains.kotlin.caches.resolve.KotlinCacheService;
 import org.jetbrains.kotlin.descriptors.ClassDescriptor;
@@ -24,43 +24,49 @@ import java.util.List;
 public class Utils {
 
     public static boolean findAnnotation(@NotNull PsiAnnotation[] annotations, @NotNull String name) {
-        for (PsiAnnotation psiAnnotation : annotations) {
-            String allName = psiAnnotation.getQualifiedName();
-            if (!TextUtils.isEmpty(allName) && allName.endsWith(name)) {
-                return true;
-            }
-        }
-        return false;
+        return getAnnotation(annotations, name , false) != null;
     }
 
-    public static boolean matchAnnotation(@NotNull PsiAnnotation[] annotations, @NotNull String name){
+    public static boolean matchAnnotation(@NotNull PsiAnnotation[] annotations, @NotNull String name) {
+        return getAnnotation(annotations, name , true) != null;
+    }
+
+    @Nullable
+    public static PsiAnnotation getAnnotation(@NotNull PsiAnnotation[] annotations, @NotNull String name) {
+        return getAnnotation(annotations, name, false);
+    }
+
+    @Nullable
+    public static PsiAnnotation getAnnotation(@NotNull PsiAnnotation[] annotations, @NotNull String name, boolean match) {
         for (PsiAnnotation psiAnnotation : annotations) {
             String allName = psiAnnotation.getQualifiedName();
-            if (name.equals(allName)){
-                return true;
+            if (allName == null || allName.length() == 0) {
+                continue;
+            }
+            if ((!match && allName.endsWith(name)) || (match && allName.equals(name))) {
+                return psiAnnotation;
             }
         }
-        return false;
+        return null;
     }
 
     public static boolean findAnnotation(@NotNull List<KtAnnotationEntry> annotations, @NotNull String name) {
-        for (KtAnnotationEntry annotation : annotations) {
-            Name allName = annotation.getShortName();
-            if (allName != null && name.equals(allName.asString())) {
-                return true;
-            }
-        }
-        return false;
+        return getAnnotation(annotations, name) != null;
     }
 
-    public static boolean matchAnnotation(@NotNull List<KtAnnotationEntry> annotations, @NotNull String name){
+    public static boolean matchAnnotation(@NotNull List<KtAnnotationEntry> annotations, @NotNull String name) {
+        return getAnnotation(annotations, name) != null;
+    }
+
+    @Nullable
+    public static KtAnnotationEntry getAnnotation(@NotNull List<KtAnnotationEntry> annotations, @NotNull String name) {
         for (KtAnnotationEntry annotation : annotations) {
             Name allName = annotation.getShortName();
             if (allName != null && name.equals(allName.asString())) {
-                return true;
+                return annotation;
             }
         }
-        return false;
+        return null;
     }
 
 
@@ -113,15 +119,14 @@ public class Utils {
         if (constructorDescriptor != null) {
             List<ValueParameterDescriptor> allParameters = constructorDescriptor.getValueParameters();
 
-            for(ValueParameterDescriptor parameter : allParameters) {
-                valueParameters.add(parameter);
-            }
+            valueParameters.addAll(allParameters);
         }
 //        }
 
         return valueParameters;
     }
-    
+
+    @SuppressWarnings("rawtypes")
     public static KtClass getKtClassForElement(@NotNull PsiElement psiElement) {
         if (psiElement instanceof KtLightElement) {
             PsiElement origin = ((KtLightElement) psiElement).getKotlinOrigin();

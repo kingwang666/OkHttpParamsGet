@@ -36,6 +36,9 @@ class KotlinParamsStringBuilder extends KotlinBuilder {
 
     @Override
     protected String[] getImports() {
+        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
+            return null;
+        }
         return new String[]{PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true) ? "androidx.collection.ArrayMap" : "android.support.v4.util.ArrayMap"};
     }
 
@@ -50,7 +53,7 @@ class KotlinParamsStringBuilder extends KotlinBuilder {
                 if (isNullable(field)){
                     addNullableValue(field, sb);
                 }else {
-                    sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toSting(field, false, null)).append("\n");
+                    sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toString(field, false, null)).append("\n");
                 }
             }
         }
@@ -61,9 +64,9 @@ class KotlinParamsStringBuilder extends KotlinBuilder {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
         if (!add) {
             sb.append(field.getName()).append("?.also{\n");
-            sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toSting(field, false, "it")).append("\n}\n");
+            sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toString(field, false, "it")).append("\n}\n");
         }else {
-            sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toSting(field, true, null)).append("?: \"\"\n");
+            sb.append(mFieldName).append("[\"").append(field.getName()).append("\"] = ").append(toString(field, true, null)).append("?: \"\"\n");
         }
     }
 }

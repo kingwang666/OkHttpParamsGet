@@ -19,6 +19,8 @@ public class Settings implements Configurable, ActionListener {
     private JRadioButton androidx_rb;
     private JRadioButton nullable_rb;
     private JRadioButton nonnull_rb;
+    private JRadioButton hash_map_rb;
+    private JRadioButton array_map_rb;
 
 
     @Nls(capitalization = Nls.Capitalization.Title)
@@ -39,6 +41,8 @@ public class Settings implements Configurable, ActionListener {
         reset();
         not_put_rb.addActionListener(this);
         empty_string_rb.addActionListener(this);
+        hash_map_rb.addActionListener(this);
+        array_map_rb.addActionListener(this);
         support_rb.addActionListener(this);
         androidx_rb.addActionListener(this);
         nullable_rb.addActionListener(this);
@@ -59,6 +63,18 @@ public class Settings implements Configurable, ActionListener {
                 not_put_rb.setSelected(false);
             } else {
                 empty_string_rb.setSelected(true);
+            }
+        } else if (e.getSource().equals(hash_map_rb)) {
+            if (hash_map_rb.isSelected()) {
+                array_map_rb.setSelected(false);
+            } else {
+                hash_map_rb.setSelected(true);
+            }
+        } else if (e.getSource().equals(array_map_rb)) {
+            if (array_map_rb.isSelected()) {
+                hash_map_rb.setSelected(false);
+            } else {
+                array_map_rb.setSelected(true);
             }
         } else if (e.getSource().equals(support_rb)) {
             if (support_rb.isSelected()) {
@@ -95,6 +111,7 @@ public class Settings implements Configurable, ActionListener {
     @Override
     public void apply() throws ConfigurationException {
         PropertiesComponent.getInstance().setValue(Constant.VALUE_NULL, empty_string_rb.isSelected());
+        PropertiesComponent.getInstance().setValue(Constant.ARRAY_MAP, array_map_rb.isSelected(), true);
         PropertiesComponent.getInstance().setValue(Constant.ANDROIDX, androidx_rb.isSelected(), true);
         PropertiesComponent.getInstance().setValue(Constant.NULLABLE, nullable_rb.isSelected(), true);
     }
@@ -102,12 +119,18 @@ public class Settings implements Configurable, ActionListener {
     @Override
     public void reset() {
         boolean add = PropertiesComponent.getInstance().getBoolean(Constant.VALUE_NULL, false);
+        boolean arrayMap = PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true);
         boolean androidx = PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true);
         boolean nullable = PropertiesComponent.getInstance().getBoolean(Constant.NULLABLE, true);
         if (add) {
             empty_string_rb.setSelected(true);
         } else {
             not_put_rb.setSelected(true);
+        }
+        if (arrayMap){
+            array_map_rb.setSelected(true);
+        }else {
+            hash_map_rb.setSelected(true);
         }
         if (androidx) {
             androidx_rb.setSelected(true);
@@ -125,6 +148,8 @@ public class Settings implements Configurable, ActionListener {
     public void disposeUIResources() {
         not_put_rb.removeActionListener(this);
         empty_string_rb.removeActionListener(this);
+        hash_map_rb.removeActionListener(this);
+        array_map_rb.removeActionListener(this);
         support_rb.removeActionListener(this);
         androidx_rb.removeActionListener(this);
         nullable_rb.removeActionListener(this);

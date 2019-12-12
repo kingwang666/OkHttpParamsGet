@@ -2,19 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2c84230-b57c-4b6d-a866-f19d9c7c316d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/data/FileInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OkHttpParamsGet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OkHttpParamsGet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/PostFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/extra/PostFiles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/kotlin-plugin.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/kotlin-plugin.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Constant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/TypePickDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/TypePickDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/nonull/NonNullFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/nonull/NonNullFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileMapBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileMapBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsObjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsObjectBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsStringBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsStringBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileBodyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileBodyBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFilePartBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFilePartBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsObjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsObjectBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsStringBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsStringBuilder.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,8 +33,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,6 +50,11 @@
   </component>
   <component name="ProjectId" id="1SaafsjObNYpR9EPbJM6Ayvyxxs" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
@@ -48,11 +62,12 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553913374978" />
+    <property name="last.edited.regexp" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -65,25 +80,13 @@
       <recent name="D:\project\OkHttpParamsGet\src\com\wang\okhttpparamsget" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Plugin.Plugin">
     <configuration name="TypePickDialog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.wang.okhttpparamsget.TypePickDialog" />
       <module name="OkHttpParamsGet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wang.okhttpparamsget.*" />
+          <option name="PATTERN" value="com.wang.okhttpparamsget.data.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -119,6 +122,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -145,72 +160,97 @@
       </map>
     </option>
   </component>
+  <component name="WindowStateProjectService">
+    <state x="751" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1576058244618">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="751" y="236" key="#com.intellij.ide.util.MemberChooser/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576058244618" />
+    <state x="531" y="340" key="#com.intellij.internal.psiView.PsiViewerDialog" timestamp="1575941434415">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="531" y="340" key="#com.intellij.internal.psiView.PsiViewerDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575941434415" />
+    <state width="1877" height="166" key="GridCell.Tab.0.bottom" timestamp="1576130315094">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="166" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315094" />
+    <state width="1877" height="166" key="GridCell.Tab.0.center" timestamp="1576130315094">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="166" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315094" />
+    <state width="1877" height="166" key="GridCell.Tab.0.left" timestamp="1576130315094">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="166" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315094" />
+    <state width="1877" height="166" key="GridCell.Tab.0.right" timestamp="1576130315094">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="166" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315094" />
+    <state width="1877" height="166" key="GridCell.Tab.1.bottom" timestamp="1576130315095">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="166" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315095" />
+    <state width="1877" height="166" key="GridCell.Tab.1.center" timestamp="1576130315095">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="166" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315095" />
+    <state width="1877" height="166" key="GridCell.Tab.1.left" timestamp="1576130315095">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="166" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315095" />
+    <state width="1877" height="166" key="GridCell.Tab.1.right" timestamp="1576130315095">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="166" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576130315095" />
+    <state width="1877" height="337" key="GridCell.Tab.2.bottom" timestamp="1576073523306">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="337" key="GridCell.Tab.2.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576073523306" />
+    <state width="1877" height="337" key="GridCell.Tab.2.center" timestamp="1576073523306">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="337" key="GridCell.Tab.2.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576073523306" />
+    <state width="1877" height="337" key="GridCell.Tab.2.left" timestamp="1576073523306">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="337" key="GridCell.Tab.2.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576073523306" />
+    <state width="1877" height="337" key="GridCell.Tab.2.right" timestamp="1576073523306">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="337" key="GridCell.Tab.2.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576073523306" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1576032118481">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576032118481" />
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1576112459330">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576112459330" />
+    <state x="-1813" y="39" width="1486" height="999" maximized="true" key="dock-window-1" timestamp="1576112907320">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1813" y="39" width="1486" height="999" maximized="true" key="dock-window-1/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576112907320" />
+    <state x="-1470" y="11" width="1486" height="805" maximized="true" key="dock-window-2" timestamp="1576116197630">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1470" y="11" width="1486" height="805" maximized="true" key="dock-window-2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576116197630" />
+    <state x="740" y="325" width="440" height="638" key="save.file.as.template.dialog" timestamp="1575959845868">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="325" width="440" height="638" key="save.file.as.template.dialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1575959845868" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1576052332710">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576052332710" />
+  </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
-        <watch expression="method.getNameIdentifier().getText()" language="JAVA" />
-        <watch expression="method.getReturnType()" language="JAVA" />
-        <watch expression="method.getReturnTypeElement()" language="JAVA" />
-        <watch expression="method.getName()" language="JAVA" />
+        <watch expression="psiField.getType().getPresentableText()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="watch">
-      <expression>
-        <expression-string>method.getName()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>method.getReturnTypeElement()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>method.getReturnType()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>method.getNameIdentifier().getText()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>method.getNameIdentifier().gett\</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>psiClass.getAllMethodsAndTheirSubstitutors()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>method.getAnnotations()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>field.getType().get</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>field.getType().getCanonicalText()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>((KtProperty) element).getTypeReference().getContainingFile()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>
