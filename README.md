@@ -1,7 +1,8 @@
 # OkHttpParamsGet #
 [中文](https://github.com/kingwang666/OkHttpParamsGet/blob/master/README_CN.md)  
-Help you to get Okhttp request params. Support Kotlin
-<img src="img/getbody.gif"></img> <img src="img/file.jpg"></img>
+Help you to get Okhttp request params. Support Kotlin.  
+**This is IntelliJ IDEA and Android Studio plugins. If you need [gradle plugins](https://github.com/kingwang666/HttpParam) please click.**  
+<img src="img/getbody.gif" width="600"></img> <img src="img/file.jpg" width="300"></img>
 
 ## How to install ##
 File->Settings->Browse Repositories->OkHttpParamsGet

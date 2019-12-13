@@ -1,6 +1,7 @@
 # OkHttpParamsGet #
-帮助你自动生成Okhttp请求参数，支持kotlin。
-<img src="img/getbody.gif"></img> <img src="img/file.jpg"></img>
+帮助你自动生成Okhttp请求参数，支持kotlin。  
+**这是IntelliJ IDEA and Android Studio的插件版本。 如果你需要[gradle插件版本](https://github.com/kingwang666/HttpParam) 请移步.**  
+<img src="img/getbody.gif" width="600"></img> <img src="img/file.jpg" width="300"></img>
 
 ## How to install ##
 File->Settings->Browse Repositories->OkHttpParamsGet
