@@ -20,8 +20,9 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 4. click ok.
 ## ps ##
 - @Ignore: dont add to params
-- @PostFile: post a file 
-- @PostFiles: post files
+- @PostFile: post file. Support single, list, array and map
+- @ParamName: custom param name
+- <span style="color:#59ABFD"><S>@PostFiles: post files.</S> Removed use @PostFile</span>
 - @Key: post file key
 - @Filename: post file filename
 - @MimeType: post file mime-type
@@ -30,6 +31,15 @@ These annotations can be in any package
 
 ## update ##
 <ul>
+         <li>
+            2.0.0(2019-12-13):
+            <ol>
+                <li>Replaced @PostFiles by @PostFile. OkHttpParamsGet can identify the type of request, supporting list,array and map</li>
+                <li>Add @ParamName. Support custom param name</li>
+                <li>Now @PostFile support java.io.File. And support custom key</li>
+                <li>Settings added the switch between HashMap and ArrayMap</li>
+            </ol>
+         </li>
          <li>
             1.5.3(2019-10-23):
             <ol>

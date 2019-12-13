@@ -19,8 +19,9 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 4. 点击ok
 ## ps ##
 - @Ignore: 不添加进自动生成的请求参数中
-- @PostFile: 单个文件参数
-- @PostFiles: 多个文件参数
+- @PostFile: 文件参数
+- @ParamName: 自定义请求参数名称
+- <span style="color:#59ABFD"><S>@PostFiles: 多个文件参数</S> 已经移除请用@PostFile替代</span>
 - @Key: 上传文件的Key值
 - @Filename: 上传文件的文件名
 - @MimeType: 上传文件的mime-type
@@ -30,9 +31,18 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 ## update ##
 <ul>
           <li>
+            2.0.0(2019-12-13):
+            <ol>
+                <li>移除@PostFiles注解，使用@PostFile注解替代。现在程序自动判断构建请求体的参数类型，支持List、 Array、Map</li>
+                <li>添加@ParamName注解。支持自定义请求体Param名称</li>
+                <li>上传文件类型支持java.io.File类型，并且@PostFile支持自定义key值</li>
+                <li>设置中添加ArrayMap和HashMap的切换</li>
+            </ol>
+          </li>
+          <li>
             1.5.3(2019-10-23):
             <ol>
-                <li>增加设置当数据没有NonNull和Nullable相关的注解，系统默认注解</li>
+                <li>增加设置当数据没有@NonNull和@Nullable相关的注解时默认的注解</li>
             </ol>
           </li>
           <li>
@@ -74,8 +84,8 @@ File->Settings->Browse Repositories->OkHttpParamsGet
         <li>
             1.3.0(2017-06-15):
             <ol>
-                <li>U更新参数名称</li>
-                <li>增加生成RequestBody。返回类型为 MultipartBody.Builder. 你可以构建一个RequestBod并且设置上传进度监听</li>
+                <li>更新参数名称</li>
+                <li>增加生成RequestBody。返回类型为 MultipartBody.Builder. 你可以构建一个RequestBody并且设置上传进度监听</li>
             </ol>
         </li>
         <li>
