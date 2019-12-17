@@ -20,7 +20,7 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
 
     @Override
     protected String getMethodType() {
-        return "java.util.Map<String, RequestBody> ";
+        return "java.util.Map<String, " + getValueType() + "> ";
     }
 
     @Override

@@ -19,7 +19,7 @@ class JavaParamsFilePartBuilder extends JavaBuilder {
 
     @Override
     protected String getMethodType() {
-        return "java.util.List<MultipartBody.Part> ";
+        return "java.util.List<" + getValueType() + "> ";
     }
 
     protected String getParamsType() {

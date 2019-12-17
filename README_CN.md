@@ -31,6 +31,12 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 
 ## update ##
 <ul>
+         <li>
+            2.0.1(2019-12-17):
+            <ol>
+                <li>修复当一个类没有任何值得时候没有自动导入okhttp的类</li>
+            </ol>
+         </li>
           <li>
             2.0.0(2019-12-13):
             <ol>

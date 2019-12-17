@@ -33,6 +33,12 @@ These annotations can be in any package
 ## update ##
 <ul>
          <li>
+            2.0.1(2019-12-17):
+            <ol>
+                <li>Fix not auto import when fields is empty</li>
+            </ol>
+         </li>
+         <li>
             2.0.0(2019-12-13):
             <ol>
                 <li>Replaced @PostFiles by @PostFile. OkHttpParamsGet can identify the type of request, supporting list,array and map</li>
