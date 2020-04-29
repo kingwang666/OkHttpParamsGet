@@ -39,14 +39,25 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
         return "RequestBody";
     }
 
-    private String getMediaType() {
-        return "MediaType";
-    }
-
-
     @Nullable
     @Override
     protected String[] getImports() {
+        boolean version4 = PropertiesComponent.getInstance().getBoolean(Constant.OKHTTP_VERSION, true);
+        if (version4){
+            if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
+                return new String[]{"okhttp3.MediaType",
+                        "okhttp3.RequestBody",
+                        "okhttp3.MediaType.Companion.toMediaTypeOrNull",
+                        "okhttp3.RequestBody.Companion.asRequestBody",
+                        "okhttp3.RequestBody.Companion.toRequestBody"};
+            }
+            return new String[]{"okhttp3.MediaType",
+                    "okhttp3.RequestBody",
+                    PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true) ? "androidx.collection.ArrayMap" : "android.support.v4.util.ArrayMap",
+                    "okhttp3.MediaType.Companion.toMediaTypeOrNull",
+                    "okhttp3.RequestBody.Companion.asRequestBody",
+                    "okhttp3.RequestBody.Companion.toRequestBody"};
+        }
         if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
             return new String[]{"okhttp3.MediaType",
                     "okhttp3.RequestBody"};
@@ -94,8 +105,9 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
                     } else {
                         sb.append("\"$").append(defaultKey).append("\\\"");
                     }
-                    sb.append("; filename=\\\"${").append(fileInfo.filename).append("}\"] = ")
-                            .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType).append("),").append(fileInfo.data).append(")\n");
+                    sb.append("; filename=\\\"${").append(fileInfo.filename).append("}\"] = ");
+                    createRequestBody(sb, fileInfo.mimeType, fileInfo.data, true);
+                    sb.append('\n');
 
                     if (nullable || !fileInfo.isNorm()) {
                         sb.append("}\n");
@@ -111,7 +123,9 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
                     } else {
                         sb.append(defaultKey);
                     }
-                    sb.append("] = ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, false, null)).append(")\n");
+                    sb.append("] = ");
+                    createRequestBody(sb, "\"text/plain\"", toString(field, false, null));
+                    sb.append('\n');
                 }
             }
         }
@@ -128,7 +142,9 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
             } else {
                 sb.append(defaultName);
             }
-            sb.append("] = ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, false, "it")).append(")\n}\n");
+            sb.append("] = ");
+            createRequestBody(sb, "\"text/plain\"", toString(field, false, "it"));
+            sb.append("\n}\n");
         } else {
             sb.append(mFieldName).append("[");
             if (defaultName == null) {
@@ -136,7 +152,9 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
             } else {
                 sb.append(defaultName);
             }
-            sb.append("] = ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field, true, null)).append(" ?: \"\" )\n");
+            sb.append("] = ");
+            createRequestBody(sb, "\"text/plain\"", "(" + toString(field, true, null) + " ?: \"\")");
+            sb.append('\n');
         }
     }
 }

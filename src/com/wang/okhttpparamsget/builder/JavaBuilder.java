@@ -1,11 +1,13 @@
 package com.wang.okhttpparamsget.builder;
 
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.JavaCodeStyleManager;
 import com.intellij.psi.util.PsiTreeUtil;
+import com.wang.okhttpparamsget.Constant;
 import com.wang.okhttpparamsget.Utils;
 import com.wang.okhttpparamsget.nonull.NonNullFactory;
 import org.jetbrains.annotations.NotNull;
@@ -19,6 +21,15 @@ abstract class JavaBuilder extends BaseBuilder {
 
     public JavaBuilder(String methodName, String fieldName) {
         super(methodName, fieldName);
+    }
+
+    protected String getMediaType() {
+        return "okhttp3.MediaType";
+    }
+
+    @Override
+    protected String getRequestBody() {
+        return "okhttp3.RequestBody";
     }
 
     @Override
@@ -113,18 +124,33 @@ abstract class JavaBuilder extends BaseBuilder {
         }
     }
 
+    @Override
+    protected StringBuilder createRequestBody(StringBuilder builder, String contentType, String content, boolean file) {
+        boolean version4 = PropertiesComponent.getInstance().getBoolean(Constant.OKHTTP_VERSION, true);
+        builder.append(getRequestBody()).append(".create(");
+        if (version4) {
+            builder.append(content).append(',');
+            builder.append(getMediaType()).append(".parse(").append(contentType).append(")");
+        } else {
+            builder.append(getMediaType()).append(".parse(").append(contentType).append(")");
+            builder.append(',').append(content);
+        }
+        builder.append(")");
+        return builder;
+    }
+
 
     @Override
     protected String getAnnotationText(@NotNull PsiElement element, @NotNull String name, @NotNull String valueName) {
 
-        PsiAnnotation annotation = Utils.getAnnotation(((PsiModifierListOwner)element).getAnnotations(), name);
-        if (annotation == null){
+        PsiAnnotation annotation = Utils.getAnnotation(((PsiModifierListOwner) element).getAnnotations(), name);
+        if (annotation == null) {
             return null;
         }
         PsiAnnotationMemberValue value;
         if ((value = annotation.findAttributeValue(valueName)) != null) {
             String text = value.getText();
-            if (text == null || text.length() == 0|| text.equals("\"\"")){
+            if (text == null || text.length() == 0 || text.equals("\"\"")) {
                 return "";
             }
             return text;

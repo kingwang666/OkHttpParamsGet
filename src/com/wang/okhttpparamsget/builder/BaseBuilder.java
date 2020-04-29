@@ -35,6 +35,10 @@ public abstract class BaseBuilder implements IBuilder {
 
     protected abstract String getParamsType();
 
+    protected abstract String getMediaType();
+
+    protected abstract String getRequestBody();
+
     protected boolean isNullable(@NotNull PsiElement element) {
         if (element instanceof PsiField) {
             PsiField field = (PsiField) element;
@@ -84,7 +88,7 @@ public abstract class BaseBuilder implements IBuilder {
     }
 
     @Nullable
-    protected String getPostFileKey(@NotNull PsiElement element){
+    protected String getPostFileKey(@NotNull PsiElement element) {
         return getAnnotationText(element, "PostFile", "key");
     }
 
@@ -295,6 +299,13 @@ public abstract class BaseBuilder implements IBuilder {
 
 
     protected abstract String toString(PsiType type, String name);
+
+
+    protected StringBuilder createRequestBody(StringBuilder builder, String contentType, String content) {
+        return createRequestBody(builder, contentType, content, false);
+    }
+
+    protected abstract StringBuilder createRequestBody(StringBuilder builder, String contentType, String content, boolean file);
 
     private static class JudgeResult {
 

@@ -1,11 +1,13 @@
 package com.wang.okhttpparamsget.builder;
 
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.util.containers.ContainerUtil;
+import com.wang.okhttpparamsget.Constant;
 import com.wang.okhttpparamsget.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.kotlin.asJava.LightClassUtilsKt;
@@ -29,6 +31,16 @@ abstract class KotlinBuilder extends BaseBuilder {
 
     public KotlinBuilder(String methodName, String fieldName) {
         super(methodName, fieldName);
+    }
+
+    @Override
+    protected String getMediaType() {
+        return "MediaType";
+    }
+
+    @Override
+    protected String getRequestBody() {
+        return "RequestBody";
     }
 
     @Override
@@ -126,8 +138,6 @@ abstract class KotlinBuilder extends BaseBuilder {
 
     protected abstract void buildMethodBody(KtClass ktClass, KtClassBody body, KtLightClass lightClass, PsiField[] fields, boolean needAll, StringBuilder sb);
 
-    ;
-
     protected abstract void addNullableValue(PsiField field, StringBuilder sb, String defaultName);
 
     protected String toString(PsiField field, boolean nullable, String prefix) {
@@ -158,6 +168,19 @@ abstract class KotlinBuilder extends BaseBuilder {
     @Override
     protected String toString(PsiType type, String name) {
         return toString(type, false, name);
+    }
+
+    @Override
+    protected StringBuilder createRequestBody(StringBuilder builder, String contentType, String content, boolean file) {
+        boolean version4 = PropertiesComponent.getInstance().getBoolean(Constant.OKHTTP_VERSION, true);
+        if (version4) {
+            builder.append(content).append(file ? ".as" : ".to").append("RequestBody(").append(contentType).append(".toMediaTypeOrNull()").append(")");
+        } else {
+            builder.append(getRequestBody()).append(".create(");
+            builder.append(getMediaType()).append(".parse(").append(contentType).append(")");
+            builder.append(",").append(content).append(")");
+        }
+        return builder;
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})

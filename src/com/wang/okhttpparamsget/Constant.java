@@ -21,6 +21,8 @@ public class Constant {
 
     public static final String NULLABLE = "okhttpparamsget_null_able";
 
+    public static final String OKHTTP_VERSION = "okhttpparamsget_okhttp_version";
+
     public static final String NOTIFICATION_GROUP_ID = "com.wang.okhttpparamsget";
 
 }

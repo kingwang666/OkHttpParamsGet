@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.wang.okhttpparamsget</id>
     <name>OkHttpParamsGet</name>
-    <version>2.0.1</version>
+    <version>2.1.0</version>
     <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666
     </vendor>
 
@@ -49,6 +49,12 @@
     
     <ul>
 
+          <li>
+            2.1.0(2020-04-29):
+            <ol>
+                <li>Support OkHttp4.x</li>
+            </ol>
+          </li>
           <li>
             2.0.1(2019-12-17):
             <ol>

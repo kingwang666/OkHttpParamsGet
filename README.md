@@ -33,6 +33,12 @@ These annotations can be in any package
 ## update ##
 <ul>
          <li>
+           2.1.0(2020-04-29):
+           <ol>
+               <li>Support OkHttp4.x</li>
+           </ol>
+         </li>
+         <li>
             2.0.1(2019-12-17):
             <ol>
                 <li>Fix not auto import when fields is empty</li>

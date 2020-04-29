@@ -34,9 +34,6 @@ class JavaParamsFileBodyBuilder extends JavaBuilder {
         return "okhttp3.MultipartBody.Builder";
     }
 
-    private String getMediaType() {
-        return "okhttp3.MediaType";
-    }
 
     @Override
     protected void buildMethodBody(PsiClass psiClass, PsiField[] fields, boolean needAll, StringBuilder sb) {
@@ -66,8 +63,9 @@ class JavaParamsFileBodyBuilder extends JavaBuilder {
                     }
 
                     sb.append(mFieldName).append(".addFormDataPart(").append(defaultKey.isEmpty() || fileInfo.isMap() ? fileInfo.key : defaultKey).append(",")
-                            .append(fileInfo.filename).append(",").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(")
-                            .append(fileInfo.mimeType).append("),").append(fileInfo.data).append("));");
+                            .append(fileInfo.filename).append(",");
+                    createRequestBody(sb, fileInfo.mimeType, fileInfo.data, true);
+                    sb.append(");");
 
                     if (!fileInfo.isNorm()) {
                         sb.append("}");

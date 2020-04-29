@@ -11,7 +11,6 @@ import org.jetbrains.kotlin.asJava.elements.KtLightField;
 /**
  * Created by wang on 2017/3/7.
  */
-// TODO: 2019/12/11 模仿JavaParamsFileBodyBuilder
 class JavaParamsFileMapBuilder extends JavaBuilder {
 
     public JavaParamsFileMapBuilder() {
@@ -38,10 +37,6 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
     @Override
     protected String getValueType() {
         return "okhttp3.RequestBody";
-    }
-
-    private String getMediaType() {
-        return "okhttp3.MediaType";
     }
 
 
@@ -78,9 +73,9 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
                     } else {
                         sb.append(defaultKey).append(" + \"");
                     }
-                    sb.append("\\\"; filename=\\\"\" + ").append(fileInfo.filename).append(", ")
-                            .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType).append("),")
-                            .append(fileInfo.data).append("));");
+                    sb.append("\\\"; filename=\\\"\" + ").append(fileInfo.filename).append(", ");
+                    createRequestBody(sb, fileInfo.mimeType, fileInfo.data, true);
+                    sb.append(");");
 
                     if (!fileInfo.isNorm()) {
                         sb.append("}");
@@ -99,7 +94,9 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
                     } else {
                         sb.append(defaultKey);
                     }
-                    sb.append(", ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field)).append("));");
+                    sb.append(", ");
+                    createRequestBody(sb, "\"text/plain\"", toString(field));
+                    sb.append(");");
                 }
             }
         }
@@ -116,7 +113,9 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
             } else {
                 sb.append(defaultName);
             }
-            sb.append(", ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(toString(field)).append("));}");
+            sb.append(", ");
+            createRequestBody(sb, "\"text/plain\"", toString(field));
+            sb.append(");}");
         } else {
             sb.append(mFieldName).append(".put(");
             if (defaultName == null) {
@@ -124,7 +123,9 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
             } else {
                 sb.append(defaultName);
             }
-            sb.append(", ").append(getValueType()).append(".create(").append(getMediaType()).append(".parse(\"text/plain\"), ").append(field.getName()).append(" == null ? \"\" : ").append(toString(field)).append("));");
+            sb.append(", ");
+            createRequestBody(sb, "\"text/plain\"", field.getName() + " == null ? \"\" : " + toString(field));
+            sb.append(");");
         }
     }
 }

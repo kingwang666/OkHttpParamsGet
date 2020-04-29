@@ -21,6 +21,7 @@ public class Settings implements Configurable, ActionListener {
     private JRadioButton nonnull_rb;
     private JRadioButton hash_map_rb;
     private JRadioButton array_map_rb;
+    private JCheckBox okhttp_cb;
 
 
     @Nls(capitalization = Nls.Capitalization.Title)
@@ -47,6 +48,7 @@ public class Settings implements Configurable, ActionListener {
         androidx_rb.addActionListener(this);
         nullable_rb.addActionListener(this);
         nonnull_rb.addActionListener(this);
+//        okhttp_cb.addActionListener(this);
         return panel;
     }
 
@@ -114,6 +116,7 @@ public class Settings implements Configurable, ActionListener {
         PropertiesComponent.getInstance().setValue(Constant.ARRAY_MAP, array_map_rb.isSelected(), true);
         PropertiesComponent.getInstance().setValue(Constant.ANDROIDX, androidx_rb.isSelected(), true);
         PropertiesComponent.getInstance().setValue(Constant.NULLABLE, nullable_rb.isSelected(), true);
+        PropertiesComponent.getInstance().setValue(Constant.OKHTTP_VERSION, okhttp_cb.isSelected(), true);
     }
 
     @Override
@@ -122,14 +125,15 @@ public class Settings implements Configurable, ActionListener {
         boolean arrayMap = PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true);
         boolean androidx = PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true);
         boolean nullable = PropertiesComponent.getInstance().getBoolean(Constant.NULLABLE, true);
+        boolean version4 = PropertiesComponent.getInstance().getBoolean(Constant.OKHTTP_VERSION, true);
         if (add) {
             empty_string_rb.setSelected(true);
         } else {
             not_put_rb.setSelected(true);
         }
-        if (arrayMap){
+        if (arrayMap) {
             array_map_rb.setSelected(true);
-        }else {
+        } else {
             hash_map_rb.setSelected(true);
         }
         if (androidx) {
@@ -142,6 +146,7 @@ public class Settings implements Configurable, ActionListener {
         } else {
             nonnull_rb.setSelected(true);
         }
+        okhttp_cb.setSelected(version4);
     }
 
     @Override
@@ -154,6 +159,7 @@ public class Settings implements Configurable, ActionListener {
         androidx_rb.removeActionListener(this);
         nullable_rb.removeActionListener(this);
         nonnull_rb.removeActionListener(this);
+//        okhttp_cb.removeActionListener(this);
     }
 
 }

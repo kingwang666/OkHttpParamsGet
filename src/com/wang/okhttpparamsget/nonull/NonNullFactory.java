@@ -9,14 +9,14 @@ import org.jetbrains.annotations.Nullable;
 
 public class NonNullFactory {
 
-    private static String[] sSupportedNonNull = new String[]{
+    private static final String[] sSupportedNonNull = new String[]{
             "androidx.annotation.NonNull",
             "android.support.annotation.NonNull",
             "android.annotation.NonNull",
             "org.jetbrains.annotations.NotNull"
     };
 
-    private static String[] sSupportedNullable = new String[]{
+    private static final String[] sSupportedNullable = new String[]{
             "androidx.annotation.Nullable",
             "android.support.annotation.Nullable",
             "android.annotation.Nullable",

@@ -36,14 +36,20 @@ class KotlinParamsFileBodyBuilder extends KotlinBuilder {
         return "MultipartBody.Builder";
     }
 
-    private String getMediaType() {
-        return "MediaType";
-    }
-
     @Nullable
     @Override
     protected String[] getImports() {
-        return new String[]{"okhttp3.MultipartBody", "okhttp3.RequestBody", "okhttp3.MediaType"};
+        boolean version4 = PropertiesComponent.getInstance().getBoolean(Constant.OKHTTP_VERSION, true);
+        if (version4) {
+            return new String[]{"okhttp3.MultipartBody",
+                    "okhttp3.RequestBody",
+                    "okhttp3.MediaType",
+                    "okhttp3.MediaType.Companion.toMediaTypeOrNull",
+                    "okhttp3.RequestBody.Companion.asRequestBody"};
+        }
+        return new String[]{"okhttp3.MultipartBody",
+                "okhttp3.RequestBody",
+                "okhttp3.MediaType"};
     }
 
     @Override
@@ -74,8 +80,9 @@ class KotlinParamsFileBodyBuilder extends KotlinBuilder {
                     }
 
                     sb.append(mFieldName).append(".addFormDataPart(").append(defaultKey.isEmpty() || fileInfo.isMap() ? fileInfo.key : defaultKey).append(",")
-                            .append(fileInfo.filename).append(",")
-                            .append(getValueType()).append(".create(").append(getMediaType()).append(".parse(").append(fileInfo.mimeType).append("),").append(fileInfo.data).append("))\n");
+                            .append(fileInfo.filename).append(",");
+                    createRequestBody(sb, fileInfo.mimeType, fileInfo.data, true);
+                    sb.append(")\n");
 
                     if (nullable || !fileInfo.isNorm()) {
                         sb.append("}\n");
