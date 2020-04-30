@@ -32,6 +32,12 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 ## update ##
 <ul>
          <li>
+           2.1.1(2020-04-30):
+           <ol>
+               <li>更改最低支持IDE版本182</li>
+           </ol>
+         </li>
+         <li>
            2.1.0(2020-04-29):
            <ol>
                <li>支持OkHttp4.x版本</li>

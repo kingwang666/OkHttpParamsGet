@@ -33,6 +33,12 @@ These annotations can be in any package
 ## update ##
 <ul>
          <li>
+           2.1.1(2020-04-30):
+           <ol>
+               <li>Change since-build to 182</li>
+           </ol>
+         </li>
+         <li>
            2.1.0(2020-04-29):
            <ol>
                <li>Support OkHttp4.x</li>
