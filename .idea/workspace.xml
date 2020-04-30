@@ -3,23 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e2c84230-b57c-4b6d-a866-f19d9c7c316d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README_CN.md" beforeDir="false" afterPath="$PROJECT_DIR$/README_CN.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileMapBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileMapBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileBodyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileBodyBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFilePartBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFilePartBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/nonull/NonNullFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/nonull/NonNullFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
