@@ -33,6 +33,13 @@ These annotations can be in any package
 ## update ##
 <ul>
          <li>
+            2.1.2(2020-08-31):
+            <ol>
+                <li>Support implements interface</li>
+                <li>Fix use open fun in final class</li>
+            </ol>
+         </li>
+         <li>
            2.1.1(2020-04-30):
            <ol>
                <li>Change since-build to 182</li>

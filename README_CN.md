@@ -32,6 +32,13 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 ## update ##
 <ul>
          <li>
+            2.1.2(2020-08-31):
+            <ol>
+                <li>支持类引用接口</li>
+                <li>修复在final类中使用open方法在kotlin中</li>
+            </ol>
+         </li>
+         <li>
            2.1.1(2020-04-30):
            <ol>
                <li>更改最低支持IDE版本182</li>

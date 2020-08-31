@@ -61,13 +61,26 @@ abstract class JavaBuilder extends BaseBuilder {
     private void build(Editor editor, PsiElement mouse, PsiElementFactory elementFactory, Project project, PsiClass psiClass, PsiFile psiFile, String className) {
 
         PsiClass superClass = psiClass.getSuperClass();
+        PsiClass[] interfaces = psiClass.getInterfaces();
         PsiMethod getParams;
-        if (superClass != null) {
-            PsiMethod[] methods = superClass.findMethodsByName(mMethodName, true);
-            if (methods.length > 0) {
+        if (superClass != null || interfaces.length > 0) {
+            PsiMethod[] methods;
+            if (superClass != null && (methods = superClass.findMethodsByName(mMethodName, true)).length > 0) {
                 boolean needAll = methods[0].getModifierList().hasModifierProperty("abstract");
                 getParams = elementFactory.createMethodFromText(buildMethod(psiClass, true, needAll), psiClass);
                 getParams.getModifierList().addAnnotation("Override");
+            } else if (interfaces.length > 0) {
+                boolean haveMethod = false;
+                for (PsiClass interfaceClass : interfaces) {
+                    if ((interfaceClass.findMethodsByName(mMethodName, true)).length > 0){
+                        haveMethod = true;
+                        break;
+                    }
+                }
+                getParams = elementFactory.createMethodFromText(buildMethod(psiClass, true, true), psiClass);
+                if (haveMethod){
+                    getParams.getModifierList().addAnnotation("Override");
+                }
             } else {
                 getParams = elementFactory.createMethodFromText(buildMethod(psiClass, false, true), psiClass);
             }

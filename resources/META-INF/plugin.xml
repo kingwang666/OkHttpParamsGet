@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.wang.okhttpparamsget</id>
     <name>OkHttpParamsGet</name>
-    <version>2.1.1</version>
+    <version>2.1.2</version>
     <vendor email="wangxiaojielove666@gmail.com" url="https://github.com/kingwang666/OkHttpParamsGet">Kingwang666
     </vendor>
 
@@ -49,6 +49,13 @@
     
     <ul>
 
+          <li>
+            2.1.2(2020-08-31):
+            <ol>
+                <li>Support implements interface</li>
+                <li>Fix use open fun in final class</li>
+            </ol>
+          </li>
           <li>
             2.1.1(2020-04-30):
             <ol>

@@ -87,23 +87,29 @@ abstract class KotlinBuilder extends BaseBuilder {
     private void build(Editor editor, PsiElement mouse, KtPsiFactory elementFactory, Project project, KtClass ktClass, KtClassBody body, KtLightClass lightClass, PsiFile psiFile, String className) {
 
         PsiClass superClass = lightClass.getSuperClass();
-//        PsiMethod getParams;
+        PsiClass[] interfaces = lightClass.getInterfaces();
         KtNamedFunction getParams;
-        if (superClass != null) {
-            PsiMethod[] methods = superClass.findMethodsByName(mMethodName, true);
-            if (methods.length > 0) {
+        if (superClass != null || interfaces.length > 0) {
+            PsiMethod[] methods;
+            if (superClass != null && (methods = superClass.findMethodsByName(mMethodName, true)).length > 0) {
                 boolean needAll = methods[0].getModifierList().hasModifierProperty("abstract");
                 getParams = elementFactory.createFunction(buildMethod(ktClass, body, lightClass, true, needAll));
-            } else {
+            }  else if (interfaces.length > 0) {
+                boolean haveMethod = false;
+                for (PsiClass interfaceClass : interfaces) {
+                    if ((interfaceClass.findMethodsByName(mMethodName, true)).length > 0){
+                        haveMethod = true;
+                        break;
+                    }
+                }
+                getParams = elementFactory.createFunction(buildMethod(ktClass, body, lightClass, haveMethod, true));
+            }
+            else {
                 getParams = elementFactory.createFunction(buildMethod(ktClass, body, lightClass, false, true));
             }
         } else {
             getParams = elementFactory.createFunction(buildMethod(ktClass, body, lightClass, false, true));
         }
-//        String nonull = NonNullFactory.findNonNullForPsiElement(project, psiFile);
-//        if (nonull != null) {
-//            getParams.addAnnotationEntry(elementFactory.createAnnotationEntry(nonull));
-//        }
         PsiMethod[] methods = lightClass.findMethodsByName(mMethodName, false);
         if (methods.length > 0) {
             methods[0].delete();
@@ -121,6 +127,8 @@ abstract class KotlinBuilder extends BaseBuilder {
         PsiField[] psiFields;
         if (isOverride) {
             sb.append("override fun ").append(mMethodName).append("(): ").append(getMethodType()).append("{");
+        } else if (lightClass.hasModifierProperty("final")) {
+            sb.append("fun ").append(mMethodName).append("(): ").append(getMethodType()).append("{");
         } else {
             sb.append("open fun ").append(mMethodName).append("(): ").append(getMethodType()).append("{");
         }
