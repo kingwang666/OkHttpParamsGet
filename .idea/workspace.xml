@@ -1,22 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2c84230-b57c-4b6d-a866-f19d9c7c316d" name="Default Changelist" comment="">
+    <list default="true" id="a8e384f7-6456-4c3e-8932-be95618ab61c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OkHttpParamsGet.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/kotlin-plugin.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Constant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/GetParamsAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/OnDialogClickListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/TypePickDialog.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/TypePickDialog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BuilderFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/IBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileMapBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsObjectBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsStringBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileBodyBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFilePartBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsObjectBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsStringBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/data/FileInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/nonull/NonNullFactory.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation>
+            <after_sync>
+              <task name="setupDependencies" />
+            </after_sync>
+          </activation>
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="okhttpparamsget" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="okhttpparamsget" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="okhttpparamsget" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="okhttpparamsget" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="help" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -31,185 +109,156 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectId" id="1SaafsjObNYpR9EPbJM6Ayvyxxs" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Me7vPDf06ADjGyJXLd3gYsIMDT" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553913374978" />
-    <property name="last.edited.regexp" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/extra" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/wangxiaojie/projects/android/github/me/OkHttpParamsGet",
+    "settings.editor.selected.configurable": "http.proxy"
+  }
+}]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Projects\github\me\OkHttpParamsGet\extra" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.wang.okhttpparamsget.builder" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Projects\github\me\OkHttpParamsGet\extra" />
-      <recent name="D:\Projects\github\me\OkHttpParamsGet\lib" />
-      <recent name="F:\projects\github\me\OkHttpParamsGet\src\com\wang\okhttpparamsget\builder" />
-      <recent name="F:\projects\github\me\OkHttpParamsGet\lib" />
-      <recent name="D:\project\OkHttpParamsGet\src\com\wang\okhttpparamsget" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.wang" />
     </key>
   </component>
-  <component name="RunManager" selected="Plugin.Plugin">
-    <configuration name="TypePickDialog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.wang.okhttpparamsget.TypePickDialog" />
-      <module name="OkHttpParamsGet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.wang.okhttpparamsget.data.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Gradle.OkHttpParamsGet [assemble]">
+    <configuration name="OkHttpParamsGet [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <configuration name="Plugin" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
-      <module name="OkHttpParamsGet" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="OkHttpParamsGet [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
-      <module name="OkHttpParamsGet" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="OkHttpParamsGet [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Application.TypePickDialog" />
-      <item itemvalue="Plugin.Plugin" />
-    </list>
+    <configuration name="OkHttpParamsGet [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TypePickDialog" />
+        <item itemvalue="Gradle.OkHttpParamsGet [assemble]" />
+        <item itemvalue="Gradle.OkHttpParamsGet [clean]" />
+        <item itemvalue="Gradle.OkHttpParamsGet [build]" />
+        <item itemvalue="Gradle.OkHttpParamsGet [jar]" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e2c84230-b57c-4b6d-a866-f19d9c7c316d" name="Default Changelist" comment="" />
-      <created>1551161766990</created>
+      <changelist id="a8e384f7-6456-4c3e-8932-be95618ab61c" name="Changes" comment="" />
+      <created>1678116426077</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1551161766990</updated>
+      <updated>1678116426077</updated>
     </task>
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="552" y="174" key="#Plugins" timestamp="1598845118106">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="174" key="#Plugins/0.0.1920.1040@0.0.1920.1040" timestamp="1598845118106" />
-    <state x="640" y="268" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1598844860808">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="640" y="268" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598844860808" />
-    <state width="914" height="151" key="GridCell.Tab.0.bottom" timestamp="1598847777760">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="151" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598847777760" />
-    <state width="914" height="151" key="GridCell.Tab.0.center" timestamp="1598847777760">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="151" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598847777760" />
-    <state width="914" height="151" key="GridCell.Tab.0.left" timestamp="1598847777760">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="151" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598847777760" />
-    <state width="914" height="151" key="GridCell.Tab.0.right" timestamp="1598847777760">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="151" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598847777760" />
-    <state width="914" height="151" key="GridCell.Tab.1.bottom" timestamp="1598847777760">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="151" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598847777760" />
-    <state width="914" height="151" key="GridCell.Tab.1.center" timestamp="1598847777760">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="151" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598847777760" />
-    <state width="914" height="151" key="GridCell.Tab.1.left" timestamp="1598847777760">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="151" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598847777760" />
-    <state width="914" height="151" key="GridCell.Tab.1.right" timestamp="1598847777760">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="914" height="151" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598847777760" />
-    <state width="1860" height="333" key="GridCell.Tab.2.bottom" timestamp="1598847224502">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1860" height="333" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598847224502" />
-    <state width="1860" height="333" key="GridCell.Tab.2.center" timestamp="1598847224502">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1860" height="333" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598847224502" />
-    <state width="1860" height="333" key="GridCell.Tab.2.left" timestamp="1598847224502">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1860" height="333" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598847224502" />
-    <state width="1860" height="333" key="GridCell.Tab.2.right" timestamp="1598847224502">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1860" height="333" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598847224502" />
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1598847775613">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598847775613" />
-  </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/Settings.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
-      <configuration name="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
-        <watch expression="annotation.getValueArguments().get(0).getArgumentExpression().getText()" language="JAVA" />
-        <watch expression="argumentName.getAsName().asString()" language="JAVA" />
-        <watch expression="annotation.getValueArguments().get(0).getArgumentExpression().getText()" language="JAVA" />
-        <watch expression="lightClass.getNameIdentifier()" language="JAVA" />
-        <watch expression="lightClass.getModifierList()" language="JAVA" />
-        <watch expression="ktClass.getModifierList()" language="JAVA" />
+      <configuration name="GradleRunConfiguration">
+        <watch expression="psiClass.getChildren()" language="JAVA" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
   </component>
 </project>
