@@ -131,11 +131,11 @@ public class Utils {
     }
 
     @SuppressWarnings("rawtypes")
-    public static KtClass getKtClassForElement(@NotNull PsiElement psiElement) {
+    public static KtClass getParentOfKtClass(@NotNull PsiElement psiElement) {
         if (psiElement instanceof KtLightElement) {
             PsiElement origin = ((KtLightElement) psiElement).getKotlinOrigin();
             if (origin != null) {
-                return getKtClassForElement(origin);
+                return getParentOfKtClass(origin);
             } else {
                 return null;
             }
@@ -151,9 +151,47 @@ public class Utils {
             if (parent == null) {
                 return null;
             } else {
-                return getKtClassForElement(parent);
+                return getParentOfKtClass(parent);
             }
         }
+    }
+
+    @SuppressWarnings("rawtypes")
+    public static KtClass getChildOfKtClass(@NotNull PsiElement psiElement) {
+        if (psiElement instanceof KtLightElement) {
+            PsiElement origin = ((KtLightElement) psiElement).getKotlinOrigin();
+            if (origin != null) {
+                return getChildOfKtClass(origin);
+            } else {
+                return null;
+            }
+
+        } else if (psiElement instanceof KtClass && !((KtClass) psiElement).isEnum() &&
+                !((KtClass) psiElement).isInterface() &&
+                !((KtClass) psiElement).isAnnotation() &&
+                !((KtClass) psiElement).isSealed()) {
+            return (KtClass) psiElement;
+
+        } else {
+            for (PsiElement child = psiElement.getFirstChild(); child != null; child = child.getNextSibling()) {
+                if (child instanceof KtLightElement) {
+                    PsiElement origin = ((KtLightElement) child).getKotlinOrigin();
+                    if (origin != null) {
+                        return getChildOfKtClass(origin);
+                    } else {
+                        return null;
+                    }
+
+                } else if (child instanceof KtClass && !((KtClass) child).isEnum() &&
+                        !((KtClass) child).isInterface() &&
+                        !((KtClass) child).isAnnotation() &&
+                        !((KtClass) child).isSealed()) {
+                    return (KtClass) child;
+
+                }
+            }
+        }
+        return null;
     }
 
 }

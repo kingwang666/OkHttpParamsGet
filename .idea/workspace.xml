@@ -4,42 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8e384f7-6456-4c3e-8932-be95618ab61c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+    <list default="true" id="a8e384f7-6456-4c3e-8932-be95618ab61c" name="Changes" comment="fix map string string bug">
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OkHttpParamsGet.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/kotlin-plugin.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/META-INF/plugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Constant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/GetParamsAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/OnDialogClickListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Settings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/TypePickDialog.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/TypePickDialog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BaseBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/BuilderFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/IBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFileMapBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsObjectBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/JavaParamsStringBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileBodyBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsFilePartBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsObjectBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/builder/KotlinParamsStringBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/data/FileInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wang/okhttpparamsget/nonull/NonNullFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/BaseBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/BaseBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/BuilderFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/BuilderFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsFileBodyBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsFileMapBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsFileMapBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsFilePartBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsObjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsObjectBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsStringBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/JavaParamsStringBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinParamsFileBodyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinParamsFileBodyBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinParamsFileMapBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinParamsFilePartBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinParamsFilePartBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinParamsObjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/builder/KotlinParamsObjectBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +70,24 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="help" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="okhttpparamsget" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="intellij" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="okhttpparamsget" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="okhttpparamsget" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -112,13 +115,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="2Me7vPDf06ADjGyJXLd3gYsIMDT" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -129,18 +125,22 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "/Users/wangxiaojie/projects/android/github/me/OkHttpParamsGet",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "http.proxy"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.wang" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.OkHttpParamsGet [assemble]">
+  <component name="RunManager" selected="Gradle.OkHttpParamsGet [jar]">
     <configuration name="OkHttpParamsGet [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -160,6 +160,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="OkHttpParamsGet [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -181,6 +182,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="OkHttpParamsGet [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -202,6 +204,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="OkHttpParamsGet [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -223,14 +226,15 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.OkHttpParamsGet [assemble]" />
-        <item itemvalue="Gradle.OkHttpParamsGet [clean]" />
-        <item itemvalue="Gradle.OkHttpParamsGet [build]" />
         <item itemvalue="Gradle.OkHttpParamsGet [jar]" />
+        <item itemvalue="Gradle.OkHttpParamsGet [clean]" />
+        <item itemvalue="Gradle.OkHttpParamsGet [assemble]" />
+        <item itemvalue="Gradle.OkHttpParamsGet [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -243,14 +247,37 @@
       <option name="presentableId" value="Default" />
       <updated>1678116426077</updated>
     </task>
+    <task id="LOCAL-00001" summary="fix map string string bug">
+      <created>1678213792771</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1678213792771</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix map string string bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix map string string bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/wang/okhttpparamsget/Settings.java</url>
-          <line>43</line>
+          <line>44</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
@@ -258,7 +285,17 @@
     <watches-manager>
       <configuration name="GradleRunConfiguration">
         <watch expression="psiClass.getChildren()" language="JAVA" />
+        <watch expression="psiFile.getFirstChild()" language="JAVA" />
+        <watch expression="psiFile.getChildren()" language="JAVA" />
+        <watch expression="PsiTreeUtil.getChildOfType(psiFile, KtClass.class)" language="JAVA" />
+        <watch expression="psiFile instanceof PsiClass" language="JAVA" />
+        <watch expression="currentLine.getParent()" language="JAVA" />
+        <watch expression="Utils.getKtClassForElement(psiFile)" language="JAVA" />
+        <watch expression="PsiTreeUtil.getParentOfType(mouse, KtClass.class)" language="JAVA" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/okhttpparamsget$Run_Plugin.ic" NAME="Run Plugin Coverage Results" MODIFIED="1683128140218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

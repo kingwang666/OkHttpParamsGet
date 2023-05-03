@@ -225,7 +225,7 @@ public abstract class BaseBuilder implements IBuilder {
 
         for (PsiMethod method : psiClass.getAllMethods()) {
             KtDeclaration function = null;
-            if (PsiType.VOID.equals(method.getReturnType())) {
+            if (PsiTypes.voidType().equals(method.getReturnType())) {
                 continue;
             }
             if (method instanceof KtLightMethod) {

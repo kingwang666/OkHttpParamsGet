@@ -4,6 +4,7 @@ import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -54,8 +55,12 @@ public class Settings implements Configurable, ActionListener {
 
     @Override
     public boolean isModified() {
-        return isModified(empty_string_rb, add) || isModified(array_map_rb, arrayMap) || isModified(androidx_rb, androidx)
-                || isModified(nullable_rb, nullable) || isModified(okhttp_cb, version4);
+        return isRadioButtonModified(empty_string_rb, add) || isRadioButtonModified(array_map_rb, arrayMap) || isRadioButtonModified(androidx_rb, androidx)
+                || isRadioButtonModified(nullable_rb, nullable) || Configurable.isCheckboxModified(okhttp_cb, version4);
+    }
+
+    private static boolean isRadioButtonModified(@NotNull JRadioButton checkbox, boolean initialValue) {
+        return checkbox.isSelected() != initialValue;
     }
 
     private void initSettings() {

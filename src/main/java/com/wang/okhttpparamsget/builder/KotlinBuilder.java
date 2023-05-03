@@ -1,15 +1,18 @@
 package com.wang.okhttpparamsget.builder;
 
+import ai.grazie.text.TextRange;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.CodeStyleManager;
+import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.containers.ContainerUtil;
 import com.wang.okhttpparamsget.Constant;
 import com.wang.okhttpparamsget.Utils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.kotlin.asJava.LightClassUtilsKt;
 import org.jetbrains.kotlin.asJava.classes.KtLightClass;
 import org.jetbrains.kotlin.descriptors.DeclarationDescriptor;
@@ -18,10 +21,7 @@ import org.jetbrains.kotlin.idea.util.ImportInsertHelper;
 import org.jetbrains.kotlin.name.FqName;
 import org.jetbrains.kotlin.psi.*;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by wang on 2017/3/6.
@@ -51,8 +51,13 @@ abstract class KotlinBuilder extends BaseBuilder {
             Project project = editor.getProject();
             if (project == null) return;
             PsiElement mouse = psiFile.findElementAt(editor.getCaretModel().getOffset());
-            if (mouse == null) return;
-            KtClass ktClass = Utils.getKtClassForElement(mouse);
+            KtClass ktClass = null;
+            if (mouse != null){
+                ktClass = Utils.getParentOfKtClass(mouse);
+            }
+            if (ktClass == null){
+                ktClass = Utils.getChildOfKtClass(psiFile);
+            }
             if (ktClass == null) return;
 
             if (ktClass.getNameIdentifier() == null) return;
@@ -61,7 +66,7 @@ abstract class KotlinBuilder extends BaseBuilder {
             KtClassBody body = ktClass.getBody();
             if (body == null) return;
 
-            KtPsiFactory elementFactory = KtPsiFactoryKt.KtPsiFactory(ktClass.getProject());
+            KtPsiFactory elementFactory = new KtPsiFactory(ktClass.getProject());
 
             KtLightClass lightClass = LightClassUtilsKt.toLightClass(ktClass);
             if (lightClass == null) return;
@@ -79,7 +84,7 @@ abstract class KotlinBuilder extends BaseBuilder {
                 }
             }
             CodeStyleManager styleManager = CodeStyleManager.getInstance(ktClass.getProject());
-            styleManager.reformatText(ktClass.getContainingFile(), ContainerUtil.newArrayList(ktClass.getTextRange()));
+            styleManager.reformatText(ktClass.getContainingFile(), Collections.singletonList(ktClass.getTextRange()));
         });
     }
 
@@ -92,7 +97,7 @@ abstract class KotlinBuilder extends BaseBuilder {
         if (superClass != null || interfaces.length > 0) {
             PsiMethod[] methods;
             if (superClass != null && (methods = superClass.findMethodsByName(mMethodName, true)).length > 0) {
-                boolean needAll = methods[0].getModifierList().hasModifierProperty("abstract");
+                boolean needAll = methods[0].getModifierList().hasModifierProperty(PsiModifier.ABSTRACT);
                 getParams = elementFactory.createFunction(buildMethod(ktClass, body, lightClass, true, needAll));
             } else if (interfaces.length > 0) {
                 boolean haveMethod = false;
@@ -113,7 +118,11 @@ abstract class KotlinBuilder extends BaseBuilder {
         if (methods.length > 0) {
             methods[0].delete();
         }
-        body.addBefore(getParams, body.getRBrace());
+        if (mouse == null || mouse.getParent() != body) {
+            body.addBefore(getParams, body.getRBrace());
+            return;
+        }
+        body.addAfter(getParams, mouse);
 
     }
 
@@ -126,7 +135,7 @@ abstract class KotlinBuilder extends BaseBuilder {
         PsiField[] psiFields;
         if (isOverride) {
             sb.append("override fun ").append(mMethodName).append("(): ").append(getMethodType()).append("{");
-        } else if (lightClass.hasModifierProperty("final")) {
+        } else if (lightClass.hasModifierProperty(PsiModifier.FINAL)) {
             sb.append("fun ").append(mMethodName).append("(): ").append(getMethodType()).append("{");
         } else {
             sb.append("open fun ").append(mMethodName).append("(): ").append(getMethodType()).append("{");

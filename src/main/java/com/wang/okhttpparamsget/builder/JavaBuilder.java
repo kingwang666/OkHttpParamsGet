@@ -40,7 +40,13 @@ abstract class JavaBuilder extends BaseBuilder {
             Project project = editor.getProject();
             if (project == null) return;
             PsiElement mouse = psiFile.findElementAt(editor.getCaretModel().getOffset());
-            PsiClass psiClass = PsiTreeUtil.getParentOfType(mouse, PsiClass.class);
+            PsiClass psiClass = null;
+            if (mouse != null) {
+                psiClass = PsiTreeUtil.getParentOfType(mouse, PsiClass.class);
+            }
+            if (psiClass == null) {
+                psiClass = PsiTreeUtil.getChildOfType(psiFile, PsiClass.class);
+            }
             if (psiClass == null) return;
 
             if (psiClass.getNameIdentifier() == null) return;
@@ -72,13 +78,13 @@ abstract class JavaBuilder extends BaseBuilder {
             } else if (interfaces.length > 0) {
                 boolean haveMethod = false;
                 for (PsiClass interfaceClass : interfaces) {
-                    if ((interfaceClass.findMethodsByName(mMethodName, true)).length > 0){
+                    if ((interfaceClass.findMethodsByName(mMethodName, true)).length > 0) {
                         haveMethod = true;
                         break;
                     }
                 }
                 getParams = elementFactory.createMethodFromText(buildMethod(psiClass, true, true), psiClass);
-                if (haveMethod){
+                if (haveMethod) {
                     getParams.getModifierList().addAnnotation("Override");
                 }
             } else {
@@ -95,11 +101,11 @@ abstract class JavaBuilder extends BaseBuilder {
         if (methods.length > 0) {
             methods[0].delete();
         }
-        PsiElement psiElement = psiFile.findElementAt(editor.getCaretModel().getOffset());
-        PsiElement codeBlock = psiElement;
-//        psiClass.addBefore(getParams, psiClass.getRBrace());
-//        psiClass.addAfter(getParams, psiElement);
-        psiClass.addAfter(getParams, psiElement);
+        if (mouse == null || mouse.getParent() != psiClass) {
+            psiClass.addBefore(getParams, psiClass.getRBrace());
+            return;
+        }
+        psiClass.addAfter(getParams, mouse);
     }
 
 

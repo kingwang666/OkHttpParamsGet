@@ -47,57 +47,59 @@ class JavaParamsFileMapBuilder extends JavaBuilder {
             if (field instanceof KtLightField) {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
-            if (!findIgnore(older == null ? field : older)) {
-                String defaultKey;
-                if ((defaultKey = getPostFileKey(older == null ? field : older)) != null) {
-                    FileInfo fileInfo = getFileInfo(field, field.getName(), true);
-                    if (fileInfo == null) {
-                        continue;
-                    }
-                    boolean nullable;
-                    if (nullable = isNullable(field)) {
-                        sb.append("if (").append(field.getName()).append("!=null){");
-                    }
-                    if (fileInfo.isListOrArray()) {
-                        sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.LIST_CHILD).append(" : ").append(field.getName()).append(") {");
-                    } else if (fileInfo.isMap()) {
-                        sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.MAP_CHILD).append(" : ").append(field.getName()).append(".entrySet()) {");
-                    }
-
-                    defaultKey = defaultKey.isEmpty() || fileInfo.isMap() ? fileInfo.key : defaultKey;
-                    boolean string = defaultKey.matches("\".+?\"");
-
-                    sb.append(mFieldName).append(".put(");
-                    if (string) {
-                        sb.append(defaultKey, 0, defaultKey.length() - 1);
-                    } else {
-                        sb.append(defaultKey).append(" + \"");
-                    }
-                    sb.append("\\\"; filename=\\\"\" + ").append(fileInfo.filename).append(", ");
-                    createRequestBody(sb, fileInfo.mimeType, fileInfo.data, true);
-                    sb.append(");");
-
-                    if (!fileInfo.isNorm()) {
-                        sb.append("}");
-                    }
-                    if (nullable) {
-                        sb.append("}");
-                    }
-                } else if (isNullable(field)) {
-                    defaultKey = getParamName(older == null ? field : older);
-                    addNullableValue(field, sb, defaultKey);
-                } else {
-                    defaultKey = getParamName(older == null ? field : older);
-                    sb.append(mFieldName).append(".put(");
-                    if (defaultKey == null) {
-                        sb.append('"').append(field.getName()).append('"');
-                    } else {
-                        sb.append(defaultKey);
-                    }
-                    sb.append(", ");
-                    createRequestBody(sb, "\"text/plain\"", toString(field));
-                    sb.append(");");
+            PsiElement realField = older == null ? field : older;
+            if (isStatic(field) || findIgnore(realField)) {
+                continue;
+            }
+            String defaultKey;
+            if ((defaultKey = getPostFileKey(realField)) != null) {
+                FileInfo fileInfo = getFileInfo(field, field.getName(), true);
+                if (fileInfo == null) {
+                    continue;
                 }
+                boolean nullable = isNullable(field);
+                if (nullable) {
+                    sb.append("if (").append(field.getName()).append("!=null){");
+                }
+                if (fileInfo.isListOrArray()) {
+                    sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.LIST_CHILD).append(" : ").append(field.getName()).append(") {");
+                } else if (fileInfo.isMap()) {
+                    sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.MAP_CHILD).append(" : ").append(field.getName()).append(".entrySet()) {");
+                }
+
+                defaultKey = defaultKey.isEmpty() || fileInfo.isMap() ? fileInfo.key : defaultKey;
+                boolean string = defaultKey.matches("\".+?\"");
+
+                sb.append(mFieldName).append(".put(");
+                if (string) {
+                    sb.append(defaultKey, 0, defaultKey.length() - 1);
+                } else {
+                    sb.append(defaultKey).append(" + \"");
+                }
+                sb.append("\\\"; filename=\\\"\" + ").append(fileInfo.filename).append(", ");
+                createRequestBody(sb, fileInfo.mimeType, fileInfo.data, true);
+                sb.append(");");
+
+                if (!fileInfo.isNorm()) {
+                    sb.append("}");
+                }
+                if (nullable) {
+                    sb.append("}");
+                }
+            } else if (isNullable(field)) {
+                defaultKey = getParamName(realField);
+                addNullableValue(field, sb, defaultKey);
+            } else {
+                defaultKey = getParamName(realField);
+                sb.append(mFieldName).append(".put(");
+                if (defaultKey == null) {
+                    sb.append('"').append(field.getName()).append('"');
+                } else {
+                    sb.append(defaultKey);
+                }
+                sb.append(", ");
+                createRequestBody(sb, "\"text/plain\"", toString(field));
+                sb.append(");");
             }
         }
     }

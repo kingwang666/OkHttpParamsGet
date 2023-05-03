@@ -6,9 +6,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiField;
 import com.wang.okhttpparamsget.Constant;
 import com.wang.okhttpparamsget.data.FileInfo;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.kotlin.asJava.elements.KtLightField;
 
-import javax.annotation.Nullable;
 
 /**
  * Created by wang on 2017/3/7.
@@ -45,48 +45,50 @@ class JavaParamsFileBodyBuilder extends JavaBuilder {
             if (field instanceof KtLightField) {
                 older = ((KtLightField) field).getKotlinOrigin();
             }
-            if (!findIgnore(older == null ? field : older)) {
-                String defaultKey;
-                if ((defaultKey = getPostFileKey(older == null ? field : older)) != null) {
-                    FileInfo fileInfo = getFileInfo(field, field.getName(), true);
-                    if (fileInfo == null) {
-                        continue;
-                    }
-                    boolean nullable;
-                    if (nullable = isNullable(field)) {
-                        sb.append("if (").append(field.getName()).append("!=null){");
-                    }
-                    if (fileInfo.isListOrArray()) {
-                        sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.LIST_CHILD).append(" : ").append(field.getName()).append(") {");
-                    } else if (fileInfo.isMap()) {
-                        sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.MAP_CHILD).append(" : ").append(field.getName()).append(".entrySet()) {");
-                    }
-
-                    sb.append(mFieldName).append(".addFormDataPart(").append(defaultKey.isEmpty() || fileInfo.isMap() ? fileInfo.key : defaultKey).append(",")
-                            .append(fileInfo.filename).append(",");
-                    createRequestBody(sb, fileInfo.mimeType, fileInfo.data, true);
-                    sb.append(");");
-
-                    if (!fileInfo.isNorm()) {
-                        sb.append("}");
-                    }
-
-                    if (nullable) {
-                        sb.append("}");
-                    }
-                } else if (isNullable(field)) {
-                    defaultKey = getParamName(older == null ? field : older);
-                    addNullableValue(field, sb, defaultKey);
-                } else {
-                    defaultKey = getParamName(older == null ? field : older);
-                    sb.append(mFieldName).append(".addFormDataPart(");
-                    if (defaultKey == null) {
-                        sb.append('"').append(field.getName()).append('"');
-                    } else {
-                        sb.append(defaultKey);
-                    }
-                    sb.append(", ").append(toString(field)).append(");");
+            PsiElement realField = older == null ? field : older;
+            if (isStatic(field) || findIgnore(realField)) {
+                continue;
+            }
+            String defaultKey;
+            if ((defaultKey = getPostFileKey(realField)) != null) {
+                FileInfo fileInfo = getFileInfo(field, field.getName(), true);
+                if (fileInfo == null) {
+                    continue;
                 }
+                boolean nullable = isNullable(field);
+                if (nullable) {
+                    sb.append("if (").append(field.getName()).append("!=null){");
+                }
+                if (fileInfo.isListOrArray()) {
+                    sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.LIST_CHILD).append(" : ").append(field.getName()).append(") {");
+                } else if (fileInfo.isMap()) {
+                    sb.append("for (").append(fileInfo.className).append(" ").append(FileInfo.MAP_CHILD).append(" : ").append(field.getName()).append(".entrySet()) {");
+                }
+
+                sb.append(mFieldName).append(".addFormDataPart(").append(defaultKey.isEmpty() || fileInfo.isMap() ? fileInfo.key : defaultKey).append(",")
+                        .append(fileInfo.filename).append(",");
+                createRequestBody(sb, fileInfo.mimeType, fileInfo.data, true);
+                sb.append(");");
+
+                if (!fileInfo.isNorm()) {
+                    sb.append("}");
+                }
+
+                if (nullable) {
+                    sb.append("}");
+                }
+            } else if (isNullable(field)) {
+                defaultKey = getParamName(realField);
+                addNullableValue(field, sb, defaultKey);
+            } else {
+                defaultKey = getParamName(realField);
+                sb.append(mFieldName).append(".addFormDataPart(");
+                if (defaultKey == null) {
+                    sb.append('"').append(field.getName()).append('"');
+                } else {
+                    sb.append(defaultKey);
+                }
+                sb.append(", ").append(toString(field)).append(");");
             }
         }
     }

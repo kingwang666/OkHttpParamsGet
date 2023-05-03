@@ -3,9 +3,9 @@ package com.wang.okhttpparamsget.builder;
 import com.intellij.ide.highlighter.JavaFileType;
 import com.intellij.psi.PsiFile;
 import com.wang.okhttpparamsget.Constant;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.kotlin.idea.KotlinFileType;
 
-import javax.annotation.Nullable;
 
 public class BuilderFactory {
 
