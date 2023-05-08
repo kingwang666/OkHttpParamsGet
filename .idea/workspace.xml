@@ -129,7 +129,7 @@
       <recent name="com.wang" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Run Plugin">
+  <component name="RunManager" selected="Gradle.OkHttpParamsGet [clean]">
     <configuration name="OkHttpParamsGet [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
