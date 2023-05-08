@@ -56,7 +56,7 @@ public class Settings implements Configurable, ActionListener {
     @Override
     public boolean isModified() {
         return isRadioButtonModified(empty_string_rb, add) || isRadioButtonModified(array_map_rb, arrayMap) || isRadioButtonModified(androidx_rb, androidx)
-                || isRadioButtonModified(nullable_rb, nullable) || isModified(okhttp_cb, version4);
+                || isRadioButtonModified(nullable_rb, nullable) || Configurable.isCheckboxModified(okhttp_cb, version4);
     }
 
     private static boolean isRadioButtonModified(@NotNull JRadioButton checkbox, boolean initialValue) {

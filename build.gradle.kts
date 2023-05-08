@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.wang"
-version = "2.1.3"
+version = "2.2.0"
 
 repositories {
     mavenCentral()
@@ -13,10 +13,10 @@ repositories {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2022.3.3")
+    version.set("2023.1.1")
     type.set("IC") // Target IDE Platform
 
-//    updateSinceUntilBuild.set(false)
+    updateSinceUntilBuild.set(false)
 
     plugins.set(listOf("com.intellij.java", "org.jetbrains.kotlin"))
 }
@@ -24,13 +24,13 @@ intellij {
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "11"
-        targetCompatibility = "11"
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
     }
 
     patchPluginXml {
-        sinceBuild.set("221")
-        untilBuild.set("223.*")
+        sinceBuild.set("231")
+//        untilBuild.set("223.*")
     }
 
     signPlugin {
