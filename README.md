@@ -32,14 +32,12 @@ These annotations can be in any package
 
 ## update ##
 <ul>
-
           <li>
             2.2.0(2023-05-04):
             <ol>
                 <li>target to 2023.1.1</li>
                 <li>update jdk to 17</li>
             </ol>
-
           </li>
           <li>
             2.1.3(2023-05-03):

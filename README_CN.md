@@ -31,7 +31,6 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 
 ## update ##
 <ul>
-
           <li>
             2.2.0(2023-05-04):
             <ol>
