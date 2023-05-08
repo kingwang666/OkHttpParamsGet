@@ -1,14 +1,11 @@
 package com.wang.okhttpparamsget.builder;
 
-import ai.grazie.text.TextRange;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.CodeStyleManager;
-import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.util.containers.ContainerUtil;
 import com.wang.okhttpparamsget.Constant;
 import com.wang.okhttpparamsget.Utils;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +18,10 @@ import org.jetbrains.kotlin.idea.util.ImportInsertHelper;
 import org.jetbrains.kotlin.name.FqName;
 import org.jetbrains.kotlin.psi.*;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by wang on 2017/3/6.
