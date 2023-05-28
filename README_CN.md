@@ -32,10 +32,16 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 ## update ##
 <ul>
           <li>
+            2.1.4(2023-05-28):
+            <ol>
+                <li>修复了奔溃bug</li>
+            </ol>
+          </li>
+          <li>
             2.1.3(2023-05-03):
             <ol>
-                <li>Exclude static field</li>
-                <li>Fixed bugs</li>
+                <li>排除static修饰对象</li>
+                <li>修复了一些bug</li>
             </ol>
           </li>
          <li>

@@ -33,6 +33,12 @@ These annotations can be in any package
 ## update ##
 <ul>
           <li>
+            2.1.4(2023-05-08):
+            <ol>
+                <li>Fixed crash bug</li>
+            </ol>
+          </li>
+          <li>
             2.1.3(2023-05-03):
             <ol>
                 <li>Exclude static field</li>
