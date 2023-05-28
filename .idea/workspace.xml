@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8e384f7-6456-4c3e-8932-be95618ab61c" name="Changes" comment="update readme" />
+    <list default="true" id="a8e384f7-6456-4c3e-8932-be95618ab61c" name="Changes" comment="update readme">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README_CN.md" beforeDir="false" afterPath="$PROJECT_DIR$/README_CN.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +89,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="release-223" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -126,7 +131,7 @@
       <recent name="com.wang" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.OkHttpParamsGet [jar]">
+  <component name="RunManager" selected="Gradle.OkHttpParamsGet [assemble]">
     <configuration name="OkHttpParamsGet [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -217,9 +222,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.OkHttpParamsGet [jar]" />
-        <item itemvalue="Gradle.OkHttpParamsGet [clean]" />
         <item itemvalue="Gradle.OkHttpParamsGet [assemble]" />
+        <item itemvalue="Gradle.OkHttpParamsGet [clean]" />
+        <item itemvalue="Gradle.OkHttpParamsGet [jar]" />
         <item itemvalue="Gradle.OkHttpParamsGet [build]" />
       </list>
     </recent_temporary>
@@ -333,7 +338,8 @@
     <MESSAGE value="update to last release" />
     <MESSAGE value="fix bugs" />
     <MESSAGE value="update readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
+    <MESSAGE value="fix crash" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix crash" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

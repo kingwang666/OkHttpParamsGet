@@ -32,17 +32,23 @@ File->Settings->Browse Repositories->OkHttpParamsGet
 ## update ##
 <ul>
           <li>
+            2.2.1(2023-05-28):
+            <ol>
+                <li>修复奔溃问题</li>
+            </ol>
+          </li>
+          <li>
             2.2.0(2023-05-04):
             <ol>
                 <li>适配2023.1.1</li>
-                <li>update jdk to 17</li>
+                <li>更新jdk 17</li>
             </ol>
           </li>
           <li>
             2.1.3(2023-05-03):
             <ol>
-                <li>Exclude static field</li>
-                <li>Fixed bugs</li>
+                <li>排除静态类</li>
+                <li>修复问题</li>
             </ol>
           </li>
          <li>

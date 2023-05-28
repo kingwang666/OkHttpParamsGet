@@ -33,6 +33,12 @@ These annotations can be in any package
 ## update ##
 <ul>
           <li>
+            2.2.1(2023-05-28):
+            <ol>
+                <li>fixed crash bug</li>
+            </ol>
+          </li>
+          <li>
             2.2.0(2023-05-04):
             <ol>
                 <li>target to 2023.1.1</li>
