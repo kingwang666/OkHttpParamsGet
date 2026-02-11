@@ -21,22 +21,25 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
         super("getParams", "params");
     }
 
-    @Override
     protected String getMethodType() {
-        return "MutableMap<String, RequestBody> ";
+        return "MutableMap<String, okhttp3.RequestBody> ";
     }
 
     @Override
     protected String getParamsType() {
         if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
-            return "HashMap<String, RequestBody>";
+            return "java.util.HashMap<String, okhttp3.RequestBody>";
         }
-        return "ArrayMap<String, RequestBody>";
+        if (PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true)) {
+            return "androidx.collection.ArrayMap<String, okhttp3.RequestBody>";
+        } else {
+            return "android.support.v4.util.ArrayMap<String, okhttp3.RequestBody>";
+        }
     }
 
     @Override
     protected String getValueType() {
-        return "RequestBody";
+        return "okhttp3.RequestBody";
     }
 
     @Nullable
@@ -44,27 +47,13 @@ class KotlinParamsFileMapBuilder extends KotlinBuilder {
     protected String[] getImports() {
         boolean version4 = PropertiesComponent.getInstance().getBoolean(Constant.OKHTTP_VERSION, true);
         if (version4) {
-            if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
-                return new String[]{"okhttp3.MediaType",
-                        "okhttp3.RequestBody",
-                        "okhttp3.MediaType.Companion.toMediaTypeOrNull",
-                        "okhttp3.RequestBody.Companion.asRequestBody",
-                        "okhttp3.RequestBody.Companion.toRequestBody"};
-            }
-            return new String[]{"okhttp3.MediaType",
-                    "okhttp3.RequestBody",
-                    PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true) ? "androidx.collection.ArrayMap" : "android.support.v4.util.ArrayMap",
+            return new String[]{
                     "okhttp3.MediaType.Companion.toMediaTypeOrNull",
                     "okhttp3.RequestBody.Companion.asRequestBody",
                     "okhttp3.RequestBody.Companion.toRequestBody"};
+
         }
-        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
-            return new String[]{"okhttp3.MediaType",
-                    "okhttp3.RequestBody"};
-        }
-        return new String[]{"okhttp3.MediaType",
-                "okhttp3.RequestBody",
-                PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true) ? "androidx.collection.ArrayMap" : "android.support.v4.util.ArrayMap"};
+        return null;
     }
 
     @Override

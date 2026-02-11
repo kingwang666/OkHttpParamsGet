@@ -22,17 +22,17 @@ class KotlinParamsFileBodyBuilder extends KotlinBuilder {
 
     @Override
     protected String getMethodType() {
-        return "MultipartBody.Builder ";
+        return "okhttp3.MultipartBody.Builder ";
     }
 
     @Override
     protected String getValueType() {
-        return "RequestBody";
+        return "okhttp3.RequestBody";
     }
 
     @Override
     protected String getParamsType() {
-        return "MultipartBody.Builder";
+        return "okhttp3.MultipartBody.Builder";
     }
 
     @Nullable
@@ -40,15 +40,11 @@ class KotlinParamsFileBodyBuilder extends KotlinBuilder {
     protected String[] getImports() {
         boolean version4 = PropertiesComponent.getInstance().getBoolean(Constant.OKHTTP_VERSION, true);
         if (version4) {
-            return new String[]{"okhttp3.MultipartBody",
-                    "okhttp3.RequestBody",
-                    "okhttp3.MediaType",
+            return new String[]{
                     "okhttp3.MediaType.Companion.toMediaTypeOrNull",
                     "okhttp3.RequestBody.Companion.asRequestBody"};
         }
-        return new String[]{"okhttp3.MultipartBody",
-                "okhttp3.RequestBody",
-                "okhttp3.MediaType"};
+        return null;
     }
 
     @Override

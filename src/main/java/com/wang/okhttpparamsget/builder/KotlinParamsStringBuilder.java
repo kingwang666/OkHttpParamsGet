@@ -34,15 +34,16 @@ class KotlinParamsStringBuilder extends KotlinBuilder {
         if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
             return "HashMap<String, String>";
         }
-        return "ArrayMap<String, String>";
+        if (PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true)) {
+            return "androidx.collection.ArrayMap<String, String>";
+        } else {
+            return "android.support.v4.util.ArrayMap<String, String>";
+        }
     }
 
     @Override
     protected String[] getImports() {
-        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
-            return null;
-        }
-        return new String[]{PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true) ? "androidx.collection.ArrayMap" : "android.support.v4.util.ArrayMap"};
+        return null;
     }
 
     @Override

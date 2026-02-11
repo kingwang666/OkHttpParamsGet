@@ -3,7 +3,7 @@ package com.wang.okhttpparamsget;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
-import org.jetbrains.annotations.Nls;
+import com.intellij.openapi.util.NlsContexts;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,12 +31,10 @@ public class Settings implements Configurable, ActionListener {
     private boolean version4;
 
 
-    @Nls(capitalization = Nls.Capitalization.Title)
     @Override
-    public String getDisplayName() {
+    public @NlsContexts.ConfigurableName String getDisplayName() {
         return "OkHttpParamsGet";
     }
-
 
     @Nullable
     @Override

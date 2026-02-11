@@ -29,20 +29,22 @@ class KotlinParamsObjectBuilder extends KotlinBuilder {
         return "Any";
     }
 
+
     @Override
     protected String getParamsType() {
         if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
             return "HashMap<String, Any>";
         }
-        return "ArrayMap<String, Any>";
+        if (PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true)) {
+            return "androidx.collection.ArrayMap<String, Any>";
+        } else {
+            return "android.support.v4.util.ArrayMap<String, Any>";
+        }
     }
 
     @Override
     protected String[] getImports() {
-        if (!PropertiesComponent.getInstance().getBoolean(Constant.ARRAY_MAP, true)) {
-            return null;
-        }
-        return new String[]{PropertiesComponent.getInstance().getBoolean(Constant.ANDROIDX, true) ? "androidx.collection.ArrayMap" : "android.support.v4.util.ArrayMap"};
+        return null;
     }
 
     @Override

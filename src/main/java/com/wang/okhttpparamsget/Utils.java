@@ -7,23 +7,14 @@ import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiAnnotation;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.search.EverythingGlobalScope;
 import com.intellij.psi.search.GlobalSearchScope;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.kotlin.asJava.elements.KtLightElement;
-import org.jetbrains.kotlin.caches.resolve.KotlinCacheService;
-import org.jetbrains.kotlin.descriptors.ClassDescriptor;
-import org.jetbrains.kotlin.descriptors.ConstructorDescriptor;
-import org.jetbrains.kotlin.descriptors.ValueParameterDescriptor;
-import org.jetbrains.kotlin.incremental.components.NoLookupLocation;
 import org.jetbrains.kotlin.name.Name;
 import org.jetbrains.kotlin.psi.KtAnnotationEntry;
 import org.jetbrains.kotlin.psi.KtClass;
-import org.jetbrains.kotlin.psi.KtElement;
-import org.jetbrains.kotlin.resolve.lazy.ResolveSession;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
@@ -106,28 +97,6 @@ public class Utils {
     public static boolean isClassAvailableForProject(@NotNull Project project, @NotNull String className) {
         PsiClass classInModule = JavaPsiFacade.getInstance(project).findClass(className, GlobalSearchScope.everythingScope(project));
         return classInModule != null;
-    }
-
-    public static List<ValueParameterDescriptor> findParams(KtClass ktClass) {
-        List<KtElement> list = new ArrayList<KtElement>();
-        list.add(ktClass);
-
-        ResolveSession resolveSession = KotlinCacheService.Companion.getInstance(ktClass.getProject()).
-                getResolutionFacade(list).getFrontendService(ResolveSession.class);
-        ClassDescriptor classDescriptor = resolveSession.getClassDescriptor(ktClass, NoLookupLocation.FROM_IDE);
-
-        List<ValueParameterDescriptor> valueParameters = new ArrayList<ValueParameterDescriptor>();
-//        if (classDescriptor.isData()) {
-        ConstructorDescriptor constructorDescriptor = classDescriptor.getUnsubstitutedPrimaryConstructor();
-
-        if (constructorDescriptor != null) {
-            List<ValueParameterDescriptor> allParameters = constructorDescriptor.getValueParameters();
-
-            valueParameters.addAll(allParameters);
-        }
-//        }
-
-        return valueParameters;
     }
 
     @SuppressWarnings("rawtypes")

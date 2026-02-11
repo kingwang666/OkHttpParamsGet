@@ -1,5 +1,6 @@
 package com.wang.okhttpparamsget.builder;
 
+import com.intellij.codeInsight.actions.OptimizeImportsProcessor;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
@@ -7,20 +8,21 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.wang.okhttpparamsget.Constant;
+import com.wang.okhttpparamsget.KtClassKt;
 import com.wang.okhttpparamsget.Utils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.kotlin.asJava.LightClassUtilsKt;
 import org.jetbrains.kotlin.asJava.classes.KtLightClass;
-import org.jetbrains.kotlin.descriptors.DeclarationDescriptor;
-import org.jetbrains.kotlin.idea.caches.resolve.ResolutionUtils;
+import org.jetbrains.kotlin.idea.base.codeInsight.ShortenReferencesFacility;
+import org.jetbrains.kotlin.idea.base.psi.imports.ImportInsertionKt;
+import org.jetbrains.kotlin.idea.core.ShortenReferences;
+import org.jetbrains.kotlin.idea.imports.KotlinImportOptimizer;
 import org.jetbrains.kotlin.idea.util.ImportInsertHelper;
 import org.jetbrains.kotlin.name.FqName;
 import org.jetbrains.kotlin.psi.*;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -33,14 +35,13 @@ abstract class KotlinBuilder extends BaseBuilder {
         super(methodName, fieldName);
     }
 
-    @Override
     protected String getMediaType() {
-        return "MediaType";
+        return "okhttp3.MediaType";
     }
 
     @Override
     protected String getRequestBody() {
-        return "RequestBody";
+        return "okhttp3.RequestBody";
     }
 
     @Override
@@ -52,10 +53,10 @@ abstract class KotlinBuilder extends BaseBuilder {
             if (project == null) return;
             PsiElement mouse = psiFile.findElementAt(editor.getCaretModel().getOffset());
             KtClass ktClass = null;
-            if (mouse != null){
+            if (mouse != null) {
                 ktClass = Utils.getParentOfKtClass(mouse);
             }
-            if (ktClass == null){
+            if (ktClass == null) {
                 ktClass = Utils.getChildOfKtClass(psiFile);
             }
             if (ktClass == null) return;
@@ -72,19 +73,31 @@ abstract class KotlinBuilder extends BaseBuilder {
             if (lightClass == null) return;
             build(editor, mouse, elementFactory, project, ktClass, body, lightClass, psiFile, className);
 
-            String[] imports = getImports();
-            if (imports != null) {
-                for (String fqName : imports) {
-                    final Collection<DeclarationDescriptor> descriptors = ResolutionUtils.resolveImportReference(ktClass.getContainingKtFile(), new FqName(fqName));
-                    Iterator<DeclarationDescriptor> iterator = descriptors.iterator();
-                    if (iterator.hasNext()) {
-                        DeclarationDescriptor descriptor = iterator.next();
-                        ImportInsertHelper.getInstance(project).importDescriptor(ktClass.getContainingKtFile(), descriptor, false);
+
+            if ((psiFile instanceof KtFile ktFile)) {
+
+                String[] imports = getImports();
+                if (imports != null) {
+                    for (String fqName : imports) {
+                        ImportInsertionKt.addImport(ktFile, new FqName(fqName), false, null, project);
                     }
                 }
+
+                OptimizeImportsProcessor processor = new OptimizeImportsProcessor(project, ktFile);
+                processor.run();
+
+                ShortenReferencesFacility.Companion.getInstance().shorten(ktFile);
+//                ShortenReferences.INSTANCE.process(ktFile);
+                // ShortenReferences.DEFAULT.process(ktFile);
             }
+
+
+
+
             CodeStyleManager styleManager = CodeStyleManager.getInstance(ktClass.getProject());
             styleManager.reformatText(ktClass.getContainingFile(), Collections.singletonList(ktClass.getTextRange()));
+
+
         });
     }
 
@@ -114,10 +127,7 @@ abstract class KotlinBuilder extends BaseBuilder {
         } else {
             getParams = elementFactory.createFunction(buildMethod(ktClass, body, lightClass, false, true));
         }
-        PsiMethod[] methods = lightClass.findMethodsByName(mMethodName, false);
-        if (methods.length > 0) {
-            methods[0].delete();
-        }
+        KtClassKt.deleteFunctionFromKtClass(ktClass, mMethodName);
         if (mouse == null || mouse.getParent() != body) {
             body.addBefore(getParams, body.getRBrace());
             return;
